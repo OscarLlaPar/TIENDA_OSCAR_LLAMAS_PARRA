@@ -1,0 +1,44 @@
+h2,h2,h3{
+	text-align:center;
+}
+
+body{
+    height:100vh;
+}
+
+header, footer{
+    background-color: black;
+    color:white;
+}
+
+header{
+    height:15vh;
+}
+
+footer{
+    height:10vh;
+}
+main{
+    height:75vh;
+}
+
+table, th, td{
+	/*border: solid black 1px;*/
+	border-collapse: collapse;
+        padding:10px;
+}
+table{
+	width:1000px;
+	margin:0px auto;
+}
+
+th{
+	background-color: dimgrey;
+}
+
+tr:nth-child(2n+1){
+	background-color:lightgrey;
+}
+input[type="number"]{
+    width:30px;
+}
