@@ -1,17 +1,31 @@
-<%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.Producto" %>
+<%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.Producto, curso.java.modelo.Usuario" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf8">
-	<title>Tienda Óscar Llamas Parra - Inicio</title>
+	<title>Inicio - Tienda Óscar Llamas Parra</title>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilos.css">
 </head>
 <body>
 	<jsp:include page="layout/header.jsp" />
 	<main>
-		<a href="pages/login.jsp">Iniciar sesión</a>
+		
 		<a href="pages/carrito.jsp">Ver carrito</a>
 		<div>
+			<%
+				if(request.getSession().getAttribute("usuarioTienda")!=null){
+					Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");
+					%>
+						<h2>¡Bienvenido <%= usuario.getNombre() %> !</h2>
+						<a href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a>
+					<%
+				}
+				else{
+					%>
+						<a href="pages/login.jsp">Iniciar sesión</a>
+					<%
+				}
+			%>
 			<h2>Catálogo</h2>
 			<form action="ServletAnadir" method="post">
 				<table>

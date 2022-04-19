@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Carrito - Tienda Óscar Llamas Parra</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilos.css">
 </head>
 <body>
@@ -25,7 +25,7 @@
 					<th>Acción</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="contenidoCarrito">
 				<%
                     HashMap<Integer, Producto> carrito = (HashMap) request.getSession().getAttribute("carrito");
 
@@ -44,6 +44,14 @@
                 %>	
 			</tbody>
 		</table>
+		<p id="total"></p>
+		<%
+			if(request.getSession().getAttribute("usuarioTienda")!=null){
+				%>
+				<a href="">Efectuar compra</a>
+				<%
+			}
+		%>
 	</form>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />

@@ -4,15 +4,24 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Iniciar sesión - Tienda Óscar Llamas Parra</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilos.css">
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp" />
 	<main>
+		<h2>Iniciar sesión</h2>
 		<form action="<%=request.getContextPath()%>/ServletLogin" method="post">
-			<label for="nombre">Nombre:</label>
+			<%
+				if(request.getAttribute("errorLogin")!=null){
+			%>
+					<p class="error"><%= request.getAttribute("errorLogin") %></p>
+			<%
+				}
+			%>
+			<label for="id">ID:</label>
 			<br>
-			<input type="text" name="nombre" placeholder="Nombre de usuario...">
+			<input type="text" name="id" placeholder="ID del usuario...">
 			<br>
 			<label for="password">Contraseña:</label>
 			<br>
