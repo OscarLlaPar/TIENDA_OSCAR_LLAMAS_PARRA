@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import curso.java.modelo.Producto;
-import curso.java.modelo.ProductoDB;
+import curso.java.servicio.ProductoServicio;
+
 
 /**
- * Servlet implementation class ServletInicial
+ * Servlet implementation class ServletCarrito
  */
-
-@WebServlet("")
-public class ServletInicial extends HttpServlet {
+@WebServlet("/ServletCarrito")
+public class ServletCarrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletInicial() {
+    public ServletCarrito() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +32,21 @@ public class ServletInicial extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ProductoDB modelo=new ProductoDB();
-		HashMap<Integer,Producto> catalogo=modelo.mostrarCatalogo();
-		HashMap<Integer,Producto> carrito=null;
-		if(request.getSession().getAttribute("carrito")==null) {
-			carrito=new HashMap<Integer,Producto>();
-		}
-		else {
-			carrito = (HashMap)request.getSession().getAttribute("carrito");
+		HashMap<Integer,Producto> carrito=(HashMap)request.getSession().getAttribute("carrito");
+		
+		if(request.getParameter("idEliminar")!=null) {
+			int idProducto=Integer.parseInt(request.getParameter("idEliminar"));
+			Producto productoEnCurso=carrito.get(idProducto);
+			int cantidadEliminar=Integer.parseInt(request.getParameter("cantidad"+idProducto));
+            
+			ProductoServicio.eliminarDelCarrito(carrito, productoEnCurso, idProducto, cantidadEliminar);
 		}
 		
-		request.setAttribute("catalogo", catalogo);
 		request.getSession().setAttribute("carrito", carrito);
-		request.getRequestDispatcher("inicio.jsp").forward(request, response);
+		request.getRequestDispatcher("pages/carrito.jsp").forward(request, response);
 	}
 
-	/**
+	/** 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

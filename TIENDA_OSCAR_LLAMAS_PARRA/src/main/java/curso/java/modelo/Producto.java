@@ -27,6 +27,18 @@ public class Producto {
 		this.imagen = imagen;
 	}
 
+	public Producto(Producto p) {
+		this.categoria = p.getCategoria();
+		this.nombre = p.getNombre();
+		this.descripcion = p.getDescripcion();
+		this.precio = p.getPrecio();
+		this.stock = p.getStock();
+		this.fechaAlta = p.getFechaAlta();
+		this.fechaBaja = p.getFechaBaja();
+		this.impuesto = p.getImpuesto();
+		this.imagen = p.getImagen();
+	}
+	
 	public Categoria getCategoria() {
 		return categoria;
 	}

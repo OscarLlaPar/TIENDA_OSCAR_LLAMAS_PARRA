@@ -1,29 +1,21 @@
 package curso.java.controlador;
 
 import java.io.IOException;
-import java.util.HashMap;
-
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.modelo.Producto;
-import curso.java.modelo.ProductoDB;
-
 /**
- * Servlet implementation class ServletInicial
+ * Servlet implementation class ServletLogin
  */
-
-@WebServlet("")
-public class ServletInicial extends HttpServlet {
+public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletInicial() {
+    public ServletLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +25,7 @@ public class ServletInicial extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ProductoDB modelo=new ProductoDB();
-		HashMap<Integer,Producto> catalogo=modelo.mostrarCatalogo();
-		HashMap<Integer,Producto> carrito=null;
-		if(request.getSession().getAttribute("carrito")==null) {
-			carrito=new HashMap<Integer,Producto>();
-		}
-		else {
-			carrito = (HashMap)request.getSession().getAttribute("carrito");
-		}
-		
-		request.setAttribute("catalogo", catalogo);
-		request.getSession().setAttribute("carrito", carrito);
-		request.getRequestDispatcher("inicio.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

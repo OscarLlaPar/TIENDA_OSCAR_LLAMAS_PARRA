@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
+import curso.java.servicio.ProductoServicio;
 
 /**
- * Servlet implementation class ServletInicial
+ * Servlet implementation class ServletAnadir
  */
-
-@WebServlet("")
-public class ServletInicial extends HttpServlet {
+@WebServlet("/ServletAnadir")
+public class ServletAnadir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletInicial() {
+    public ServletAnadir() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +32,17 @@ public class ServletInicial extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ProductoDB modelo=new ProductoDB();
-		HashMap<Integer,Producto> catalogo=modelo.mostrarCatalogo();
-		HashMap<Integer,Producto> carrito=null;
-		if(request.getSession().getAttribute("carrito")==null) {
-			carrito=new HashMap<Integer,Producto>();
-		}
-		else {
-			carrito = (HashMap)request.getSession().getAttribute("carrito");
+		HashMap<Integer,Producto> carrito = (HashMap)request.getSession().getAttribute("carrito");
+		if(request.getParameter("id")!=null) {
+            ProductoDB modeloProducto=new ProductoDB();
+			int idProducto=Integer.parseInt(request.getParameter("id"));
+			Producto p=modeloProducto.buscarProductoPorId(idProducto);
+			int cantidadIntroducida=Integer.parseInt(request.getParameter("cantidad"+idProducto));
+            ProductoServicio.anadirAlCarrito(carrito, p, idProducto, cantidadIntroducida);
 		}
 		
-		request.setAttribute("catalogo", catalogo);
 		request.getSession().setAttribute("carrito", carrito);
-		request.getRequestDispatcher("inicio.jsp").forward(request, response);
+		request.getRequestDispatcher("").forward(request, response);
 	}
 
 	/**
