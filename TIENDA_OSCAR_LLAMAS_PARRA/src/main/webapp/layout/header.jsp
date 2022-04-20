@@ -9,6 +9,20 @@
 <body>
 	<header>
 		<h1>Tienda Óscar Llamas Parra</h1>
+		<%
+		if(request.getSession().getAttribute("usuarioTienda")==null){
+			%>
+			<a href="pages/login.jsp">Iniciar sesión</a>
+			<a href="">Registrarse</a>
+			<%
+		}
+		else{
+			%>
+			<a href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a>
+			<%
+		}
+		%>
+		
 	</header>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package curso.java.servicio;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import curso.java.modelo.Producto;
 
@@ -28,6 +29,14 @@ public class ProductoServicio {
 		if(p.getStock()<=0) {
 			carrito.remove(clave);
 		}
+	}
+	
+	public static double totalCarrito(HashMap<Integer, Producto> carrito) {
+		double total=0;
+		for (Map.Entry<Integer, Producto> producto : carrito.entrySet()) {
+			total+=producto.getValue().getPrecio();
+		}
+		return total;
 	}
 	
 }

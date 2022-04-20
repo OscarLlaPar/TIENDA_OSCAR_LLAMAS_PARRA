@@ -16,13 +16,8 @@
 				if(request.getSession().getAttribute("usuarioTienda")!=null){
 					Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");
 					%>
-						<h2>¡Bienvenido <%= usuario.getNombre() %> !</h2>
+						<h2>¡Bienvenido <%= usuario.getNombre() %>!</h2>
 						<a href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a>
-					<%
-				}
-				else{
-					%>
-						<a href="pages/login.jsp">Iniciar sesión</a>
 					<%
 				}
 			%>

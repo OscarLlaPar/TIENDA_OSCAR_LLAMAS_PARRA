@@ -11,6 +11,7 @@
 	<jsp:include page="../layout/header.jsp" />
 	<main>
 		<h2>Iniciar sesión</h2>
+		 <a href="<%=request.getContextPath()%>">Volver</a>
 		<form action="<%=request.getContextPath()%>/ServletLogin" method="post">
 			<%
 				if(request.getAttribute("errorLogin")!=null){
@@ -19,9 +20,9 @@
 			<%
 				}
 			%>
-			<label for="id">ID:</label>
+			<label for="email">Email:</label>
 			<br>
-			<input type="text" name="id" placeholder="ID del usuario...">
+			<input type="email" name="email" placeholder="ejemplo@mail.com">
 			<br>
 			<label for="password">Contraseña:</label>
 			<br>

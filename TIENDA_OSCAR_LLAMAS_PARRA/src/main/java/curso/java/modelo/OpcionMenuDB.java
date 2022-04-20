@@ -5,29 +5,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
+import java.util.HashSet;
 
-public class RolDB {
+public class OpcionMenuDB {
 	private static Connection conexion=Conexion.getConexion();
 	
-	public RolDB() {
+	public OpcionMenuDB() {
 		Conexion.conectar();
 	}
 	
-	public Rol obtenerRol(int id) {
+	public HashSet<OpcionMenu> mostrarOpciones(Rol rol){
 		try {
 			Statement statement=conexion.createStatement();
-			Rol rol=null;
+			HashSet<OpcionMenu> menu=new HashSet<>();
+			RolDB modeloRol=new RolDB();
 			if(conexion!=null) {
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM roles WHERE id =?");
-				ps.setInt(1, id);
-				
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM opciones_menu WHERE id_rol=?");
+				ps.setInt(1, rol.getId());
 				ResultSet rs=ps.executeQuery();
-				if(rs.next()) {
-					rol=new Rol(rs.getInt(1),rs.getString(2));
+				while(rs.next()) {
+					OpcionMenu opcion=new OpcionMenu(rs.getInt(1),rol,rs.getString(3),rs.getString(4));
+					menu.add(opcion);
 				}
-				return rol;
-				
+				return menu;
 			}
 			return null;
 		} catch(SQLException e) {

@@ -39,9 +39,13 @@ public class ServletCarrito extends HttpServlet {
 			Producto productoEnCurso=carrito.get(idProducto);
 			int cantidadEliminar=Integer.parseInt(request.getParameter("cantidad"+idProducto));
             
+			double totalCarrito=(double) request.getSession().getAttribute("totalCarrito");
+			
+			
 			ProductoServicio.eliminarDelCarrito(carrito, productoEnCurso, idProducto, cantidadEliminar);
+			
 		}
-		
+		request.getSession().setAttribute("totalCarrito", ProductoServicio.totalCarrito(carrito));
 		request.getSession().setAttribute("carrito", carrito);
 		request.getRequestDispatcher("pages/carrito.jsp").forward(request, response);
 	}

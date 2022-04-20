@@ -39,15 +39,15 @@ public class ServletLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idUsuario =Integer.parseInt(request.getParameter("id"));
+		String emailUsuario =request.getParameter("email");
 		String password=request.getParameter("password");
-		Usuario usuario=UsuarioServicio.verificarUsuario(idUsuario, password);
+		Usuario usuario=UsuarioServicio.verificarUsuario(emailUsuario, password);
 		if(usuario!=null) {
 			request.getSession().setAttribute("usuarioTienda", usuario);
 			request.getRequestDispatcher("").forward(request, response);
 		}
 		else {
-			request.setAttribute("errorLogin", "ID o usuario incorrectos.");
+			request.setAttribute("errorLogin", "Login incorrecto.");
 			request.getRequestDispatcher("pages/login.jsp").forward(request, response);
 		}
 	}

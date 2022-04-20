@@ -1,6 +1,6 @@
-CREATE DATABASE tienda;
+CREATE DATABASE tienda_oscar_llamas_parra;
 
-USE tienda;
+USE tienda_oscar_llamas_parra;
 
 CREATE TABLE `productos` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
@@ -27,9 +27,8 @@ CREATE TABLE `roles` (
 );
 
 CREATE TABLE `usuarios` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `email` varchar(255) PRIMARY KEY,
   `id_rol` int,
-  `email` varchar(255),
   `clave` varchar(255),
   `nombre` varchar(255),
   `apellido1` varchar(255),
@@ -43,7 +42,7 @@ CREATE TABLE `usuarios` (
 
 CREATE TABLE `pedidos` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `id_usuario` int,
+  `email_usuario` varchar(255),
   `fecha` timestamp,
   `metodo_pago` varchar(255),
   `estado` varchar(255),
@@ -78,7 +77,7 @@ CREATE TABLE `configuracion` (
 CREATE TABLE `valoraciones` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `id_producto` int,
-  `id_usuario` int,
+  `email_usuario` varchar(255),
   `valoracion` int,
   `comentario` varchar(255)
 );
@@ -118,7 +117,7 @@ ALTER TABLE `usuarios` ADD FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
 
 ALTER TABLE `opciones_menu` ADD FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
 
-ALTER TABLE `pedidos` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+ALTER TABLE `pedidos` ADD FOREIGN KEY (`email_usuario`) REFERENCES `usuarios` (`email`);
 
 ALTER TABLE `detalles_pedido` ADD FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`);
 
@@ -126,4 +125,4 @@ ALTER TABLE `detalles_pedido` ADD FOREIGN KEY (`id_producto`) REFERENCES `produc
 
 ALTER TABLE `valoraciones` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
 
-ALTER TABLE `valoraciones` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+ALTER TABLE `valoraciones` ADD FOREIGN KEY (`email_usuario`) REFERENCES `usuarios` (`email`);

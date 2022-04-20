@@ -43,6 +43,10 @@ public class ServletInicial extends HttpServlet {
 			carrito = (HashMap)request.getSession().getAttribute("carrito");
 		}
 		
+		if(request.getSession().getAttribute("totalCarrito")==null) {
+			request.getSession().setAttribute("totalCarrito", 0.0);
+		}
+		
 		request.setAttribute("catalogo", catalogo);
 		request.getSession().setAttribute("carrito", carrito);
 		request.getRequestDispatcher("inicio.jsp").forward(request, response);

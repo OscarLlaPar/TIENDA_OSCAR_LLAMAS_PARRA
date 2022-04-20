@@ -1,1 +1,1 @@
-drop database tienda;
+DROP DATABASE tienda_oscar_llamas_parra;

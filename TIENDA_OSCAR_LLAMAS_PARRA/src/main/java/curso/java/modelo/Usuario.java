@@ -1,9 +1,8 @@
 package curso.java.modelo;
 
 public class Usuario {
-	private int id;
-	private Rol rol;
 	private String email;
+	private Rol rol;
 	private String clave;
 	private String nombre;
 	private String apellido1;
@@ -14,12 +13,11 @@ public class Usuario {
 	private String telefono;
 	private String dni;
 	
-	public Usuario(int id, Rol rol, String email, String clave, String nombre, String apellido1, String apellido2,
+	public Usuario(String email, Rol rol, String clave, String nombre, String apellido1, String apellido2,
 			String direccion, String provincia, String localidad, String telefono, String dni) {
 		super();
-		this.id = id;
-		this.rol = rol;
 		this.email = email;
+		this.rol = rol;
 		this.clave = clave;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -31,12 +29,12 @@ public class Usuario {
 		this.dni = dni;
 	}
 
-	public int getId() {
-		return id;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Rol getRol() {
@@ -45,14 +43,6 @@ public class Usuario {
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getClave() {
@@ -129,11 +119,10 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", rol=" + rol + ", email=" + email + ", clave=" + clave + ", nombre=" + nombre
-				+ ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", direccion=" + direccion + ", provincia="
-				+ provincia + ", localidad=" + localidad + ", telefono=" + telefono + ", dni=" + dni + "]";
+		return "Usuario [email=" + email + ", rol=" + rol + ", clave=" + clave + ", nombre=" + nombre + ", apellido1="
+				+ apellido1 + ", apellido2=" + apellido2 + ", direccion=" + direccion + ", provincia=" + provincia
+				+ ", localidad=" + localidad + ", telefono=" + telefono + ", dni=" + dni + "]";
 	}
-	
 	
 	
 }

@@ -39,6 +39,7 @@ public class ServletAnadir extends HttpServlet {
 			Producto p=modeloProducto.buscarProductoPorId(idProducto);
 			int cantidadIntroducida=Integer.parseInt(request.getParameter("cantidad"+idProducto));
             ProductoServicio.anadirAlCarrito(carrito, p, idProducto, cantidadIntroducida);
+            request.getSession().setAttribute("totalCarrito", ProductoServicio.totalCarrito(carrito));
 		}
 		
 		request.getSession().setAttribute("carrito", carrito);

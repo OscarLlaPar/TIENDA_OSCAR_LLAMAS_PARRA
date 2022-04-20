@@ -5,9 +5,9 @@ import curso.java.modelo.UsuarioDB;
 import curso.java.util.UsuarioUtil;
 
 public class UsuarioServicio {
-	public static Usuario verificarUsuario(int id, String password) {
+	public static Usuario verificarUsuario(String email, String password) {
 		UsuarioDB modeloUsuario=new UsuarioDB();
-		Usuario u=modeloUsuario.buscarUsuarioPorId(id);
+		Usuario u=modeloUsuario.buscarUsuarioPorEmail(email);
 		
 		if (u!=null && u.getClave().equals(UsuarioUtil.obtenerSha2(u.getNombre()+password))) {
 			return u;

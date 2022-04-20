@@ -25,7 +25,7 @@ public class ProductoDB {
 				ResultSet rs=ps.executeQuery();
 				
 				while(rs.next()) {
-					catalogo.put(rs.getInt(1), new Producto(modeloCategoria.obtenerCategoria(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getTimestamp(7),rs.getTimestamp(8),rs.getFloat(9),rs.getString(10)));
+					catalogo.put(rs.getInt(1), new Producto(rs.getInt(1),modeloCategoria.obtenerCategoria(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getTimestamp(7),rs.getTimestamp(8),rs.getFloat(9),rs.getString(10)));
 				}
 				
 				
@@ -51,7 +51,7 @@ public class ProductoDB {
 				ResultSet rs=ps.executeQuery();
 				
 				if(rs.next()) {
-					p=new Producto(modeloCategoria.obtenerCategoria(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getTimestamp(7),rs.getTimestamp(8),rs.getFloat(9),rs.getString(10));
+					p=new Producto(rs.getInt(1), modeloCategoria.obtenerCategoria(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getTimestamp(7),rs.getTimestamp(8),rs.getFloat(9),rs.getString(10));
 				}
 				
 				return p;

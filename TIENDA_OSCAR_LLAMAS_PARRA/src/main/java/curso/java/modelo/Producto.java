@@ -3,6 +3,7 @@ package curso.java.modelo;
 import java.sql.Timestamp;
 
 public class Producto {
+	private int id;
 	private Categoria categoria;
 	private String nombre;
 	private String descripcion;
@@ -13,9 +14,10 @@ public class Producto {
 	private float impuesto;
 	private String imagen;
 	
-	public Producto(Categoria categoria, String nombre, String descripcion, double precio, int stock,
+	public Producto(int id, Categoria categoria, String nombre, String descripcion, double precio, int stock,
 			Timestamp fechaAlta, Timestamp fechaBaja, float impuesto, String imagen) {
 		super();
+		this.id=id;
 		this.categoria = categoria;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -39,6 +41,14 @@ public class Producto {
 		this.imagen = p.getImagen();
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -113,7 +123,7 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto [categoria=" + categoria + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio="
+		return "Producto [id=" + id + ", categoria=" + categoria + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio="
 				+ precio + ", stock=" + stock + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", impuesto="
 				+ impuesto + ", imagen=" + imagen + "]";
 	}
