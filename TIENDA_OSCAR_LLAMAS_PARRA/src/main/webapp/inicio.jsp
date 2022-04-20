@@ -41,7 +41,7 @@
 	                            for (Map.Entry<Integer, Producto> producto : catalogo.entrySet()) {
 	                        %>
 	                        <tr id="">
-	                            <td><%= producto.getValue().getNombre()%></td>
+	                            <td><a href="<%=request.getContextPath()%>/ServletProducto?id=<%= producto.getKey()%>"><%= producto.getValue().getNombre()%></a></td>
 	                            <td><%= producto.getValue().getDescripcion()%></td>
 	                            <td><%= producto.getValue().getPrecio()%> &euro;</td>
 	                            <td><%= producto.getValue().getStock()%></td>

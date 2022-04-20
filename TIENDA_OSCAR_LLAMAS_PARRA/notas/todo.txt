@@ -1,14 +1,12 @@
-SQL- carga de datos opciones_menu. (Recordar resetear BD en casa)
-
-Página detalle producto: URL (sobre el nombre mismamente) que envíe los datos del producto a la página.
-Botón añadir al carrito igual que en el inicio.
-
-Insertar menú en header.jsp con una etiqueta nav.
 
 Página de registro de usuario.
 
 Al pulsar en efectuar compra, ir a una página donde seleccionar método de pago.
 Al confirmar, insertar pedido en BBDD. (y vaciar carrito).
+
+SQL- carga de datos opciones_menu. (Recordar resetear BD en casa)
+
+Insertar menú en header.jsp con una etiqueta nav.
 
 Búsqueda por el catálogo:
 	-Seguramente modificación del metodo mostrarCatalogo() de ProductoDB.

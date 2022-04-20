@@ -37,4 +37,34 @@ private static Connection conexion=Conexion.getConexion();
 			return null;
 		}
 	}
+	
+	public boolean altaUsuario(Usuario u) {
+		try {
+			Statement statement=conexion.createStatement();
+			
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("INSERT INTO usuarios VALUES (?,1,?,?,?,?,?,?,?,?,?)");
+				
+				ps.setString(1, u.getEmail());
+				ps.setString(2, u.getClave());
+				ps.setString(3, u.getNombre());
+				ps.setString(4, u.getApellido1());
+				ps.setString(5, u.getApellido2());
+				ps.setString(6, u.getDireccion());
+				ps.setString(7, u.getProvincia());
+				ps.setString(8, u.getLocalidad());
+				ps.setString(9, u.getTelefono());
+				ps.setString(10, u.getDni());
+				
+				return ps.execute();
+				
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
 }
