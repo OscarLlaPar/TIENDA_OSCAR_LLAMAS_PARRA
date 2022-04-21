@@ -1,4 +1,4 @@
-<%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.Producto" %>
+<%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.Producto, curso.java.modelo.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -54,12 +54,13 @@
 			%>
 			
 			<%
-				if(request.getSession().getAttribute("usuarioTienda")!=null){
+				Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");
+				if(usuario!=null && usuario.getRol().getId()==1){
 					%>
 					<a href="<%=request.getContextPath()%>/pages/confirmarCompra.jsp">Efectuar compra</a>
 					<%
 				}
-				else{
+				else if(usuario==null){
 					%>
 					<p>Regístrate o inicia sesión para poder efectuar la compra.</p>
 					<%

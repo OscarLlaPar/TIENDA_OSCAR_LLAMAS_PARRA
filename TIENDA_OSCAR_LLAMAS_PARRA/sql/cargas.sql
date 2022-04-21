@@ -1,5 +1,5 @@
 USE tienda_oscar_llamas_parra;
-
+/*
 INSERT INTO categorias (nombre, descripcion)
 VALUES ("Cuerda", "Instrumentos de cuerda frotada, punteada o percutida."),
 ("Viento metal","Instrumentos de viento metal: Tubas, trombones, trompetas,etc."),
@@ -19,9 +19,17 @@ VALUES ("admin@admin.com", 3, SHA2('Adminadmin',256), "Admin", "istra","dor", "C
 INSERT INTO productos (id_categoria,nombre,descripcion,precio,stock,fecha_baja,impuesto,imagen)
 VALUES (1, "Guitarra", "Guitarra española",71.90, 321, null, 12, null),
 (2, "Trompeta", "Trompeta normal",287.83, 123, null, 12, null);
-
+*/
 INSERT INTO metodos_pago (metodo_pago)
 VALUES ("Tarjeta"),("Paypal");
 
-/*INSERT INTO opciones_menu (id_rol,nombre_opcion,url_opcion)
-VALUES ()*/
+INSERT INTO opciones_menu (id_rol,nombre_opcion,url_opcion)
+VALUES (1,"Mis pedidos","pages/pedidos.jsp"),
+(2,"Gestionar productos",""),
+(2,"Gestionar clientes",""),
+(2,"Gestionar pedidos",""),
+(3,"Gestionar productos",""),
+(3,"Gestionar clientes",""),
+(3,"Gestionar pedidos",""),
+(3,"Gestionar empleados","");
+

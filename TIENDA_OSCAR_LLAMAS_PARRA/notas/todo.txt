@@ -12,3 +12,8 @@ Insertar menú en header.jsp con una etiqueta nav.
 Búsqueda por el catálogo:
 	-Seguramente modificación del metodo mostrarCatalogo() de ProductoDB.
 	-Cambiar tipo de variable de catalogo a LinkedHashMap para poder ordenar.
+	
+	
+----------------DUDAS---------
+Menú para rol anónimo.
+Cómo crear objetos Pedido y DetallePedido e insertarlos en la base de datos.

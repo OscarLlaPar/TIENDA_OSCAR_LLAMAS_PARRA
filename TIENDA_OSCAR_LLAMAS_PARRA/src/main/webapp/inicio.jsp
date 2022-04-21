@@ -9,12 +9,11 @@
 <body>
 	<jsp:include page="layout/header.jsp" />
 	<main>
-		
-		<a href="pages/carrito.jsp">Ver carrito</a>
 		<div>
 			<%
-				if(request.getSession().getAttribute("usuarioTienda")!=null){
-					Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");
+			Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");	
+			if(usuario!=null){
+					
 					%>
 						<h2>¡Bienvenido <%= usuario.getNombre() %>!</h2>
 						<a href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a>
@@ -30,8 +29,14 @@
 							<th>Descripción</th>
 							<th>Precio</th>
 							<th>Stock</th>
-							<th>Cantidad añadir</th>
-							<th>Acción</th>
+							<%
+							if(usuario==null || usuario.getRol().getId()==1){
+							%>
+								<th>Cantidad añadir</th>
+								<th>Acción</th>
+							<%
+							}
+							%>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,8 +50,14 @@
 	                            <td><%= producto.getValue().getDescripcion()%></td>
 	                            <td><%= producto.getValue().getPrecio()%> &euro;</td>
 	                            <td><%= producto.getValue().getStock()%></td>
-	                            <td><input type="number" name="cantidad<%= producto.getKey()%>" value="1" min="1"></td>
-	                            <td><button type="submit" name="id" value="<%= producto.getKey()%>">Añadir al carrito</button></td>
+	                            <%
+								if(usuario==null || usuario.getRol().getId()==1){
+								%>
+		                            <td><input type="number" name="cantidad<%= producto.getKey()%>" value="1" min="1"></td>
+		                            <td><button type="submit" name="id" value="<%= producto.getKey()%>">Añadir al carrito</button></td>
+	                            <%
+								}
+								%>
 	                        </tr>
 	                        <%
 	                            }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="curso.java.modelo.Producto" %>
+<%@ page import="curso.java.modelo.Producto, curso.java.modelo.Usuario" %>
 <%
 	Producto productoEnCurso=(Producto)request.getAttribute("productoEnCurso");
 %>
@@ -21,13 +21,20 @@
 		<p><strong>Cantidad en stock: </strong><%= productoEnCurso.getStock() %></p>
 		<p><strong>Disponible desde: </strong><%= productoEnCurso.getFechaAlta() %></p>
 		<p><strong>Impuesto: </strong><%= productoEnCurso.getImpuesto() %></p>
-		<form action="<%= request.getContextPath() %>/ServletAnadir" method="post">
-			<label for="cantidad<%= productoEnCurso.getId()%>">Cantidad para comprar:</label>
-			<br>
-			<input type="number" name="cantidad<%= productoEnCurso.getId()%>" value="1" min="1">
-			<br>
-			<button type="submit" name="id" value="<%= productoEnCurso.getId()%>">Añadir al carrito</button>
-		</form>
+		<%
+		Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");
+		if(usuario==null || usuario.getRol().getId()==1){
+		%>
+			<form action="<%= request.getContextPath() %>/ServletAnadir" method="post">
+				<label for="cantidad<%= productoEnCurso.getId()%>">Cantidad para comprar:</label>
+				<br>
+				<input type="number" name="cantidad<%= productoEnCurso.getId()%>" value="1" min="1">
+				<br>
+				<button type="submit" name="id" value="<%= productoEnCurso.getId()%>">Añadir al carrito</button>
+			</form>
+		<%
+		}
+		%>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />
 </body>
