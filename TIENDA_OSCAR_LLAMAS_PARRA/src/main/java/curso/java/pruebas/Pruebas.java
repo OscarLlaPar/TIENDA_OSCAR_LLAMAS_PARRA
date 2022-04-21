@@ -1,11 +1,12 @@
 package curso.java.pruebas;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import curso.java.modelo.MetodoPago;
+import curso.java.modelo.UsuarioDB;
 
 public class Pruebas {
 	public static void main(String[] args) {
+		UsuarioDB mu=new UsuarioDB();
 		
+		System.out.println(mu.buscarUsuarioPorEmail("aaaaaa"));
 	}
 }

@@ -56,7 +56,7 @@
 			<%
 				if(request.getSession().getAttribute("usuarioTienda")!=null){
 					%>
-					<a href="">Efectuar compra</a>
+					<a href="<%=request.getContextPath()%>/pages/confirmarCompra.jsp">Efectuar compra</a>
 					<%
 				}
 				else{

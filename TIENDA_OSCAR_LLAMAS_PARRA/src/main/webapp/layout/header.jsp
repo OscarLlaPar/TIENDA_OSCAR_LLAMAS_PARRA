@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
 	<header>
@@ -13,11 +12,12 @@
 		if(request.getSession().getAttribute("usuarioTienda")==null){
 			%>
 			<a href="pages/login.jsp">Iniciar sesión</a>
-			<a href="">Registrarse</a>
+			<a href="pages/registro.jsp">Registrarse</a>
 			<%
 		}
 		else{
 			%>
+			<a href="<%= request.getContextPath()%>/pages/perfilUsuario.jsp">Ver perfil</a>
 			<a href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a>
 			<%
 		}

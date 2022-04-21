@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PedidoDB {
 	private static Connection conexion=Conexion.getConexion();
@@ -20,12 +22,19 @@ public class PedidoDB {
 				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,email_usuario,metodo_pago,estado,num_factura,total) VALUES (?,?,?,?,?,?)");
 				ps.setInt(1, pedido.getId());
 				ps.setString(2, pedido.getUsuario().getEmail());
-				ps.setString(3, pedido.getMetodoPago().toString());
+				ps.setString(3, pedido.getMetodoPago().getMetodoPago());
 				ps.setString(4, pedido.getEstado().toString());
 				ps.setString(5, pedido.getNumFactura());
 				ps.setDouble(6, pedido.getTotal());
 				
-				return ps.execute();
+				if(ps.execute()) {
+					DetallePedidoDB modeloDP=new DetallePedidoDB();
+					HashMap<Integer,DetallePedido> detallesPedido=pedido.getDetallesPedido();
+					for (Map.Entry<Integer, DetallePedido> detalle : detallesPedido.entrySet()) {
+						modeloDP.insertarDetallePedido(detalle.getValue());
+					}
+					return true;
+				}
 			}
 			
 			return false;

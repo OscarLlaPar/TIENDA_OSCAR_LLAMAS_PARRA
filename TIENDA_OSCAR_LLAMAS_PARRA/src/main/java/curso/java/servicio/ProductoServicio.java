@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import curso.java.modelo.Producto;
+import curso.java.modelo.ProductoDB;
 
 public class ProductoServicio {
 	public static void anadirAlCarrito(HashMap<Integer,Producto> carrito, Producto p, int clave, int cantidad) {
@@ -37,6 +38,11 @@ public class ProductoServicio {
 			total+=producto.getValue().getPrecio();
 		}
 		return total;
+	}
+	
+	public static Producto obtenerProducto(int id) {
+		ProductoDB modeloProducto=new ProductoDB();
+		return modeloProducto.buscarProductoPorId(id);
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Pedido {
 	private HashMap<Integer,DetallePedido> detallesPedido;
 	
 	public Pedido(int id, Usuario usuario, Timestamp fecha, MetodoPago metodoPago, EstadoPedido estado,
-			String numFactura, double total, HashMap<Integer, DetallePedido> detallesPedido) {
+			String numFactura, double total) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -23,9 +23,19 @@ public class Pedido {
 		this.estado = estado;
 		this.numFactura = numFactura;
 		this.total = total;
-		this.detallesPedido = detallesPedido;
 	}
 
+	public Pedido(Usuario usuario, MetodoPago metodoPago, EstadoPedido estado,
+			String numFactura, double total) {
+		super();
+		this.usuario = usuario;
+		this.metodoPago = metodoPago;
+		this.estado = estado;
+		this.numFactura = numFactura;
+		this.total = total;
+		this.detallesPedido = new HashMap <>();
+	}
+	
 	public int getId() {
 		return id;
 	}

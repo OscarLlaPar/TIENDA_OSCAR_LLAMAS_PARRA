@@ -1,8 +1,9 @@
 
-Página de registro de usuario.
+-Validación registro + Codificación password
 
-Al pulsar en efectuar compra, ir a una página donde seleccionar método de pago.
-Al confirmar, insertar pedido en BBDD. (y vaciar carrito).
+Reorganización Pedido/DetallePedido
+
+(y vaciar carrito).
 
 SQL- carga de datos opciones_menu. (Recordar resetear BD en casa)
 

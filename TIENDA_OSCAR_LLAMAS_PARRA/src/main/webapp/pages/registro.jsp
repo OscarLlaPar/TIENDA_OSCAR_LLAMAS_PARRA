@@ -57,6 +57,7 @@
 				<label for="confirmarPassword">Confirmar contraseña</label>
 				<input type="password" name="confirmarPassword" placeholder="">
 			</div>
+			<input type="submit" value="Registrarse">
 		</form>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />

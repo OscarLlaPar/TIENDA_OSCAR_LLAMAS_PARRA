@@ -20,5 +20,8 @@ INSERT INTO productos (id_categoria,nombre,descripcion,precio,stock,fecha_baja,i
 VALUES (1, "Guitarra", "Guitarra española",71.90, 321, null, 12, null),
 (2, "Trompeta", "Trompeta normal",287.83, 123, null, 12, null);
 
+INSERT INTO metodos_pago (metodo_pago)
+VALUES ("Tarjeta"),("Paypal");
+
 /*INSERT INTO opciones_menu (id_rol,nombre_opcion,url_opcion)
 VALUES ()*/
