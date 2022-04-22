@@ -4,66 +4,57 @@
 <head>
 	<meta charset="utf8">
 	<title>Inicio - Tienda Óscar Llamas Parra</title>
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilos.css">
+	
 </head>
 <body>
 	<jsp:include page="layout/header.jsp" />
 	<main>
-		<div>
-			<%
-			Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");	
-			if(usuario!=null){
-					
-					%>
-						<h2>¡Bienvenido <%= usuario.getNombre() %>!</h2>
-						<a href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a>
-					<%
-				}
-			%>
-			<h2>Catálogo</h2>
+		<div class="bg-dark py-3 text-center text-white">
+				<%
+				Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");	
+				if(usuario!=null){
+						
+						%>
+							<h4>¡Bienvenido <%= usuario.getNombre() %>!</h4>
+						<%
+					}
+				%>
+				<h2>Catálogo</h2>
+		</div>
+		<div class="container px-4 px-lg-5 mt-5">
 			<form action="ServletAnadir" method="post">
-				<table>
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Descripción</th>
-							<th>Precio</th>
-							<th>Stock</th>
-							<%
-							if(usuario==null || usuario.getRol().getId()==1){
+				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					<%
+					HashMap<Integer, Producto> catalogo = (HashMap) request.getAttribute("catalogo");	
+					for (Map.Entry<Integer, Producto> producto : catalogo.entrySet()) {
 							%>
-								<th>Cantidad añadir</th>
-								<th>Acción</th>
+							<div class="col mb-5">
+		                        <div class="card h-100">
+		                            <!-- Product image-->
+		                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+		                            <!-- Product details-->
+		                            <div class="card-body p-4">
+		                                <div class="text-center">
+		                                    <!-- Product name-->
+		                                    <h5 class="fw-bolder"><a href="<%=request.getContextPath()%>/ServletProducto?id=<%= producto.getKey()%>"><%= producto.getValue().getNombre()%></a></h5>
+		                                    <!-- Product price-->
+		                                    <%= producto.getValue().getPrecio()%> &euro;</td>
+		                                </div>
+		                            </div>
+		                            <!-- Product actions-->
+		                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+		                            	
+		                                <div class="text-center">
+		                                	<input class="w-25 m-2" type="number" name="cantidad<%= producto.getKey()%>" value="1" min="1">
+		                               		<button class="btn btn-outline-dark mt-auto" type="submit" name="id" value="<%= producto.getKey()%>">Añadir al carrito</button>
+	                               		</div>
+		                            </div>
+		                        </div>
+		                    </div>
 							<%
-							}
-							%>
-						</tr>
-					</thead>
-					<tbody>
-						 <%
-	                            HashMap<Integer, Producto> catalogo = (HashMap) request.getAttribute("catalogo");
-	
-	                            for (Map.Entry<Integer, Producto> producto : catalogo.entrySet()) {
-	                        %>
-	                        <tr id="">
-	                            <td><a href="<%=request.getContextPath()%>/ServletProducto?id=<%= producto.getKey()%>"><%= producto.getValue().getNombre()%></a></td>
-	                            <td><%= producto.getValue().getDescripcion()%></td>
-	                            <td><%= producto.getValue().getPrecio()%> &euro;</td>
-	                            <td><%= producto.getValue().getStock()%></td>
-	                            <%
-								if(usuario==null || usuario.getRol().getId()==1){
-								%>
-		                            <td><input type="number" name="cantidad<%= producto.getKey()%>" value="1" min="1"></td>
-		                            <td><button type="submit" name="id" value="<%= producto.getKey()%>">Añadir al carrito</button></td>
-	                            <%
-								}
-								%>
-	                        </tr>
-	                        <%
-	                            }
-	                        %>	
-					</tbody>
-				</table>
+						}
+					%>
+				</div>
 			</form>
 		</div>
 	</main>

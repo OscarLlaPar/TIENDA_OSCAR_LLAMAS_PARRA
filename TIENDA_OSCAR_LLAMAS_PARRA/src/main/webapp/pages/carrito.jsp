@@ -6,11 +6,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Carrito - Tienda Óscar Llamas Parra</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilos.css">
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp" />
-	<main>		
+	<main class="py-5">		
 		<h2>Carrito</h2>
 		
 	 	<a href="<%=request.getContextPath()%>">Volver</a>

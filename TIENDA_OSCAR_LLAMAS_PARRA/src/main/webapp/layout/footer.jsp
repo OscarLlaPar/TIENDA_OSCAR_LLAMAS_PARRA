@@ -6,8 +6,8 @@
 <meta charset="ISO-8859-1">
 </head>
 <body>
-	<footer>
-		Autor: Óscar Llamas Parra
-	</footer>
+	<footer class="py-3 bg-dark fixed-bottom">
+            <div class="container"><p class="m-0 text-center text-white">Óscar Llamas Parra</p></div>
+        </footer>
 </body>
 </html>
