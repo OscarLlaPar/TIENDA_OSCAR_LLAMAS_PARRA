@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.modelo.DetallePedido;
 import curso.java.modelo.Producto;
+import curso.java.servicio.DetallePedidoServicio;
 import curso.java.servicio.ProductoServicio;
 
 
@@ -32,20 +34,20 @@ public class ServletCarrito extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HashMap<Integer,Producto> carrito=(HashMap)request.getSession().getAttribute("carrito");
+		HashMap<Integer,DetallePedido> carrito=(HashMap)request.getSession().getAttribute("carrito");
 		
 		if(request.getParameter("idEliminar")!=null) {
 			int idProducto=Integer.parseInt(request.getParameter("idEliminar"));
-			Producto productoEnCurso=carrito.get(idProducto);
+			DetallePedido dpEnCurso=carrito.get(idProducto);
 			int cantidadEliminar=Integer.parseInt(request.getParameter("cantidad"+idProducto));
             
 			double totalCarrito=(double) request.getSession().getAttribute("totalCarrito");
 			
 			
-			ProductoServicio.eliminarDelCarrito(carrito, productoEnCurso, idProducto, cantidadEliminar);
+			DetallePedidoServicio.eliminarDelCarrito(carrito, idProducto, cantidadEliminar);
 			
 		}
-		request.getSession().setAttribute("totalCarrito", ProductoServicio.totalCarrito(carrito));
+		request.getSession().setAttribute("totalCarrito", DetallePedidoServicio.totalCarrito(carrito));
 		request.getSession().setAttribute("carrito", carrito);
 		request.getRequestDispatcher("pages/carrito.jsp").forward(request, response);
 	}

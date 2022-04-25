@@ -10,7 +10,10 @@
 <body>
 	<jsp:include page="../layout/header.jsp" />
 	<main>
-		<h2>Iniciar sesión</h2>
+		<div class="bg-dark py-3 text-center text-white">
+			<h2>Iniciar sesión</h2>
+		</div>
+		
 		 <a href="<%=request.getContextPath()%>">Volver</a>
 		<form action="<%=request.getContextPath()%>/ServletLogin" method="post">
 			<%

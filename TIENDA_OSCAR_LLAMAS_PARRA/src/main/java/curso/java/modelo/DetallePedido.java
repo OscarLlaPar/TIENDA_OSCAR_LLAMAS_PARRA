@@ -19,6 +19,16 @@ public class DetallePedido {
 		this.total = total;
 	}
 
+	public DetallePedido(Producto producto, float precioUnidad, int unidades, float impuesto,
+			double total) {
+		super();
+		this.producto = producto;
+		this.precioUnidad = precioUnidad;
+		this.unidades = unidades;
+		this.impuesto = impuesto;
+		this.total = total;
+	}
+	
 	public Pedido getPedido() {
 		return pedido;
 	}

@@ -14,7 +14,10 @@
 <body>
 	<jsp:include page="../layout/header.jsp" />
 	<main>
-		<h2>Perfil de <%=usuario.getNombre()+" "+usuario.getApellido1()+" "+usuario.getApellido2()%>  </h2>
+		<div class="bg-dark py-3 text-center text-white">
+			<h2>Perfil de <%=usuario.getNombre()+" "+usuario.getApellido1()+" "+usuario.getApellido2()%>  </h2>
+		</div>
+		
 		<a href="<%= request.getContextPath() %>">Volver</a>
 		<div>
 			<p><strong>Email: </strong><%= usuario.getEmail() %></p>

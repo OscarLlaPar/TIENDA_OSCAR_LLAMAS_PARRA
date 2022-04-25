@@ -34,4 +34,27 @@ public class MetodoPagoDB {
 			return null;
 		}
 	}
+	
+	public MetodoPago obtenerMetodoPago(String metodo) {
+		try {
+			Statement statement=conexion.createStatement();
+			MetodoPago metodoPago=null;
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM metodos_pago WHERE metodo_pago =?");
+				ps.setString(1, metodo);
+				
+				ResultSet rs=ps.executeQuery();
+				if(rs.next()) {
+					metodoPago=new MetodoPago(rs.getInt(1),rs.getString(2));
+				}
+				return metodoPago;
+				
+			}
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 }

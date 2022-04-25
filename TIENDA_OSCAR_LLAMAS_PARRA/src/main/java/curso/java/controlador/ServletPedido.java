@@ -19,6 +19,7 @@ import curso.java.modelo.Pedido;
 import curso.java.modelo.PedidoDB;
 import curso.java.modelo.Producto;
 import curso.java.modelo.Usuario;
+import curso.java.servicio.PedidoServicio;
 import curso.java.servicio.ProductoServicio;
 
 /**
@@ -41,7 +42,7 @@ public class ServletPedido extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request,response);
 	}
 
 	/**
@@ -52,17 +53,23 @@ public class ServletPedido extends HttpServlet {
 		/*LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);*/
 		// TODO Ver cómo puedo mejorar esto o pasarlo a servicios
-		MetodoPagoDB modeloMP = new MetodoPagoDB();
 		Usuario usuarioActual=(Usuario)request.getSession().getAttribute("usuarioTienda");
-		int idMetodoPago=Integer.parseInt(request.getParameter("metodoPago"));
-		double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
-		Pedido pedido=new Pedido(usuarioActual, modeloMP.obtenerMetodoPago(idMetodoPago),EstadoPedido.Pendiente,"123",totalCarrito);
-		HashMap<Integer,DetallePedido> detallesPedido=pedido.getDetallesPedido();
-		HashMap<Integer, Producto> carrito = (HashMap) request.getSession().getAttribute("carrito");
 		
+		if(request.getParameter("comprar")!=null) {
+			MetodoPagoDB modeloMP = new MetodoPagoDB();
+			
+			int idMetodoPago=Integer.parseInt(request.getParameter("metodoPago"));
+			double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
+			Pedido pedido=new Pedido(usuarioActual, modeloMP.obtenerMetodoPago(idMetodoPago),EstadoPedido.Pendiente,"123",totalCarrito);
+			HashMap<Integer, DetallePedido> carrito=(HashMap) request.getSession().getAttribute("carrito");
+			pedido.setDetallesPedido(carrito);
+			carrito.clear();
 		
-		PedidoDB modeloPedido = new PedidoDB();
-		modeloPedido.insertarPedido(pedido);
+			PedidoDB modeloPedido = new PedidoDB();
+			modeloPedido.insertarPedido(pedido);
+		}
+		
+		request.setAttribute("pedidos", PedidoServicio.obtenerPedidos(usuarioActual.getEmail()));
 		
 		request.getRequestDispatcher("pages/pedidos.jsp").forward(request, response);
 		

@@ -41,7 +41,7 @@ CREATE TABLE `usuarios` (
 );
 
 CREATE TABLE `pedidos` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `id` int PRIMARY KEY,
   `email_usuario` varchar(255),
   `fecha` timestamp,
   `metodo_pago` varchar(255),

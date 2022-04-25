@@ -23,6 +23,7 @@ public class Pedido {
 		this.estado = estado;
 		this.numFactura = numFactura;
 		this.total = total;
+		this.detallesPedido = new HashMap <>();
 	}
 
 	public Pedido(Usuario usuario, MetodoPago metodoPago, EstadoPedido estado,

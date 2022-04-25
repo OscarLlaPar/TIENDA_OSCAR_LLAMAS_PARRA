@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.Producto" %>
+<%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.DetallePedido" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +11,22 @@
 <body>
 	<jsp:include page="../layout/header.jsp" />
 	<main>
-		<h2>Confirmar compra</h2>
+		<div class="bg-dark py-3 text-center text-white">
+			<h2>Confirmar compra</h2>
+		</div>
+		
 		<a href="<%=request.getContextPath()%>/pages/carrito.jsp">Volver</a>
 		<table>
 			<tbody>
 				<%
-	                   HashMap<Integer, Producto> carrito = (HashMap) request.getSession().getAttribute("carrito");
+	                   HashMap<Integer, DetallePedido> carrito = (HashMap) request.getSession().getAttribute("carrito");
 	
-	                   for (Map.Entry<Integer, Producto> producto : carrito.entrySet()) {
+	                   for (Map.Entry<Integer, DetallePedido> dp : carrito.entrySet()) {
 	            %>
 	            	<tr>
-	            		<td><%= producto.getValue().getNombre()%></td>
-	            		<td><%= producto.getValue().getStock()%></td>
-	            		<td><%= String.format("%.2f", producto.getValue().getPrecio())%> &euro;</td>
+	            		<td><%= dp.getValue().getProducto().getNombre() %></td>
+	            		<td><%= dp.getValue().getUnidades()%></td>
+	            		<td><%= String.format("%.2f", dp.getValue().getTotal() )%> &euro;</td>
 	            	</tr>
                 <%
 	                    }
@@ -34,13 +37,13 @@
 		<form action="<%=request.getContextPath()%>/ServletPedido" method="post">
 			<div>
 				<p>Método de pago</p>
-				<input id="mTarjeta" type="radio" name="metodoPago" value="1" default>
+				<input id="mTarjeta" type="radio" name="metodoPago" value="1" checked>
 				<label for="mTarjeta">Tarjeta</label>
 				<br>
 				<input id="mPaypal" type="radio" name="metodoPago" value="2">
 				<label for="mPaypal">Paypal</label>
 				<br>
-				<input type="submit" value="Confirmar pedido">
+				<input type="submit" name="comprar" value="Confirmar pedido">
 			</div>
 		</form>
 	</main>

@@ -11,7 +11,10 @@
 <body>
 	<jsp:include page="../layout/header.jsp" />
 	<main>
-		<h2>Registro</h2>
+		<div class="bg-dark py-3 text-center text-white">
+			<h2>Registro</h2>
+		</div>
+		
 		<form action="<%= request.getContextPath() %>/ServletRegistro" method="post">
 			<div class=campo>
 				<label for="email">Email</label>

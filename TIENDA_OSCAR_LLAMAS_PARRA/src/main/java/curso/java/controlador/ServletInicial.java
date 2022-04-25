@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.modelo.DetallePedido;
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
 
@@ -35,9 +36,9 @@ public class ServletInicial extends HttpServlet {
 		// TODO Auto-generated method stub
 		ProductoDB modelo=new ProductoDB();
 		HashMap<Integer,Producto> catalogo=modelo.mostrarCatalogo();
-		HashMap<Integer,Producto> carrito=null;
+		HashMap<Integer,DetallePedido> carrito=null;
 		if(request.getSession().getAttribute("carrito")==null) {
-			carrito=new HashMap<Integer,Producto>();
+			carrito=new HashMap<Integer,DetallePedido>();
 		}
 		else {
 			carrito = (HashMap)request.getSession().getAttribute("carrito");
