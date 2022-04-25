@@ -1,5 +1,5 @@
 package curso.java.modelo;
 
 public enum EstadoPedido {
-	Pendiente, Enviado, Cancelado
+	PE,PC,E,C
 }

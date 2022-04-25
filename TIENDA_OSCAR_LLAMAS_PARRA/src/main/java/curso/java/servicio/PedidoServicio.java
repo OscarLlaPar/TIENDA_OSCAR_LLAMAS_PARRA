@@ -10,4 +10,9 @@ public class PedidoServicio {
 		PedidoDB modeloPedido=new PedidoDB();
 		return modeloPedido.mostrarPedidos(email);
 	}
+	
+	public static Pedido obtenerPedido(int id) {
+		PedidoDB modeloPedido=new PedidoDB();
+		return modeloPedido.obtenerPedido(id);
+	}
 }

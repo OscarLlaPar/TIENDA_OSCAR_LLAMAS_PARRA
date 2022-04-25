@@ -33,3 +33,8 @@ VALUES (1,"Mis pedidos","ServletPedido"),
 (3,"Gestionar pedidos",""),
 (3,"Gestionar empleados","");
 
+INSERT INTO configuracion (clave,valor,tipo)
+VALUES ("nombreTienda","","Texto"),
+("direccionTienda", "C/Cosas nº 5", "Texto"),
+("cifTienda", "D04272357", "Texto"),
+("numFacturas","","Numero")
