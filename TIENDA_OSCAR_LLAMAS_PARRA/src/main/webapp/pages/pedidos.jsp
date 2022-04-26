@@ -13,7 +13,6 @@
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Mis pedidos</h2>
 		</div>
-		<form>
 			<table>
 				<thead>
 					<tr>
@@ -37,15 +36,21 @@
 								<td><%= p.getMetodoPago().getMetodoPago() %></td>
 								<td><%= p.getEstado().name() %></td>
 								<td><%= p.getTotal() %> </td>
-								<td><button type="submit">Ver detalle</button></td>
-								<td><button type="submit">Cancelar pedido</button></td>
+								<td><a href="<%=request.getContextPath()%>/ServletDetallePedido?id=<%= p.getId()%>">Ver detalle</a></td>
+								<% 
+									if(p.getEstado().name().equals("PE")){
+								%>
+								<td><a href="<%=request.getContextPath()%>/ServletCancelarPedido?id=<%= p.getId()%>">Cancelar pedido</a></td>
+								<% 
+									}
+								%>
+								
 							</tr>
 							<%
 						}
 					%>
 				</tbody>
 			</table>
-		</form>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />
 </body>

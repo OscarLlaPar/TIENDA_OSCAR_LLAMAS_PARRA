@@ -121,6 +121,37 @@ public class PedidoDB {
 		}
 	}
 	
+	public HashSet<Pedido> mostrarPedidos(EstadoPedido estado){
+		try {
+			Statement statement=conexion.createStatement();
+			
+			if(conexion!=null) {
+				UsuarioDB modeloUsuario=new UsuarioDB();
+				MetodoPagoDB modeloMP=new MetodoPagoDB();
+				DetallePedidoDB modeloDP=new DetallePedidoDB();
+				HashSet<Pedido> pedidos=new HashSet<>();
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE estado = ?");
+				ps.setString(1, estado.name());
+				
+				ResultSet rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					Pedido p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7));
+					p.setDetallesPedido(modeloDP.obtenerDetallesPedido(rs.getInt(1)));
+					pedidos.add(p);
+				}
+				
+				
+				return pedidos;
+			}
+			
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 	public Pedido obtenerPedido(int id) {
 		try {
 			Statement statement=conexion.createStatement();
@@ -150,5 +181,6 @@ public class PedidoDB {
 			return null;
 		}
 	}
+	
 	
 }

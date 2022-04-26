@@ -63,12 +63,13 @@ public class ServletPedido extends HttpServlet {
 			Pedido pedido=new Pedido(usuarioActual, modeloMP.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,"123",totalCarrito);
 			HashMap<Integer, DetallePedido> carrito=(HashMap) request.getSession().getAttribute("carrito");
 			pedido.setDetallesPedido(carrito);
-			carrito.clear();
+			
 		
 			PedidoDB modeloPedido = new PedidoDB();
 			modeloPedido.insertarPedido(pedido);
+			carrito.clear();
+			request.getSession().setAttribute("totalCarrito", 0.0);
 		}
-		
 		request.setAttribute("pedidos", PedidoServicio.obtenerPedidos(usuarioActual.getEmail()));
 		
 		request.getRequestDispatcher("pages/pedidos.jsp").forward(request, response);

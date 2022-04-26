@@ -27,10 +27,10 @@ INSERT INTO opciones_menu (id_rol,nombre_opcion,url_opcion)
 VALUES (1,"Mis pedidos","ServletPedido"),
 (2,"Gestionar productos",""),
 (2,"Gestionar clientes",""),
-(2,"Gestionar pedidos",""),
+(2,"Gestionar pedidos","ServletPedidoEmpleado"),
 (3,"Gestionar productos",""),
 (3,"Gestionar clientes",""),
-(3,"Gestionar pedidos",""),
+(3,"Gestionar pedidos","ServletPedidoAdmin"),
 (3,"Gestionar empleados","");
 
 INSERT INTO configuracion (clave,valor,tipo)
