@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -21,14 +23,13 @@ public class PedidoDB {
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
-				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,email_usuario,metodo_pago,estado,num_factura,total) VALUES (?,?,?,?,?,?)");
+				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,email_usuario,metodo_pago,estado,total) VALUES (?,?,?,?,?)");
 				int idPedido=contarPedidos()+1;
 				ps.setInt(1, idPedido);
 				ps.setString(2, pedido.getUsuario().getEmail());
 				ps.setString(3, pedido.getMetodoPago().getMetodoPago());
 				ps.setString(4, pedido.getEstado().toString());
-				ps.setString(5, pedido.getNumFactura());
-				ps.setDouble(6, pedido.getTotal());
+				ps.setDouble(5, pedido.getTotal());
 				
 				ps.execute();
 				
@@ -80,7 +81,9 @@ public class PedidoDB {
 				ps.setString(1, estado.toString());
 				ps.setInt(2, id);
 				
-				return ps.execute();
+				ps.execute();
+				
+				return true;
 			}
 			
 			return false;
@@ -182,5 +185,33 @@ public class PedidoDB {
 		}
 	}
 	
+	public boolean asignarNumFactura(int id) {
+		try {
+			Statement statement=conexion.createStatement();
+			
+			
+			if(conexion!=null) {
+				ConfiguracionDB modeloConf=new ConfiguracionDB();
+				Configuracion conf=modeloConf.obtenerConfiguracion("numFacturas");
+				String anyoActual=String.valueOf(LocalDate.now().getYear());
+				
+				PreparedStatement ps = conexion.prepareStatement("UPDATE pedidos SET num_factura=? WHERE id=?");
+				
+				ps.setString(1, anyoActual+conf.getValor());
+				ps.setInt(2, id);
+				
+				ps.execute();
+				
+				modeloConf.actualizarNumFacturas();
+				
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 	
 }

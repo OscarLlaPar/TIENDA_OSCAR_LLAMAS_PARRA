@@ -27,4 +27,10 @@ public class PedidoServicio {
 		PedidoDB modeloPedido=new PedidoDB();
 		return modeloPedido.actualizarEstado(id, estado);
 	}
+	
+	public static boolean asignarNumFactura(int id) {
+		PedidoDB modeloPedido=new PedidoDB();
+		return modeloPedido.asignarNumFactura(id);
+	}
+	
 }

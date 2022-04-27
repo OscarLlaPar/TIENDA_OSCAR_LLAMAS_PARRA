@@ -1,13 +1,11 @@
+-Que los servlets no usen directamente las clases DAO
 
--Validación registro + Codificación password
+-Administrador tambien puede enviar pedidos (Gestion de pedidos solo una pag)
 
-Reorganización Pedido/DetallePedido
+-Números de factura
 
-(y vaciar carrito).
+-Lo de los impuestos
 
-SQL- carga de datos opciones_menu. (Recordar resetear BD en casa)
-
-Insertar menú en header.jsp con una etiqueta nav.
 
 Búsqueda por el catálogo:
 	-Seguramente modificación del metodo mostrarCatalogo() de ProductoDB.

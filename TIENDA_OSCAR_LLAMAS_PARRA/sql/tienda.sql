@@ -10,7 +10,7 @@ CREATE TABLE `productos` (
   `precio` double,
   `stock` int,
   `fecha_alta` timestamp,
-  `fecha_baja` timestamp,
+  `fecha_baja` timestamp null,
   `impuesto` float,
   `imagen` varchar(255)
 );

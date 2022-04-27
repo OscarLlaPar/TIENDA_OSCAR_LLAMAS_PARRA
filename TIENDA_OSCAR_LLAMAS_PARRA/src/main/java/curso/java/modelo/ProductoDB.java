@@ -21,6 +21,31 @@ public class ProductoDB {
 			if(conexion!=null) {
 				CategoriaDB modeloCategoria=new CategoriaDB();
 				HashMap<Integer, Producto> catalogo=new HashMap<>();
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos WHERE fecha_baja IS NULL");
+				ResultSet rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					catalogo.put(rs.getInt(1), new Producto(rs.getInt(1),modeloCategoria.obtenerCategoria(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getInt(6),rs.getTimestamp(7),rs.getTimestamp(8),rs.getFloat(9),rs.getString(10)));
+				}
+				
+				
+				return catalogo;
+			}
+			
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public HashMap<Integer, Producto> mostrarTodosLosProductos(){
+		try {
+			Statement statement=conexion.createStatement();
+			
+			if(conexion!=null) {
+				CategoriaDB modeloCategoria=new CategoriaDB();
+				HashMap<Integer, Producto> catalogo=new HashMap<>();
 				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos");
 				ResultSet rs=ps.executeQuery();
 				
@@ -61,6 +86,55 @@ public class ProductoDB {
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
 			return null;
+		}
+	}
+	
+	public boolean bajaProducto(int id) {
+		try {
+			Statement statement=conexion.createStatement();
+			
+			if(conexion!=null) {
+				CategoriaDB modeloCategoria=new CategoriaDB();
+				Producto p=null;
+				PreparedStatement ps = conexion.prepareStatement("UPDATE productos SET fecha_baja=CURRENT_TIMESTAMP() WHERE id=?");
+				ps.setInt(1, id);
+				
+				ps.execute();
+				
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean editarProducto(int id, String nombre, String descripcion, int stock, double precio, float impuesto) {
+		try {
+			Statement statement=conexion.createStatement();
+			
+			if(conexion!=null) {
+				CategoriaDB modeloCategoria=new CategoriaDB();
+				Producto p=null;
+				PreparedStatement ps = conexion.prepareStatement("UPDATE productos SET nombre=?, descripcion=?, stock=?, precio=?, impuesto=? WHERE id=?");
+				ps.setString(1, nombre);
+				ps.setString(2, descripcion);
+				ps.setInt(3, stock);
+				ps.setDouble(4, precio);
+				ps.setFloat(5, impuesto);
+				ps.setInt(6, id);
+				
+				ps.execute();
+				
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 }

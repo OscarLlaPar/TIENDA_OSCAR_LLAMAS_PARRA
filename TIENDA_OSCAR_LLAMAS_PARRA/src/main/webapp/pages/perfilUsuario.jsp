@@ -20,12 +20,51 @@
 		
 		<a href="<%= request.getContextPath() %>">Volver</a>
 		<div>
-			<p><strong>Email: </strong><%= usuario.getEmail() %></p>
-			<p><strong>Dirección: </strong><%= usuario.getDireccion() %></p>
-			<p><strong>Provincia: </strong><%= usuario.getProvincia() %></p>
-			<p><strong>Localidad: </strong><%= usuario.getLocalidad() %></p>
-			<p><strong>Teléfono: </strong><%= usuario.getTelefono() %></p>
-			<p><strong>DNI: </strong><%= usuario.getDni() %></p>
+			<form action="<%= request.getContextPath() %>/ServletEditarPerfil" method="post">
+			<div>
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre" value="<%=usuario.getNombre()%>">
+			</div>
+			<div>
+				<label for="apellido1">Primer apellido</label>
+				<input type="text" name="apellido1" value="<%= usuario.getApellido1() %>">
+			</div>
+			<div>
+				<label for="apellido2">Segundo apellido</label>
+				<input type="text" name="apellido2" value="<%= usuario.getApellido2() %>">
+			</div>
+			<div>
+				<label for="email">Email</label>
+				<input type="email" name="email" value="<%= usuario.getEmail() %>">
+			</div>
+			<div class=campo>
+				<label for="direccion">Dirección</label>
+				<input type="text" name="direccion" value="<%= usuario.getDireccion() %>">
+			</div>
+			<div class=campo>
+				<label for="provincia">Provincia</label>
+				<input type="text" name="provincia" value="<%= usuario.getProvincia() %>">
+			</div>
+			<div class=campo>
+				<label for="localidad">Localidad</label>
+				<input type="text" name="localidad" value="<%= usuario.getLocalidad() %>">
+			</div>
+			<div class=campo>
+				<label for="telefono">Teléfono</label>
+				<input type="text" name="telefono" value="<%= usuario.getTelefono() %>">
+			</div>
+			<div class=campo>
+				<label for="dni">DNI</label>
+				<input type="text" name="dni" value="<%= usuario.getDni()%>">
+			</div>
+			
+			<input type="submit" name="editar" value="Editar perfil">
+			</form>
+			<p>
+				<a href="<%= request.getContextPath()%>/pages/cambiarPassword.jsp">Cambiar contraseña</a>
+			</p>
+			
+			
 		</div>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />

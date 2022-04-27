@@ -60,7 +60,7 @@ public class ServletPedido extends HttpServlet {
 			
 			int idMetodoPago=Integer.parseInt(request.getParameter("metodoPago"));
 			double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
-			Pedido pedido=new Pedido(usuarioActual, modeloMP.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,"123",totalCarrito);
+			Pedido pedido=new Pedido(usuarioActual, modeloMP.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,null,totalCarrito);
 			HashMap<Integer, DetallePedido> carrito=(HashMap) request.getSession().getAttribute("carrito");
 			pedido.setDetallesPedido(carrito);
 			

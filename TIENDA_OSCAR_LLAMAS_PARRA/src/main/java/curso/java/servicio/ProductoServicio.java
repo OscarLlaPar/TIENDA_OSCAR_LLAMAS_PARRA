@@ -12,4 +12,19 @@ public class ProductoServicio {
 		return modeloProducto.buscarProductoPorId(id);
 	}
 	
+	public static HashMap<Integer, Producto> mostrarTodosLosProductos(){
+		ProductoDB modeloProducto=new ProductoDB();
+		return modeloProducto.mostrarTodosLosProductos();
+	}
+	
+	public static boolean bajaProducto(int id) {
+		ProductoDB modeloProducto=new ProductoDB();
+		return modeloProducto.bajaProducto(id);
+	}
+	
+	public static boolean editarProducto(int id, String nombre, String descripcion, int stock, double precio, float impuesto) {
+		ProductoDB modeloProducto=new ProductoDB();
+		return modeloProducto.editarProducto(id, nombre, descripcion, stock, precio, impuesto);
+	}
+	
 }

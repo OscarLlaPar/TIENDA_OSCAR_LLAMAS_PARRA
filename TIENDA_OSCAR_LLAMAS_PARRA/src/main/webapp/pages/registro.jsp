@@ -18,7 +18,7 @@
 		<form action="<%= request.getContextPath() %>/ServletRegistro" method="post">
 			<div class=campo>
 				<label for="email">Email</label>
-				<input type="text" name="email" placeholder="ejemplo@mail.com">
+				<input type="email" name="email" placeholder="ejemplo@mail.com">
 			</div>
 			<div class=campo>
 				<label for="nombre">Nombre</label>
@@ -60,7 +60,7 @@
 				<label for="confirmarPassword">Confirmar contraseña</label>
 				<input type="password" name="confirmarPassword" placeholder="">
 			</div>
-			<input type="submit" value="Registrarse">
+			<input type="submit" name="registro" value="Registrarse">
 		</form>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />

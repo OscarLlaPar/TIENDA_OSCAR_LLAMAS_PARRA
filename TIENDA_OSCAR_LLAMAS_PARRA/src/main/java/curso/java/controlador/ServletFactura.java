@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import curso.java.modelo.EstadoPedido;
+import curso.java.modelo.Pedido;
 import curso.java.servicio.PedidoServicio;
+import curso.java.util.PedidoUtil;
 
 /**
- * Servlet implementation class ServletEnviarPedido
+ * Servlet implementation class ServletFactura
  */
-@WebServlet("/ServletEnviarPedido")
-public class ServletEnviarPedido extends HttpServlet {
+@WebServlet("/ServletFactura")
+public class ServletFactura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletEnviarPedido() {
+    public ServletFactura() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,12 +30,18 @@ public class ServletEnviarPedido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("id")!=null) {
-			int idPedido=Integer.parseInt(request.getParameter("id"));
-			PedidoServicio.actualizarEstado(idPedido, EstadoPedido.E);
-			PedidoServicio.asignarNumFactura(idPedido);
+		int idPedido=Integer.parseInt(request.getParameter("id"));
+		Pedido p=PedidoServicio.obtenerPedido(idPedido);
+		System.out.println(request.getServletContext().getRealPath(""));
+		if(PedidoUtil.generarFactura(p, request.getServletContext().getRealPath(""))) {
+			request.setAttribute("mensajeFactura", "Factura creada");
 		}
-		request.getRequestDispatcher("ServletPedidoEmpleado").forward(request, response);
+		else {
+			request.setAttribute("mensajeFactura", "Error al crear la factura");
+		}
+		
+		request.getRequestDispatcher(p.getNumFactura()+".pdf").forward(request, response);
+		
 	}
 
 	/**

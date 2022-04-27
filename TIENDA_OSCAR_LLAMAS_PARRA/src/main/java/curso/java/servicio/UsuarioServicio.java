@@ -16,4 +16,18 @@ public class UsuarioServicio {
 			return null;
 		}
 	}
+	public static boolean editarUsuario(Usuario usuarioActual, Usuario usuarioNuevo) {
+		UsuarioDB modeloUsuario=new UsuarioDB();
+		if(!usuarioActual.getEmail().equals(usuarioNuevo.getEmail()) && modeloUsuario.buscarUsuarioPorEmail(usuarioNuevo.getEmail())!=null) {
+			return false;
+		}
+		else {
+			return modeloUsuario.editarUsuario(usuarioActual, usuarioNuevo);
+		}
+	}
+	public static boolean cambiarPassword(String email, String password) {
+		UsuarioDB modeloUsuario=new UsuarioDB();
+		return modeloUsuario.cambiarPassword(email, password);
+	}
+	
 }

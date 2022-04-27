@@ -43,6 +43,11 @@
 								<td><a href="<%=request.getContextPath()%>/ServletCancelarPedido?id=<%= p.getId()%>">Cancelar pedido</a></td>
 								<% 
 									}
+									if(p.getEstado().name().equals("E")){
+								%>
+								<td><a href="<%=request.getContextPath()%>/ServletFactura?id=<%= p.getId()%>">Ver factura</a></td>		
+								<%
+									}
 								%>
 								
 							</tr>
