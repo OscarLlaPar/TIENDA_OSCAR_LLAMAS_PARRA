@@ -2,12 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-</head>
 <body>
-	<footer class="py-3 bg-dark fixed-bottom">
+	<footer class="py-3 bg-dark fixed-bottom mt-auto">
             <div class="container"><p class="m-0 text-center text-white">Óscar Llamas Parra</p></div>
         </footer>
+        <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 </body>
 </html>

@@ -1,11 +1,17 @@
 -Que los servlets no usen directamente las clases DAO
 
--Administrador tambien puede enviar pedidos (Gestion de pedidos solo una pag)
+-Posible cambio estructura de validacion para recuperar valores correctos: 
+	El mapa puede almacenar los valores de los campos, pero como se mostrarían los mensajes de error??
 
--Números de factura
+-Completar validación DNI
+
+-API para obtener provincias JSON
+
+-Administrador tambien puede enviar pedidos (Gestion de pedidos solo una pag)
 
 -Lo de los impuestos
 
+-En pantalla estrecha, ver como se puede desplegar el menu (script) (ver documentacion bootstrap)
 
 Búsqueda por el catálogo:
 	-Seguramente modificación del metodo mostrarCatalogo() de ProductoDB.

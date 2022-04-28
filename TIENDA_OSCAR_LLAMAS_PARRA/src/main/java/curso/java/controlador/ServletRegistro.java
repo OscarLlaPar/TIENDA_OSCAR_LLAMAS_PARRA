@@ -1,6 +1,8 @@
 package curso.java.controlador;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import curso.java.modelo.RolDB;
 import curso.java.modelo.Usuario;
 import curso.java.modelo.UsuarioDB;
+import curso.java.util.ValidacionFormularios;
 
 /**
  * Servlet implementation class ServletRegistro
@@ -51,10 +54,24 @@ public class ServletRegistro extends HttpServlet {
 		String confirmarPassword=request.getParameter("confirmarPassword");
 		RolDB modeloRol=new RolDB();
 		
-		boolean correcto=true;
+		HashMap<String, String> errores=new HashMap<>();
+		errores.put("email", ValidacionFormularios.validarEmail(email, true));
+		errores.put("nombre", ValidacionFormularios.comprobarAlfabetico(nombre, true));
+		errores.put("apellido1", ValidacionFormularios.comprobarAlfabetico(apellido1, true));
+		errores.put("apellido2", ValidacionFormularios.comprobarAlfabetico(apellido2, true));
+		errores.put("direccion", ValidacionFormularios.comprobarObligatorio(direccion));
+		errores.put("provincia", ValidacionFormularios.comprobarAlfabetico(provincia, true));
+		errores.put("localidad", ValidacionFormularios.comprobarAlfabetico(localidad, true));
+		errores.put("telefono", ValidacionFormularios.validarTelefono(telefono, true));
+		errores.put("dni", ValidacionFormularios.validarDni(dni, true));
+		errores.put("password",ValidacionFormularios.comprobarObligatorio(password));
+		errores.put("confirmarPassword", confirmarPassword.equals(password)?null:"Las contraseñas no coinciden");
 		
 		
-		if(correcto) {
+		
+		
+		
+		if(!ValidacionFormularios.hayErrores(errores)) {
 			Usuario usuarioValido= new Usuario(email, modeloRol.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni);
 			UsuarioDB modeloUsuario=new UsuarioDB();
 			modeloUsuario.altaUsuario(usuarioValido);
@@ -62,7 +79,8 @@ public class ServletRegistro extends HttpServlet {
 			request.getRequestDispatcher("").forward(request, response);
 		}
 		else {
-			
+			request.setAttribute("errores", errores);
+			request.getRequestDispatcher("pages/registro.jsp").forward(request, response);
 		}
 		
 	}
