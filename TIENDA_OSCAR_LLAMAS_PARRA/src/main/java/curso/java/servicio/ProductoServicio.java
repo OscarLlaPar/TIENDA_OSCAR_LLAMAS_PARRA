@@ -1,8 +1,11 @@
 package curso.java.servicio;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
+import curso.java.modelo.Categoria;
+import curso.java.modelo.CategoriaDB;
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
 
@@ -27,4 +30,8 @@ public class ProductoServicio {
 		return modeloProducto.editarProducto(id, nombre, descripcion, stock, precio, impuesto);
 	}
 	
+	public static HashSet<Categoria> mostrarTodasLasCategorias(){
+		CategoriaDB modeloCategoria=new CategoriaDB();
+		return modeloCategoria.mostrarTodasLasCategorias();
+	}
 }

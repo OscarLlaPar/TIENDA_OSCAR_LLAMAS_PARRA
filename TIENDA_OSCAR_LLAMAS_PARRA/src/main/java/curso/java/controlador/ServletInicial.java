@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import curso.java.modelo.DetallePedido;
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
+import curso.java.servicio.ProductoServicio;
 
 /**
  * Servlet implementation class ServletInicial
@@ -35,7 +36,15 @@ public class ServletInicial extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ProductoDB modelo=new ProductoDB();
-		HashMap<Integer,Producto> catalogo=modelo.mostrarCatalogo();
+		String busqueda=(String) request.getAttribute("busqueda");
+		HashMap<Integer,Producto> catalogo;
+		if(busqueda!=null) {
+			int categoria=Integer.parseInt((String)request.getAttribute("categoria"));
+			catalogo=modelo.mostrarCatalogo(busqueda, categoria);
+		}
+		else {
+			catalogo=modelo.mostrarCatalogo("",0);
+		}
 		HashMap<Integer,DetallePedido> carrito=null;
 		if(request.getSession().getAttribute("carrito")==null) {
 			carrito=new HashMap<Integer,DetallePedido>();
@@ -49,6 +58,7 @@ public class ServletInicial extends HttpServlet {
 		}
 		
 		request.setAttribute("catalogo", catalogo);
+		request.setAttribute("categorias", ProductoServicio.mostrarTodasLasCategorias());
 		request.getSession().setAttribute("carrito", carrito);
 		request.getRequestDispatcher("inicio.jsp").forward(request, response);
 	}
@@ -57,7 +67,7 @@ public class ServletInicial extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

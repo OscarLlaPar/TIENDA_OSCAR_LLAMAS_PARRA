@@ -14,14 +14,24 @@ public class ProductoDB {
 		Conexion.conectar();
 	}
 	
-	public HashMap<Integer, Producto> mostrarCatalogo(){
+	public HashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria){
+		String busquedaCategoria;
+		if(categoria==0) {
+			busquedaCategoria="";
+		}
+		else {
+			busquedaCategoria=" AND id_categoria="+categoria;
+		}
+		
 		try {
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
 				CategoriaDB modeloCategoria=new CategoriaDB();
 				HashMap<Integer, Producto> catalogo=new HashMap<>();
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos WHERE fecha_baja IS NULL");
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos WHERE fecha_baja IS NULL AND nombre LIKE CONCAT('%',?,'%')"+busquedaCategoria);
+				ps.setString(1,busqueda);;
+				
 				ResultSet rs=ps.executeQuery();
 				
 				while(rs.next()) {
