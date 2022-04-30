@@ -52,21 +52,18 @@ public class ServletPedido extends HttpServlet {
 		
 		/*LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);*/
-		// TODO Ver cómo puedo mejorar esto o pasarlo a servicios
+		
 		Usuario usuarioActual=(Usuario)request.getSession().getAttribute("usuarioTienda");
 		
 		if(request.getParameter("comprar")!=null) {
-			MetodoPagoDB modeloMP = new MetodoPagoDB();
 			
 			int idMetodoPago=Integer.parseInt(request.getParameter("metodoPago"));
 			double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
-			Pedido pedido=new Pedido(usuarioActual, modeloMP.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,null,totalCarrito);
+			Pedido pedido=new Pedido(usuarioActual, PedidoServicio.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,null,totalCarrito);
 			HashMap<Integer, DetallePedido> carrito=(HashMap) request.getSession().getAttribute("carrito");
 			pedido.setDetallesPedido(carrito);
 			
-		
-			PedidoDB modeloPedido = new PedidoDB();
-			modeloPedido.insertarPedido(pedido);
+			PedidoServicio.insertarPedido(pedido);
 			carrito.clear();
 			request.getSession().setAttribute("totalCarrito", 0.0);
 		}

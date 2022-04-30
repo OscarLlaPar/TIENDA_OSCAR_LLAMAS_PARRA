@@ -10,6 +10,12 @@ import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
 
 public class ProductoServicio {
+	
+	public static HashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria){
+		ProductoDB modeloProducto=new ProductoDB();
+		return modeloProducto.mostrarCatalogo(busqueda, categoria);
+	}
+	
 	public static Producto obtenerProducto(int id) {
 		ProductoDB modeloProducto=new ProductoDB();
 		return modeloProducto.buscarProductoPorId(id);

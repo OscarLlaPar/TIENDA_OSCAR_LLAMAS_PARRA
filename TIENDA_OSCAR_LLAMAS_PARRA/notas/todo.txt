@@ -1,4 +1,8 @@
--Que los servlets no usen directamente las clases DAO
+-Proveedores
+
+-Poner clave primaria numerica a usuarios para encriptacion
+
+-Usar i18n para idiomas
 
 -Posible cambio estructura de validacion para recuperar valores correctos: 
 	El mapa puede almacenar los valores de los campos, pero como se mostrarían los mensajes de error??
@@ -7,7 +11,6 @@
 
 -API para obtener provincias JSON
 
--Administrador tambien puede enviar pedidos (Gestion de pedidos solo una pag)
 
 -Lo de los impuestos
 

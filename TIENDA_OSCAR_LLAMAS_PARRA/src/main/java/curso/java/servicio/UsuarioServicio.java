@@ -1,5 +1,7 @@
 package curso.java.servicio;
 
+import curso.java.modelo.Rol;
+import curso.java.modelo.RolDB;
 import curso.java.modelo.Usuario;
 import curso.java.modelo.UsuarioDB;
 import curso.java.util.UsuarioUtil;
@@ -28,6 +30,16 @@ public class UsuarioServicio {
 	public static boolean cambiarPassword(String email, String password) {
 		UsuarioDB modeloUsuario=new UsuarioDB();
 		return modeloUsuario.cambiarPassword(email, password);
+	}
+	
+	public static Rol obtenerRol(int id) {
+		RolDB modeloRol=new RolDB();
+		return modeloRol.obtenerRol(id);
+	}
+	
+	public static boolean altaUsuario(Usuario u) {
+		UsuarioDB modeloUsuario=new UsuarioDB();
+		return modeloUsuario.altaUsuario(u);
 	}
 	
 }

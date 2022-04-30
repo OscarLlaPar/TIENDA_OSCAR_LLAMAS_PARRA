@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import curso.java.modelo.RolDB;
 import curso.java.modelo.Usuario;
 import curso.java.modelo.UsuarioDB;
+import curso.java.servicio.UsuarioServicio;
 import curso.java.util.ValidacionFormularios;
 
 /**
@@ -52,7 +53,6 @@ public class ServletRegistro extends HttpServlet {
 		String dni=request.getParameter("dni");
 		String password=request.getParameter("password");
 		String confirmarPassword=request.getParameter("confirmarPassword");
-		RolDB modeloRol=new RolDB();
 		
 		HashMap<String, String> errores=new HashMap<>();
 		errores.put("email", ValidacionFormularios.validarEmail(email, true));
@@ -72,9 +72,8 @@ public class ServletRegistro extends HttpServlet {
 		
 		
 		if(!ValidacionFormularios.hayErrores(errores)) {
-			Usuario usuarioValido= new Usuario(email, modeloRol.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni);
-			UsuarioDB modeloUsuario=new UsuarioDB();
-			modeloUsuario.altaUsuario(usuarioValido);
+			Usuario usuarioValido= new Usuario(email, UsuarioServicio.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni);
+			UsuarioServicio.altaUsuario(usuarioValido);
 			request.getSession().setAttribute("usuarioTienda",usuarioValido);
 			request.getRequestDispatcher("").forward(request, response);
 		}

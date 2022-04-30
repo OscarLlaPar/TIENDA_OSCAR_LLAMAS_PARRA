@@ -34,16 +34,15 @@ public class ServletInicial extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ProductoDB modelo=new ProductoDB();
+		
 		String busqueda=(String) request.getAttribute("busqueda");
 		HashMap<Integer,Producto> catalogo;
 		if(busqueda!=null) {
 			int categoria=Integer.parseInt((String)request.getAttribute("categoria"));
-			catalogo=modelo.mostrarCatalogo(busqueda, categoria);
+			catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria);
 		}
 		else {
-			catalogo=modelo.mostrarCatalogo("",0);
+			catalogo=ProductoServicio.mostrarCatalogo("",0);
 		}
 		HashMap<Integer,DetallePedido> carrito=null;
 		if(request.getSession().getAttribute("carrito")==null) {

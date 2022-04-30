@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import curso.java.modelo.OpcionMenu;
 import curso.java.modelo.OpcionMenuDB;
 import curso.java.modelo.Usuario;
+import curso.java.servicio.OpcionMenuServicio;
 import curso.java.servicio.UsuarioServicio;
 
 /**
@@ -48,8 +49,8 @@ public class ServletLogin extends HttpServlet {
 		String password=request.getParameter("password");
 		Usuario usuario=UsuarioServicio.verificarUsuario(emailUsuario, password);
 		if(usuario!=null) {
-			OpcionMenuDB modeloMenu=new OpcionMenuDB();
-			HashSet<OpcionMenu> menu=modeloMenu.mostrarOpciones(usuario.getRol());
+			
+			HashSet<OpcionMenu> menu=OpcionMenuServicio.mostrarOpciones(usuario.getRol());
 			request.getSession().setAttribute("usuarioTienda", usuario);
 			request.getSession().setAttribute("menuUsuario", menu);
 			request.getRequestDispatcher("").forward(request, response);

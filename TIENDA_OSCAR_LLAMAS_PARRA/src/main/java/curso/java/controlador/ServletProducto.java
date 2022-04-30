@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
+import curso.java.servicio.ProductoServicio;
 
 /**
  * Servlet implementation class ServletProducto
@@ -30,9 +31,8 @@ public class ServletProducto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")!=null) {
-			ProductoDB modeloProducto=new ProductoDB();
 			int idProducto=Integer.parseInt(request.getParameter("id"));
-			Producto p=modeloProducto.buscarProductoPorId(idProducto);
+			Producto p=ProductoServicio.obtenerProducto(idProducto);
 			request.setAttribute("productoEnCurso", p);
 			request.getRequestDispatcher("pages/detalleProducto.jsp").forward(request, response);
 		}
