@@ -11,9 +11,9 @@ INSERT INTO roles (rol)
 VALUES ("Cliente"),("Empleado"),("Administrador");
 
 INSERT INTO usuarios (email, id_rol, clave, nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni)
-VALUES ("admin@admin.com", 3, SHA2('Adminadmin',256), "Admin", "istra","dor", "C/ Administrador nº 1", "Zamora", "Zamora", "666666666", "12345678Z" ),
-("empleado1@tienda.com", 2, SHA2('Manuelpaso',256), "Manuel", "Perez","Perez", "C/ Tienda nº 1", "Zamora", "Zamora", "677777777", "96930871Q" ),
-("cliente1@mail.com", 1, SHA2('Pedropaso',256), "Pedro", "Fernandez","Fernandez", "C/ Ejemplo nº 1", "Zamora", "Zamora", "688888888", "17982331B" );
+VALUES ("admin@admin.com", 3, SHA2('1admin',256), "Admin", "istra","dor", "C/ Administrador nº 1", "Zamora", "Zamora", "666666666", "12345678Z" ),
+("empleado1@tienda.com", 2, SHA2('2paso',256), "Manuel", "Perez","Perez", "C/ Tienda nº 1", "Zamora", "Zamora", "677777777", "96930871Q" ),
+("cliente1@mail.com", 1, SHA2('3paso',256), "Pedro", "Fernandez","Fernandez", "C/ Ejemplo nº 1", "Zamora", "Zamora", "688888888", "17982331B" );
 
 
 INSERT INTO productos (id_categoria,nombre,descripcion,precio,stock,fecha_baja,impuesto,imagen)

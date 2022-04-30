@@ -40,6 +40,7 @@ public class ServletInicial extends HttpServlet {
 		if(busqueda!=null) {
 			int categoria=Integer.parseInt((String)request.getAttribute("categoria"));
 			catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria);
+			request.setAttribute("busqueda",busqueda);
 		}
 		else {
 			catalogo=ProductoServicio.mostrarCatalogo("",0);

@@ -67,7 +67,7 @@ public class ServletPedido extends HttpServlet {
 			carrito.clear();
 			request.getSession().setAttribute("totalCarrito", 0.0);
 		}
-		request.setAttribute("pedidos", PedidoServicio.obtenerPedidos(usuarioActual.getEmail()));
+		request.setAttribute("pedidos", PedidoServicio.obtenerPedidos(usuarioActual.getId()));
 		
 		request.getRequestDispatcher("pages/pedidos.jsp").forward(request, response);
 		

@@ -29,7 +29,7 @@
 				<div class="card-body">
 					<form action="<%= request.getContextPath() %>/ServletBusqueda" method="post">
 						<div class="input-group">
-								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="Buscar por nombre..."/>
+								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="Buscar por nombre..." value="<%= request.getAttribute("busqueda")!=null?request.getAttribute("busqueda"):"" %>"/>
 							
 							<select name="categoria">
 								<option value="0">Todas las categorías</option>

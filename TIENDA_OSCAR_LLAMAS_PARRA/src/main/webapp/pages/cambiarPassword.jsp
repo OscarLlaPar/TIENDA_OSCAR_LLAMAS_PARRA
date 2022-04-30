@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Cambiar contraseña - Tienda Óscar Llamas Parra</title>
 </head>
 <body>
@@ -12,31 +11,46 @@
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Cambiar contraseña</h2>
 		</div>
-		<div>
-			<form action="<%= request.getContextPath() %>/ServletCambiarPassword" method="post">
-				<%
-					if(request.getAttribute("mensajePassword")!=null){
-						%>
-						<p><%= request.getAttribute("mensajePassword") %></p>
-						<%
-					}
-				%>
-				<div>
-					<label for="nombre">Contraseña actual</label>
-					<input type="password" name="passwordActual">
+		<div class="container px-4 px-lg-5">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="card shadow-lg border-0 rounded-lg my-5">
+						
+						<div class="card-body">
+							<form
+								action="<%=request.getContextPath()%>/ServletCambiarPassword"
+								method="post">
+								<%
+								if (request.getAttribute("mensajePassword") != null) {
+								%>
+								<p><%=request.getAttribute("mensajePassword")%></p>
+								<%
+								}
+								%>
+								<div class="form-floating mb-3">
+									<input class="form-control"
+										type="password" name="passwordActual">
+										<label for="nombre">Contraseña actual</label> 
+								</div>
+								<div class="form-floating mb-3">
+									<input class="form-control"
+										type="password" name="passwordNueva">
+									<label for="nombre">Contraseña nueva</label> 
+								</div>
+								<div class="form-floating mb-3">
+									<input class="form-control"
+										type="password" name="confirmarPassword">
+									<label for="nombre">Confirmar contraseña</label> 
+								</div>
+								<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+									<input class="btn btn-primary" type="submit" name="cambiarPassword"
+										value="Cambiar contraseña">
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-				<div>
-					<label for="nombre">Contraseña nueva</label>
-					<input type="password" name="passwordNueva">
-				</div>
-				<div>
-					<label for="nombre">Confirmar contraseña</label>
-					<input type="password" name="confirmarPassword">
-				</div>
-				<div>
-					<input type="submit" name="cambiarPassword" value="Cambiar contraseña">
-				</div>
-			</form>
+			</div>
 		</div>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />

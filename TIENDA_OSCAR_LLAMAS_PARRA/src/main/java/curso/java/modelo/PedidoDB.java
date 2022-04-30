@@ -23,10 +23,10 @@ public class PedidoDB {
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
-				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,email_usuario,metodo_pago,estado,total) VALUES (?,?,?,?,?)");
+				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,id_usuario,metodo_pago,estado,total) VALUES (?,?,?,?,?)");
 				int idPedido=contarPedidos()+1;
 				ps.setInt(1, idPedido);
-				ps.setString(2, pedido.getUsuario().getEmail());
+				ps.setInt(2, pedido.getUsuario().getId());
 				ps.setString(3, pedido.getMetodoPago().getMetodoPago());
 				ps.setString(4, pedido.getEstado().toString());
 				ps.setDouble(5, pedido.getTotal());
@@ -93,7 +93,7 @@ public class PedidoDB {
 		}
 	}
 	
-	public HashSet<Pedido> mostrarPedidos(String emailUsuario){
+	public HashSet<Pedido> mostrarPedidos(int idUsuario){
 		try {
 			Statement statement=conexion.createStatement();
 			
@@ -102,8 +102,8 @@ public class PedidoDB {
 				MetodoPagoDB modeloMP=new MetodoPagoDB();
 				DetallePedidoDB modeloDP=new DetallePedidoDB();
 				HashSet<Pedido> pedidos=new HashSet<>();
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE email_usuario = ?");
-				ps.setString(1, emailUsuario);
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE id_usuario = ?");
+				ps.setInt(1, idUsuario);
 				
 				ResultSet rs=ps.executeQuery();
 				

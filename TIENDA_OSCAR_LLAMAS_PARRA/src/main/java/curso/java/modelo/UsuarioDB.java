@@ -13,6 +13,31 @@ private static Connection conexion=Conexion.getConexion();
 		Conexion.conectar();
 	}
 	
+	public Usuario buscarUsuarioPorId(int id) {
+		try {
+			Statement statement=conexion.createStatement();
+			
+			if(conexion!=null) {
+				RolDB modeloRol=new RolDB();
+				Usuario u=null;
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM usuarios WHERE id=?");
+				ps.setInt(1, id);
+				ResultSet rs=ps.executeQuery();
+				
+				if(rs.next()) {
+					u=new Usuario(rs.getInt(1), rs.getString(2),modeloRol.obtenerRol(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+				}
+				
+				return u;
+			}
+			
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 	public Usuario buscarUsuarioPorEmail(String email) {
 		try {
 			Statement statement=conexion.createStatement();
@@ -25,7 +50,7 @@ private static Connection conexion=Conexion.getConexion();
 				ResultSet rs=ps.executeQuery();
 				
 				if(rs.next()) {
-					u=new Usuario(rs.getString(1),modeloRol.obtenerRol(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11));
+					u=new Usuario(rs.getInt(1), rs.getString(2),modeloRol.obtenerRol(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
 				}
 				
 				return u;

@@ -17,54 +17,66 @@
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Perfil de <%=usuario.getNombre()+" "+usuario.getApellido1()+" "+usuario.getApellido2()%>  </h2>
 		</div>
-		
-		<a href="<%= request.getContextPath() %>">Volver</a>
-		<div>
+		<div class="container px-4 px-lg-5 mt-5">
+		<a class="btn btn-secondary my-3" href="<%= request.getContextPath() %>">Volver al inicio</a>
+		<div class=" card container p-3">
 			<form action="<%= request.getContextPath() %>/ServletEditarPerfil" method="post">
-			<div>
-				<label for="nombre">Nombre</label>
-				<input type="text" name="nombre" value="<%=usuario.getNombre()%>">
+			<div class="row py-2">
+				<div class="col-sm">
+					<label for="email">Email</label>
+					<input class="form-control" type="email" name="email" value="<%= usuario.getEmail() %>">
+				</div>
+				<div class="col-sm">
+					<label for="nombre">Nombre</label>
+					<input class="form-control" type="text" name="nombre" value="<%=usuario.getNombre()%>">
+				</div>
 			</div>
-			<div>
-				<label for="apellido1">Primer apellido</label>
-				<input type="text" name="apellido1" value="<%= usuario.getApellido1() %>">
+			<div class="row py-2">
+				<div class="col-sm">
+					<label for="apellido1">Primer apellido</label>
+					<input class="form-control" type="text" name="apellido1" value="<%= usuario.getApellido1() %>">
+				</div>
+				<div class="col-sm">
+					<label for="apellido2">Segundo apellido</label>
+					<input class="form-control" type="text" name="apellido2" value="<%= usuario.getApellido2() %>">
+				</div>
 			</div>
-			<div>
-				<label for="apellido2">Segundo apellido</label>
-				<input type="text" name="apellido2" value="<%= usuario.getApellido2() %>">
+			<div class="row py-2">
+				<div class="col-sm">
+					<label for="direccion">Dirección</label>
+					<input class="form-control" type="text" name="direccion" value="<%= usuario.getDireccion() %>">
+				</div>
 			</div>
-			<div>
-				<label for="email">Email</label>
-				<input type="email" name="email" value="<%= usuario.getEmail() %>">
+			<div class="row py-2">
+				<div class="col-sm">
+					<label for="provincia">Provincia</label>
+					<input class="form-control" type="text" name="provincia" value="<%= usuario.getProvincia() %>">
+				</div>
+				<div  class="col-sm">
+					<label for="localidad">Localidad</label>
+					<input class="form-control" type="text" name="localidad" value="<%= usuario.getLocalidad() %>">
+				</div>
 			</div>
-			<div class=campo>
-				<label for="direccion">Dirección</label>
-				<input type="text" name="direccion" value="<%= usuario.getDireccion() %>">
+			<div class="row py-2">
+				<div class="col-sm">
+					<label for="telefono">Teléfono</label>
+					<input class="form-control" type="text" name="telefono" value="<%= usuario.getTelefono() %>">
+				</div>
+				<div class="col-sm">
+					<label for="dni">DNI</label>
+					<input class="form-control" type="text" name="dni" value="<%= usuario.getDni()%>">
+				</div>
 			</div>
-			<div class=campo>
-				<label for="provincia">Provincia</label>
-				<input type="text" name="provincia" value="<%= usuario.getProvincia() %>">
-			</div>
-			<div class=campo>
-				<label for="localidad">Localidad</label>
-				<input type="text" name="localidad" value="<%= usuario.getLocalidad() %>">
-			</div>
-			<div class=campo>
-				<label for="telefono">Teléfono</label>
-				<input type="text" name="telefono" value="<%= usuario.getTelefono() %>">
-			</div>
-			<div class=campo>
-				<label for="dni">DNI</label>
-				<input type="text" name="dni" value="<%= usuario.getDni()%>">
+			<div class="form-group py-3">
+				<input type="hidden" name="id" value="<%= usuario.getId() %>">
+				<input class="btn btn-primary" type="submit" name="editar" value="Editar perfil">
+				<a class="btn btn-secondary" href="<%= request.getContextPath()%>/pages/cambiarPassword.jsp">Cambiar contraseña</a>
 			</div>
 			
-			<input type="submit" name="editar" value="Editar perfil">
 			</form>
-			<p>
-				<a href="<%= request.getContextPath()%>/pages/cambiarPassword.jsp">Cambiar contraseña</a>
-			</p>
-			
-			
+			</div>
+		</div>
+		<div class="h-25 w-100">
 		</div>
 	</main>
 	<jsp:include page="../layout/footer.jsp" />

@@ -13,13 +13,15 @@
 </head>
 <body  class="d-flex flex-column min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
+	<main>
 	<div class="bg-dark py-3 text-center text-white">
 		<h2>Registro</h2>
 	</div>
 	<%
 	HashMap<String, String> errores = (HashMap) request.getAttribute("errores");
+	HashMap<String, String> respuestas = (HashMap) request.getAttribute("respuestas");
 	%>
-	<div class="wrapper pb-5">
+	<div class="container px-4 px-lg-5 mt-5">
 		<form action="<%=request.getContextPath()%>/ServletRegistro"
 			method="post">
 			<div class="container">
@@ -27,13 +29,15 @@
 					<div class="col-sm">
 						<label for="email">Email</label> <input class="form-control"
 							type="email" name="email" placeholder="ejemplo@mail.com"
-							id="email" required> <span><%=errores != null ? errores.get("email") : ""%>
+							id="email" value="<%= respuestas!=null?respuestas.get("email"):"" %>"  required> 
+							<span><%=errores != null ? errores.get("email") : ""%>
 						</span>
 					</div>
 					<div class="col-sm">
 						<label for="nombre">Nombre</label> <input class="form-control"
 							type="text" name="nombre" placeholder="Nombre de pila"
-							id="nombre" required> <span><%=errores != null ? errores.get("nombre") : ""%>
+							id="nombre" value="<%= respuestas!=null?respuestas.get("nombre"):"" %>"  required>
+							 <span><%=errores != null ? errores.get("nombre") : ""%>
 						</span>
 					</div>
 				</div>
@@ -41,13 +45,15 @@
 					<div class="col-sm">
 						<label for="apellido1">Primer apellido</label> <input
 							class="form-control" type="text" name="apellido1"
-							placeholder="Primer apellido" id="apellido1" required> <span><%=errores != null ? errores.get("apellido1") : ""%>
+							placeholder="Primer apellido" id="apellido1" value="<%= respuestas!=null?respuestas.get("apellido1"):"" %>"  required> 
+							<span><%=errores != null ? errores.get("apellido1") : ""%>
 						</span>
 					</div>
 					<div class="col-sm">
 						<label for="apellido2">Segundo apellido</label> <input
 							class="form-control" type="text" name="apellido2"
-							placeholder="Segundo apellido" id="apellido2" required> <span><%=errores != null ? errores.get("apellido2") : ""%>
+							placeholder="Segundo apellido" id="apellido2" value="<%= respuestas!=null?respuestas.get("apellido2"):"" %>"  required> 
+							<span><%=errores != null ? errores.get("apellido2") : ""%>
 						</span>
 					</div>
 				</div>
@@ -55,20 +61,23 @@
 				<div class="form-group py-2">
 					<label for="direccion">Dirección</label> <input
 						class="form-control" type="text" name="direccion"
-						placeholder="C/ Calle, nº 1" id="direccion" required> <span><%=errores != null ? errores.get("direccion") : ""%>
+						placeholder="C/ Calle, nº 1" id="direccion" value="<%= respuestas!=null?respuestas.get("direccion"):"" %>"  required> 
+						<span><%=errores != null ? errores.get("direccion") : ""%>
 					</span>
 				</div>
 				<div class="row py-3">
 					<div class="col-sm">
 						<label for="provincia">Provincia</label> <input
 							class="form-control" type="text" name="provincia"
-							placeholder="Provincia" id="provincia" required> <span><%=errores != null ? errores.get("provincia") : ""%>
+							placeholder="Provincia" id="provincia" value="<%= respuestas!=null?respuestas.get("provincia"):"" %>"  required>
+							 <span><%=errores != null ? errores.get("provincia") : ""%>
 						</span>
 					</div>
 					<div class="col-sm">
 						<label for="localidad">Localidad</label> <input
 							class="form-control" type="text" name="localidad"
-							placeholder="Localidad" id="localidad" required> <span><%=errores != null ? errores.get("localidad") : ""%>
+							placeholder="Localidad" id="localidad" value="<%= respuestas!=null?respuestas.get("localidad"):"" %>"  required>
+							 <span><%=errores != null ? errores.get("localidad") : ""%>
 						</span>
 					</div>
 				</div>
@@ -76,12 +85,12 @@
 					<div class="col-sm">
 						<label for="telefono">Teléfono</label> <input class="form-control"
 							type="text" name="telefono" placeholder="Teléfono" id="telefono"
-							required> <span><%=errores != null ? errores.get("telefono") : ""%>
+							value="<%= respuestas!=null?respuestas.get("telefono"):"" %>"  required> <span><%=errores != null ? errores.get("telefono") : ""%>
 						</span>
 					</div>
 					<div class="col-sm">
 						<label for="dni">DNI</label> <input class="form-control"
-							type="text" name="dni" placeholder="DNI" id="dni" required>
+							type="text" name="dni" placeholder="DNI" id="dni" value="<%= respuestas!=null?respuestas.get("dni"):"" %>"  required>
 						<span><%=errores != null ? errores.get("dni") : ""%> </span>
 					</div>
 				</div>
@@ -95,7 +104,7 @@
 					<div class="col-sm">
 						<label for="confirmarPassword">Confirmar contraseña</label> <input
 							class="form-control" type="password" name="confirmarPassword"
-							placeholder="" id="confirmarPassword" required> <span><%=errores != null ? errores.get("email") : ""%>
+							placeholder="" id="confirmarPassword" required> <span><%=errores != null ? errores.get("confirmarPassword") : ""%>
 						</span>
 					</div>
 				</div>
@@ -109,6 +118,9 @@
 
 		</form>
 	</div>
+	<div class="h-25 w-100">
+	</div>
+	</main>
 	<jsp:include page="../layout/footer.jsp" />
 	<script src="<%=request.getContextPath()%>/js/registro.js"></script>
 </body>

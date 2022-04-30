@@ -54,6 +54,8 @@ public class ServletRegistro extends HttpServlet {
 		String password=request.getParameter("password");
 		String confirmarPassword=request.getParameter("confirmarPassword");
 		
+		
+		
 		HashMap<String, String> errores=new HashMap<>();
 		errores.put("email", ValidacionFormularios.validarEmail(email, true));
 		errores.put("nombre", ValidacionFormularios.comprobarAlfabetico(nombre, true));
@@ -65,20 +67,32 @@ public class ServletRegistro extends HttpServlet {
 		errores.put("telefono", ValidacionFormularios.validarTelefono(telefono, true));
 		errores.put("dni", ValidacionFormularios.validarDni(dni, true));
 		errores.put("password",ValidacionFormularios.comprobarObligatorio(password));
-		errores.put("confirmarPassword", confirmarPassword.equals(password)?null:"Las contraseñas no coinciden");
+		errores.put("confirmarPassword", confirmarPassword.equals(password)?"":"Las contraseñas no coinciden");
 		
 		
 		
 		
 		
 		if(!ValidacionFormularios.hayErrores(errores)) {
-			Usuario usuarioValido= new Usuario(email, UsuarioServicio.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni);
+			Usuario usuarioValido= new Usuario(0, email, UsuarioServicio.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni);
 			UsuarioServicio.altaUsuario(usuarioValido);
 			request.getSession().setAttribute("usuarioTienda",usuarioValido);
 			request.getRequestDispatcher("").forward(request, response);
 		}
 		else {
+			HashMap<String, String> respuestas=new HashMap<>();
+			respuestas.put("email", errores.get("email").equals("")?email:"");
+			respuestas.put("nombre", errores.get("nombre").equals("")?nombre:"");
+			respuestas.put("apellido1",errores.get("apellido1").equals("")?apellido1:"");
+			respuestas.put("apellido2", errores.get("apellido2").equals("")?apellido2:"");
+			respuestas.put("direccion",errores.get("direccion").equals("")?direccion:"");
+			respuestas.put("provincia",errores.get("provincia").equals("")?provincia:"");
+			respuestas.put("localidad", errores.get("localidad").equals("")?localidad:"");
+			respuestas.put("telefono", errores.get("telefono").equals("")?telefono:"");
+			respuestas.put("dni", errores.get("dni").equals("")?dni:"");
+			
 			request.setAttribute("errores", errores);
+			request.setAttribute("respuestas", respuestas);
 			request.getRequestDispatcher("pages/registro.jsp").forward(request, response);
 		}
 		

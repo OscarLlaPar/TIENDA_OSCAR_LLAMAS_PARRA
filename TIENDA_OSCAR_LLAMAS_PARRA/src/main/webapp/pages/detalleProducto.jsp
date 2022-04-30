@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="curso.java.modelo.Producto, curso.java.modelo.Usuario" %>
+<%@ page import="java.util.HashSet, curso.java.modelo.Producto, curso.java.modelo.Usuario, curso.java.modelo.Valoracion" %>
 <%
 	Producto productoEnCurso=(Producto)request.getAttribute("productoEnCurso");
 %>
@@ -17,6 +17,7 @@
 		<div class="bg-dark py-3 text-center text-white">
 			<h2><%= productoEnCurso.getNombre() %></h2>
 		</div>
+		<div class="container px-4 px-lg-5 mt-5">
 		<a href="<%= request.getContextPath() %>">Volver</a>
 		<p><%= productoEnCurso.getDescripcion() %></p>
 		<p><strong>Precio: </strong><%= productoEnCurso.getPrecio() %> &euro;</p>
@@ -31,12 +32,29 @@
 				<label for="cantidad<%= productoEnCurso.getId()%>">Cantidad para comprar:</label>
 				<br>
 				<input type="number" name="cantidad<%= productoEnCurso.getId()%>" value="1" min="1">
-				<br>
-				<button type="submit" name="id" value="<%= productoEnCurso.getId()%>">Añadir al carrito</button>
+				<button class="btn btn-primary" type="submit" name="id" value="<%= productoEnCurso.getId()%>">Añadir al carrito</button>
 			</form>
+			<div class="list-group">
 		<%
 		}
+		HashSet<Valoracion> valoraciones = (HashSet) request.getAttribute("valoraciones");
+		for(Valoracion v: valoraciones){
+			%>
+				<div class="list-group-item">
+					<div class="d-flow flow-row">
+						<span class="h5"><%= v.getUsuario().getNombre() + " " + v.getUsuario().getApellido1() + " " + v.getUsuario().getApellido2() %> </span>
+						<span class="h6 mx-3"><%= v.getValoracion() %>/10 </span> 
+					</div>
+					
+					<p class="mx-5"><%= v.getComentario() %> <p>
+				</div>
+			<%
+		}
 		%>
+			</div>
+	</div>		
+	<div class="h-25 w-100">
+	</div>		
 	</main>
 	<jsp:include page="../layout/footer.jsp" />
 </body>

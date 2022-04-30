@@ -1,6 +1,7 @@
 package curso.java.modelo;
 
 public class Usuario {
+	private int id;
 	private String email;
 	private Rol rol;
 	private String clave;
@@ -13,9 +14,10 @@ public class Usuario {
 	private String telefono;
 	private String dni;
 	
-	public Usuario(String email, Rol rol, String clave, String nombre, String apellido1, String apellido2,
+	public Usuario(int id, String email, Rol rol, String clave, String nombre, String apellido1, String apellido2,
 			String direccion, String provincia, String localidad, String telefono, String dni) {
 		super();
+		this.id=id;
 		this.email = email;
 		this.rol = rol;
 		this.clave = clave;
@@ -28,6 +30,18 @@ public class Usuario {
 		this.telefono = telefono;
 		this.dni = dni;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 
 	public String getEmail() {
 		return email;
@@ -119,7 +133,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", rol=" + rol + ", clave=" + clave + ", nombre=" + nombre + ", apellido1="
+		return "Usuario [id="+ id +", email=" + email + ", rol=" + rol + ", clave=" + clave + ", nombre=" + nombre + ", apellido1="
 				+ apellido1 + ", apellido2=" + apellido2 + ", direccion=" + direccion + ", provincia=" + provincia
 				+ ", localidad=" + localidad + ", telefono=" + telefono + ", dni=" + dni + "]";
 	}

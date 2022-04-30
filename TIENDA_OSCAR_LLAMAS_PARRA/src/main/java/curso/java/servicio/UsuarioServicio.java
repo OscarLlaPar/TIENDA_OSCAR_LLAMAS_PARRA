@@ -11,7 +11,7 @@ public class UsuarioServicio {
 		UsuarioDB modeloUsuario=new UsuarioDB();
 		Usuario u=modeloUsuario.buscarUsuarioPorEmail(email);
 		
-		if (u!=null && u.getClave().equals(UsuarioUtil.obtenerSha2(u.getNombre()+password))) {
+		if (u!=null && u.getClave().equals(UsuarioUtil.obtenerSha2(u.getId()+password))) {
 			return u;
 		}
 		else {

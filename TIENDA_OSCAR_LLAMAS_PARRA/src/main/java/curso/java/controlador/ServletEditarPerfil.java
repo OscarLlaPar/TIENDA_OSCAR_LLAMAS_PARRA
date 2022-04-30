@@ -37,6 +37,7 @@ public class ServletEditarPerfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id=Integer.parseInt(request.getParameter("id"));
 		String nombre=request.getParameter("nombre");
 		String apellido1=request.getParameter("apellido1");
 		String apellido2=request.getParameter("apellido2");
@@ -47,7 +48,7 @@ public class ServletEditarPerfil extends HttpServlet {
 		String telefono=request.getParameter("telefono");
 		String dni=request.getParameter("dni");
 		Usuario usuarioActual=(Usuario) request.getSession().getAttribute("usuarioTienda");
-		Usuario usuarioNuevo=new Usuario(email, usuarioActual.getRol(), usuarioActual.getClave(), nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni);
+		Usuario usuarioNuevo=new Usuario(id, email, usuarioActual.getRol(), usuarioActual.getClave(), nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni);
 		
 		if (UsuarioServicio.editarUsuario(usuarioActual, usuarioNuevo)) {
 			request.getSession().setAttribute("usuarioTienda", usuarioNuevo);

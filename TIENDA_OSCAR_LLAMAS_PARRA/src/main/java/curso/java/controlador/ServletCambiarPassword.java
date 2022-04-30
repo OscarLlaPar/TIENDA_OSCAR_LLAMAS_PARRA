@@ -40,11 +40,11 @@ public class ServletCambiarPassword extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Usuario usuarioActual=(Usuario) request.getSession().getAttribute("usuarioTienda");
-		String passwordActual=UsuarioUtil.obtenerSha2(usuarioActual.getNombre()+request.getParameter("passwordActual"));
+		String passwordActual=UsuarioUtil.obtenerSha2(usuarioActual.getId()+request.getParameter("passwordActual"));
 		String passwordNueva=request.getParameter("passwordNueva");
 		String confirmarPassword=request.getParameter("confirmarPassword");
 		if(passwordActual.equals(usuarioActual.getClave()) && passwordNueva.equals(confirmarPassword)) {
-			String passwordValida=UsuarioUtil.obtenerSha2(usuarioActual.getNombre()+passwordNueva);
+			String passwordValida=UsuarioUtil.obtenerSha2(usuarioActual.getId()+passwordNueva);
 			UsuarioServicio.cambiarPassword(usuarioActual.getEmail(), passwordValida);
 			request.setAttribute("mensajePassword", "Contraseña cambiada");
 		}

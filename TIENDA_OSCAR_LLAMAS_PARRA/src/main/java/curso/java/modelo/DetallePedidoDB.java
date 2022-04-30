@@ -42,7 +42,7 @@ public class DetallePedidoDB {
 		try {
 			Statement statement=conexion.createStatement();
 			if(conexion!=null) {
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM detalles_pedido WHERE id = ?");
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM detalles_pedido WHERE id_pedido = ?");
 				HashMap<Integer, DetallePedido> detalles=new HashMap<>();	
 				ps.setInt(1, idPedido);
 				ProductoDB modeloProducto=new ProductoDB();

@@ -9,9 +9,9 @@ import curso.java.modelo.Pedido;
 import curso.java.modelo.PedidoDB;
 
 public class PedidoServicio {
-	public static HashSet<Pedido> obtenerPedidos(String email){
+	public static HashSet<Pedido> obtenerPedidos(int idUsuario){
 		PedidoDB modeloPedido=new PedidoDB();
-		return modeloPedido.mostrarPedidos(email);
+		return modeloPedido.mostrarPedidos(idUsuario);
 	}
 	
 	public static HashSet<Pedido> obtenerPedidos(EstadoPedido estado){
