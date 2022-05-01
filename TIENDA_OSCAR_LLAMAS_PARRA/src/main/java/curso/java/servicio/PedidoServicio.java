@@ -40,9 +40,9 @@ public class PedidoServicio {
 		return modeloMP.obtenerMetodoPago(id);
 	}
 	
-	public static boolean insertarPedido(Pedido pedido) {
+	public static void insertarPedido(Pedido pedido) {
 		PedidoDB modeloPedido=new PedidoDB();
-		return modeloPedido.insertarPedido(pedido);
+		modeloPedido.insertarPedido(pedido);
 	}
 	
 }

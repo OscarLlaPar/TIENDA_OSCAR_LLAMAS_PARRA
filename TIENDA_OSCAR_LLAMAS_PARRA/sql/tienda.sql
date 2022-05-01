@@ -12,7 +12,9 @@ CREATE TABLE `productos` (
   `fecha_alta` timestamp,
   `fecha_baja` timestamp null,
   `impuesto` float,
-  `imagen` varchar(255)
+  `imagen` varchar(255),
+  `audio` varchar(255),
+  `id_proveedor` int
 );
 
 CREATE TABLE `categorias` (
@@ -113,6 +115,8 @@ CREATE TABLE `metodos_pago` (
 );
 
 ALTER TABLE `productos` ADD FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
+
+ALTER TABLE `productos` ADD FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id`);
 
 ALTER TABLE `usuarios` ADD FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
 

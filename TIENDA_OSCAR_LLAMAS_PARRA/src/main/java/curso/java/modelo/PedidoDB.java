@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import curso.java.util.PedidoThread;
+
 public class PedidoDB {
 	private static Connection conexion=Conexion.getConexion();
 	
@@ -39,6 +41,8 @@ public class PedidoDB {
 					System.out.println(detalle.getValue().toString());
 					modeloDP.insertarDetallePedido(detalle.getValue(), idPedido);
 				}
+				
+				PedidoThread.lanzarPedidoThread(idPedido);
 				return true;
 				
 			}

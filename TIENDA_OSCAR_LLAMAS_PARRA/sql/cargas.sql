@@ -15,10 +15,13 @@ VALUES ("admin@admin.com", 3, SHA2('1admin',256), "Admin", "istra","dor", "C/ Ad
 ("empleado1@tienda.com", 2, SHA2('2paso',256), "Manuel", "Perez","Perez", "C/ Tienda nº 1", "Zamora", "Zamora", "677777777", "96930871Q" ),
 ("cliente1@mail.com", 1, SHA2('3paso',256), "Pedro", "Fernandez","Fernandez", "C/ Ejemplo nº 1", "Zamora", "Zamora", "688888888", "17982331B" );
 
+INSERT INTO proveedores (nombre, direccion, localidad, provincia, telefono, cif, email) 
+VALUES ("Guitarras Paco","C/ Musica nº2","Zamora","Zamora","966666666","Q0541744I","paco@guitarras.com" ),
+("Vientos Eos","C/ Aire nº3","Benavente", "Zamora", "999666999","V09595059","vientos@musica.com");
 
-INSERT INTO productos (id_categoria,nombre,descripcion,precio,stock,fecha_baja,impuesto,imagen)
-VALUES (1, "Guitarra", "Guitarra española",71.90, 321, null, 12, null),
-(2, "Trompeta", "Trompeta normal",287.83, 123, null, 12, null);
+INSERT INTO productos (id_categoria,nombre,descripcion,precio,stock,fecha_baja,impuesto,imagen,audio,id_proveedor)
+VALUES (1, "Guitarra", "Guitarra española",71.90, 321, null, 12, null,null,1),
+(2, "Trompeta", "Trompeta normal",287.83, 123, null, 12, null,null,2);
 
 INSERT INTO metodos_pago (metodo_pago)
 VALUES ("Tarjeta"),("Paypal");
