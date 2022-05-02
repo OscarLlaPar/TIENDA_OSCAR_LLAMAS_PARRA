@@ -34,7 +34,7 @@ public class ServletBusqueda extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setAttribute("orden", request.getParameter("orden"));
 		request.setAttribute("busqueda", request.getParameter("busqueda"));
 		request.setAttribute("categoria", request.getParameter("categoria"));
 		request.getRequestDispatcher("").forward(request, response);

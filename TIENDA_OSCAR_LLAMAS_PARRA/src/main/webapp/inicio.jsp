@@ -1,5 +1,5 @@
 <%@ page
-	import="java.util.HashMap, java.util.Map, java.util.HashSet, curso.java.modelo.Producto, curso.java.modelo.Usuario, curso.java.modelo.Categoria"%>
+	import="java.util.LinkedHashMap, java.util.HashMap, java.util.Map, java.util.HashSet, curso.java.modelo.Producto, curso.java.modelo.Usuario, curso.java.modelo.Categoria"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,10 @@
 					<form action="<%= request.getContextPath() %>/ServletBusqueda" method="post">
 						<div class="input-group">
 								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="Buscar por nombre..." value="<%= request.getAttribute("busqueda")!=null?request.getAttribute("busqueda"):"" %>"/>
-							
+							<select name="orden">
+								<option value="0">Ordenar por...</option>
+								<option value="1">Más baratos</option>
+							</select>
 							<select name="categoria">
 								<option value="0">Todas las categorías</option>
 								<%
@@ -53,7 +56,7 @@
 				<div
 					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 					<%
-					HashMap<Integer, Producto> catalogo = (HashMap) request.getAttribute("catalogo");
+					LinkedHashMap<Integer, Producto> catalogo = (LinkedHashMap) request.getAttribute("catalogo");
 					for (Map.Entry<Integer, Producto> producto : catalogo.entrySet()) {
 					%>
 					<div class="col mb-5">

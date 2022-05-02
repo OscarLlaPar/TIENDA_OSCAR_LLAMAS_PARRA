@@ -1,4 +1,6 @@
 
+-Uso de Log4j
+
 -Lo del PDF mas bonito
 
 -Usar i18n para idiomas

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.HashSet, curso.java.modelo.Pedido, curso.java.modelo.DetallePedido" %>
+<%@ page import="java.util.LinkedHashSet, curso.java.modelo.Pedido, curso.java.modelo.DetallePedido" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +29,7 @@
 				</thead>
 				<tbody>
 					<%
-						HashSet<Pedido> pedidos = (HashSet)request.getAttribute("pedidos");
+						LinkedHashSet<Pedido> pedidos = (LinkedHashSet)request.getAttribute("pedidos");
 						for(Pedido p:pedidos){
 							%>
 							<tr>

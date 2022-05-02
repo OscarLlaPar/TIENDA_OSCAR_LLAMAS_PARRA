@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class ProductoDB {
 	private static Connection conexion=Conexion.getConexion();
@@ -14,7 +15,7 @@ public class ProductoDB {
 		Conexion.conectar();
 	}
 	
-	public HashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria){
+	public LinkedHashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria, int orden){
 		String busquedaCategoria;
 		if(categoria==0) {
 			busquedaCategoria="";
@@ -22,6 +23,14 @@ public class ProductoDB {
 		else {
 			busquedaCategoria=" AND id_categoria="+categoria;
 		}
+		String busquedaOrden;
+		switch(orden) {
+			case 1: busquedaOrden=" ORDER BY precio";
+				break;
+			default: busquedaOrden="";
+				break;
+		}
+		
 		
 		try {
 			Statement statement=conexion.createStatement();
@@ -29,8 +38,8 @@ public class ProductoDB {
 			if(conexion!=null) {
 				CategoriaDB modeloCategoria=new CategoriaDB();
 				ProveedorDB modeloProveedor=new ProveedorDB();
-				HashMap<Integer, Producto> catalogo=new HashMap<>();
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos WHERE fecha_baja IS NULL AND nombre LIKE CONCAT('%',?,'%')"+busquedaCategoria);
+				LinkedHashMap<Integer, Producto> catalogo=new LinkedHashMap<>();
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos WHERE fecha_baja IS NULL AND nombre LIKE CONCAT('%',?,'%')"+busquedaCategoria+busquedaOrden);
 				ps.setString(1,busqueda);;
 				
 				ResultSet rs=ps.executeQuery();
@@ -50,14 +59,14 @@ public class ProductoDB {
 		}
 	}
 	
-	public HashMap<Integer, Producto> mostrarTodosLosProductos(){
+	public LinkedHashMap<Integer, Producto> mostrarTodosLosProductos(){
 		try {
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
 				CategoriaDB modeloCategoria=new CategoriaDB();
 				ProveedorDB modeloProveedor=new ProveedorDB();
-				HashMap<Integer, Producto> catalogo=new HashMap<>();
+				LinkedHashMap<Integer, Producto> catalogo=new LinkedHashMap<>();
 				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos");
 				ResultSet rs=ps.executeQuery();
 				

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 import curso.java.util.PedidoThread;
@@ -97,7 +98,7 @@ public class PedidoDB {
 		}
 	}
 	
-	public HashSet<Pedido> mostrarPedidos(int idUsuario){
+	public LinkedHashSet<Pedido> mostrarPedidos(int idUsuario){
 		try {
 			Statement statement=conexion.createStatement();
 			
@@ -105,8 +106,8 @@ public class PedidoDB {
 				UsuarioDB modeloUsuario=new UsuarioDB();
 				MetodoPagoDB modeloMP=new MetodoPagoDB();
 				DetallePedidoDB modeloDP=new DetallePedidoDB();
-				HashSet<Pedido> pedidos=new HashSet<>();
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE id_usuario = ?");
+				LinkedHashSet<Pedido> pedidos=new LinkedHashSet<>();
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE id_usuario = ? ORDER BY fecha DESC");
 				ps.setInt(1, idUsuario);
 				
 				ResultSet rs=ps.executeQuery();
@@ -128,7 +129,7 @@ public class PedidoDB {
 		}
 	}
 	
-	public HashSet<Pedido> mostrarPedidos(EstadoPedido estado){
+	public LinkedHashSet<Pedido> mostrarPedidos(EstadoPedido estado){
 		try {
 			Statement statement=conexion.createStatement();
 			
@@ -136,7 +137,7 @@ public class PedidoDB {
 				UsuarioDB modeloUsuario=new UsuarioDB();
 				MetodoPagoDB modeloMP=new MetodoPagoDB();
 				DetallePedidoDB modeloDP=new DetallePedidoDB();
-				HashSet<Pedido> pedidos=new HashSet<>();
+				LinkedHashSet<Pedido> pedidos=new LinkedHashSet<>();
 				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE estado = ?");
 				ps.setString(1, estado.name());
 				

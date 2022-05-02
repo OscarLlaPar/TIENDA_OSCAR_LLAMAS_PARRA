@@ -1,6 +1,7 @@
 package curso.java.servicio;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 import curso.java.modelo.EstadoPedido;
 import curso.java.modelo.MetodoPago;
@@ -9,12 +10,12 @@ import curso.java.modelo.Pedido;
 import curso.java.modelo.PedidoDB;
 
 public class PedidoServicio {
-	public static HashSet<Pedido> obtenerPedidos(int idUsuario){
+	public static LinkedHashSet<Pedido> obtenerPedidos(int idUsuario){
 		PedidoDB modeloPedido=new PedidoDB();
 		return modeloPedido.mostrarPedidos(idUsuario);
 	}
 	
-	public static HashSet<Pedido> obtenerPedidos(EstadoPedido estado){
+	public static LinkedHashSet<Pedido> obtenerPedidos(EstadoPedido estado){
 		PedidoDB modeloPedido=new PedidoDB();
 		return modeloPedido.mostrarPedidos(estado);
 	}

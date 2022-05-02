@@ -2,6 +2,7 @@ package curso.java.servicio;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import curso.java.modelo.Categoria;
@@ -11,9 +12,9 @@ import curso.java.modelo.ProductoDB;
 
 public class ProductoServicio {
 	
-	public static HashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria){
+	public static LinkedHashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria, int orden){
 		ProductoDB modeloProducto=new ProductoDB();
-		return modeloProducto.mostrarCatalogo(busqueda, categoria);
+		return modeloProducto.mostrarCatalogo(busqueda, categoria,orden);
 	}
 	
 	public static Producto obtenerProducto(int id) {
@@ -21,7 +22,7 @@ public class ProductoServicio {
 		return modeloProducto.buscarProductoPorId(id);
 	}
 	
-	public static HashMap<Integer, Producto> mostrarTodosLosProductos(){
+	public static LinkedHashMap<Integer, Producto> mostrarTodosLosProductos(){
 		ProductoDB modeloProducto=new ProductoDB();
 		return modeloProducto.mostrarTodosLosProductos();
 	}

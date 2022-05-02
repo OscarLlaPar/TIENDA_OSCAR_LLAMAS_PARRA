@@ -2,6 +2,7 @@ package curso.java.controlador;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,17 +35,25 @@ public class ServletInicial extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int categoria;
+		int orden;
 		String busqueda=(String) request.getAttribute("busqueda");
-		HashMap<Integer,Producto> catalogo;
+		LinkedHashMap<Integer,Producto> catalogo;
 		if(busqueda!=null) {
-			int categoria=Integer.parseInt((String)request.getAttribute("categoria"));
-			catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria);
+			categoria=Integer.parseInt((String)request.getAttribute("categoria"));
+			orden=Integer.parseInt((String)request.getAttribute("orden"));
 			request.setAttribute("busqueda",busqueda);
+			request.setAttribute("orden",orden);
 		}
 		else {
-			catalogo=ProductoServicio.mostrarCatalogo("",0);
+			busqueda="";
+			categoria=0;
+			orden=0;
 		}
+		
+		catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria,orden);
+		
+		
 		HashMap<Integer,DetallePedido> carrito=null;
 		if(request.getSession().getAttribute("carrito")==null) {
 			carrito=new HashMap<Integer,DetallePedido>();
