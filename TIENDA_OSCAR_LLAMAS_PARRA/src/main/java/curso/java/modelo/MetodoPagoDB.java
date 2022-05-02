@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class MetodoPagoDB {
 	private static Connection conexion=Conexion.getConexion();
 	
@@ -31,6 +34,7 @@ public class MetodoPagoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(MetodoPagoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -53,6 +57,7 @@ public class MetodoPagoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(MetodoPagoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}

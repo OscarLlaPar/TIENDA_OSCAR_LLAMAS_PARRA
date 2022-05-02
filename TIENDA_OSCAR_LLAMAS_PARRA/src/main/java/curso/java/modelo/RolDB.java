@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class RolDB {
 	private static Connection conexion=Conexion.getConexion();
 	
@@ -32,6 +35,7 @@ public class RolDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(RolDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}

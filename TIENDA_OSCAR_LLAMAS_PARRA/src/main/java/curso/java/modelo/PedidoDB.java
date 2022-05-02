@@ -12,7 +12,9 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 
+import curso.java.util.LogUtil;
 import curso.java.util.PedidoThread;
+import curso.java.util.TipoLog;
 
 public class PedidoDB {
 	private static Connection conexion=Conexion.getConexion();
@@ -51,6 +53,7 @@ public class PedidoDB {
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}
@@ -73,6 +76,7 @@ public class PedidoDB {
 			return numPedidos;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return -1;
 		}
 	}
@@ -94,6 +98,7 @@ public class PedidoDB {
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}
@@ -125,6 +130,7 @@ public class PedidoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -156,6 +162,7 @@ public class PedidoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -186,6 +193,7 @@ public class PedidoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -215,6 +223,7 @@ public class PedidoDB {
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}

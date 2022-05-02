@@ -1,9 +1,7 @@
 
--Uso de Log4j
+-Estado de los pedidos
 
 -Lo del PDF mas bonito
-
--Usar i18n para idiomas
 
 -API para obtener provincias JSON
 

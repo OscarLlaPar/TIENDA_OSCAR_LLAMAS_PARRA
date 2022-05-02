@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class CategoriaDB {
 	private static Connection conexion=Conexion.getConexion();
 	
@@ -32,6 +35,7 @@ public class CategoriaDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(CategoriaDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -55,6 +59,7 @@ public class CategoriaDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(CategoriaDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}

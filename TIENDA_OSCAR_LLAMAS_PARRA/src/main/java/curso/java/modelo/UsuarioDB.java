@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class UsuarioDB {
 private static Connection conexion=Conexion.getConexion();
 	
@@ -34,6 +37,7 @@ private static Connection conexion=Conexion.getConexion();
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(UsuarioDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -59,6 +63,7 @@ private static Connection conexion=Conexion.getConexion();
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(UsuarioDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
@@ -89,6 +94,7 @@ private static Connection conexion=Conexion.getConexion();
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(UsuarioDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}
@@ -118,6 +124,7 @@ private static Connection conexion=Conexion.getConexion();
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(UsuarioDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}
@@ -139,6 +146,7 @@ private static Connection conexion=Conexion.getConexion();
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(UsuarioDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}

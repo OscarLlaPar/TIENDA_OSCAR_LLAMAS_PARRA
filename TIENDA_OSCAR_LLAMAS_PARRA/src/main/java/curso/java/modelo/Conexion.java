@@ -10,6 +10,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class Conexion {
 	
 	static Connection conexion;
@@ -26,12 +29,20 @@ public class Conexion {
 			
 			Class.forName(p.getProperty("DRIVER"));
 			conexion=DriverManager.getConnection(p.getProperty("URL") + p.getProperty("HOST") + "/"+ p.getProperty("DB"), p.getProperty("LOGIN"),"");
-			
+			return true;
 		} catch(SQLException e) {
-			return false;
-		} catch (Exception e) {
-	    	return false;
-	    }
+			LogUtil.registrarInfo(Conexion.class, TipoLog.ERROR, e.getMessage());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			LogUtil.registrarInfo(Conexion.class, TipoLog.ERROR, e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			LogUtil.registrarInfo(Conexion.class, TipoLog.ERROR, e.getMessage());
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			LogUtil.registrarInfo(Conexion.class, TipoLog.ERROR, e.getMessage());
+			e.printStackTrace();
+		} 
 		return true;
 	}
 	

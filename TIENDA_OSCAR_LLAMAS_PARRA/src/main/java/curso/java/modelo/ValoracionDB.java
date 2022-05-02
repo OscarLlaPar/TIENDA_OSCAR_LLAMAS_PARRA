@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class ValoracionDB {
 	private static Connection conexion=Conexion.getConexion();
 	
@@ -35,6 +38,7 @@ public class ValoracionDB {
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(ValoracionDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}
@@ -61,6 +65,7 @@ public class ValoracionDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(ValoracionDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}

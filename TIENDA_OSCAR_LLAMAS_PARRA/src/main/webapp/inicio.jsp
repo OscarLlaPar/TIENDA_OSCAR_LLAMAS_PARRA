@@ -12,6 +12,7 @@
 	<main>
 		<div class="bg-dark py-3 text-center text-white">
 			<%
+			String[] contenido=(String[]) request.getAttribute("contenido");
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioTienda");
 			if (usuario != null) {
 			%>
@@ -22,20 +23,20 @@
 			<%
 			}
 			%>
-			<h2>Catálogo</h2>
+			<h2><%= contenido[0] %></h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="card mb-4">
 				<div class="card-body">
 					<form action="<%= request.getContextPath() %>/ServletBusqueda" method="post">
 						<div class="input-group">
-								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="Buscar por nombre..." value="<%= request.getAttribute("busqueda")!=null?request.getAttribute("busqueda"):"" %>"/>
+								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="<%= contenido[1] %>" value="<%= request.getAttribute("busqueda")!=null?request.getAttribute("busqueda"):"" %>"/>
 							<select name="orden">
-								<option value="0">Ordenar por...</option>
+								<option value="0"><%= contenido[2] %></option>
 								<option value="1">Más baratos</option>
 							</select>
 							<select name="categoria">
-								<option value="0">Todas las categorías</option>
+								<option value="0"><%= contenido[3] %></option>
 								<%
 									HashSet<Categoria> categorias=(HashSet) request.getAttribute("categorias");
 									for (Categoria categoria: categorias){
@@ -46,10 +47,12 @@
 								%>
 							</select>
 							<button type="submit" class="btn btn-primary">
-								Buscar
+								<%= contenido[4] %>
 							</button>
 						</div>
 					</form>
+					<a href="<%= request.getContextPath() %>?idioma=es">Español</a>
+					<a href="<%= request.getContextPath() %>?idioma=en">English</a>
 				</div>
 			</div>
 			<form action="ServletAnadir" method="post">
@@ -85,8 +88,7 @@
 									<input class="w-25 m-2" type="number"
 										name="cantidad<%=producto.getKey()%>" value="1" min="1">
 									<button class="btn btn-outline-dark mt-auto" type="submit"
-										name="id" value="<%=producto.getKey()%>">Añadir al
-										carrito</button>
+										name="id" value="<%=producto.getKey()%>"><%= contenido[5] %></button>
 								</div>
 							</div>
 						</div>

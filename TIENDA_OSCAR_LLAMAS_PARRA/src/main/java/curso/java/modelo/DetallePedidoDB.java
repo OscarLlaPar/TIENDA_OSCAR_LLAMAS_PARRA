@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
+
 public class DetallePedidoDB {
 	private static Connection conexion=Conexion.getConexion();
 	
@@ -34,6 +37,7 @@ public class DetallePedidoDB {
 			return false;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
 		}
 	}
@@ -59,6 +63,7 @@ public class DetallePedidoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}
