@@ -6,19 +6,26 @@ import curso.java.servicio.PedidoServicio;
 
 public class PedidoThread extends Thread {
 	public volatile static int id;
+	public volatile static Pedido pedidoEnCurso;
 	
 	public void run() {
 		//Pedido p=PedidoServicio.obtenerPedido(idPedido);
 		System.out.println("Hilo corre");
 		int idPedido=id;
+		System.out.println(idPedido);
+		
 		try {
 			sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Accion!");
-		PedidoServicio.actualizarEstado(idPedido, EstadoPedido.E);
+		Pedido p =PedidoServicio.obtenerPedido(idPedido);
+		if(p.getEstado()!=EstadoPedido.PC) {
+			System.out.println("Accion!");
+			PedidoServicio.actualizarEstado(idPedido, EstadoPedido.E);
+		}
+		
 	}
 	
 	public static void lanzarPedidoThread(int idPedido) {

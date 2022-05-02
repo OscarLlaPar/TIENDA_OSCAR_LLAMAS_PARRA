@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="curso.java.modelo.Usuario" %>
+<%@ page import="curso.java.modelo.Usuario, java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <%
@@ -50,7 +50,18 @@
 			<div class="row py-2">
 				<div class="col-sm">
 					<label for="provincia">Provincia</label>
-					<input class="form-control" type="text" name="provincia" value="<%= usuario.getProvincia() %>">
+					<select class="form-select" name="provincia">
+						<% 
+						ArrayList<String> provincias =(ArrayList) request.getAttribute("provincias");
+						for(String provincia: provincias){
+							%>
+							<option value="<%= provincia %>" <%= usuario.getProvincia().equals(provincia)?"selected":"" %> ><%= provincia %></option>
+							<%
+						}
+								%>
+						
+						
+						</select>
 				</div>
 				<div  class="col-sm">
 					<label for="localidad">Localidad</label>

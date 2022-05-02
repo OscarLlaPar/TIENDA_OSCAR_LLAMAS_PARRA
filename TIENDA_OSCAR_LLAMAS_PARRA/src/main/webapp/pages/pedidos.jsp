@@ -35,7 +35,7 @@
 							<tr>
 								<td><%= p.getFecha() %> </td>
 								<td><%= p.getMetodoPago().getMetodoPago() %></td>
-								<td><%= p.getEstado().name() %></td>
+								<td><%= p.getEstado().getEstado() %></td>
 								<td><%= p.getNumFactura()!=null?p.getNumFactura():"-" %> </td>
 								<td><%= String.format("%.2f", p.getTotal()) %> &euro;</td>
 								<td><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletDetallePedido?id=<%= p.getId()%>">Ver detalle</a></td>

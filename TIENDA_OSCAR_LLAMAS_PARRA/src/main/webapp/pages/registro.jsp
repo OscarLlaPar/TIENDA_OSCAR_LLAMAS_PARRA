@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.HashMap, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,9 +67,19 @@
 				</div>
 				<div class="row py-3">
 					<div class="col-sm">
-						<label for="provincia">Provincia</label> <input
-							class="form-control" type="text" name="provincia"
-							placeholder="Provincia" id="provincia" value="<%= respuestas!=null?respuestas.get("provincia"):"" %>"  required>
+						<label for="provincia">Provincia</label> 
+						<select class="form-select" name="provincia">
+						<% 
+						ArrayList<String> provincias =(ArrayList) request.getAttribute("provincias");
+						for(String provincia: provincias){
+							%>
+							<option value="<%= provincia %>"><%= provincia %></option>
+							<%
+						}
+								%>
+						
+						
+						</select>
 							 <span><%=errores != null ? errores.get("provincia") : ""%>
 						</span>
 					</div>

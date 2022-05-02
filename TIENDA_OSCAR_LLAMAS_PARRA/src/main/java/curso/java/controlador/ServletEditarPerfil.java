@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import curso.java.modelo.Usuario;
 import curso.java.servicio.UsuarioServicio;
+import curso.java.util.JsonUtil;
 
 /**
  * Servlet implementation class ServletEditarPerfil
@@ -29,8 +30,8 @@ public class ServletEditarPerfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("provincias", JsonUtil.obtenerProvincias());
+		request.getRequestDispatcher("pages/perfilUsuario.jsp").forward(request, response);
 	}
 
 	/**

@@ -13,6 +13,7 @@ import curso.java.modelo.RolDB;
 import curso.java.modelo.Usuario;
 import curso.java.modelo.UsuarioDB;
 import curso.java.servicio.UsuarioServicio;
+import curso.java.util.JsonUtil;
 import curso.java.util.ValidacionFormularios;
 
 /**
@@ -34,8 +35,8 @@ public class ServletRegistro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("provincias", JsonUtil.obtenerProvincias());
+		request.getRequestDispatcher("pages/registro.jsp").forward(request, response);
 	}
 
 	/**

@@ -16,20 +16,6 @@
                 <nav class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <%
-					if(request.getSession().getAttribute("usuarioTienda")==null){
-						%>
-						<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/pages/login.jsp">Iniciar sesión</a></li>
-						<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%= request.getContextPath() %>/pages/registro.jsp">Registrarse</a></li>
-						<%
-					}
-					else{
-						%>
-						<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%= request.getContextPath()%>/pages/perfilUsuario.jsp">Ver perfil</a></li>
-						<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"  href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a></li>
-						<%
-					}
-				%>
-                        <%
 			if(request.getSession().getAttribute("menuUsuario")!=null){
 				HashSet<OpcionMenu> menu=(HashSet)request.getSession().getAttribute("menuUsuario");
 				Iterator it=menu.iterator();
@@ -44,6 +30,19 @@
 			if(usuario==null || usuario.getRol().getId()==1){
 				%>
 					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%= request.getContextPath()%>/pages/carrito.jsp">Ver carrito</a></li>
+				<%
+			}
+			if(usuario==null){
+				%>
+				<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/pages/login.jsp">Iniciar sesión</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%= request.getContextPath() %>/ServletRegistro">Registrarse</a></li>
+				<%
+			}
+			else{
+				
+				%>
+				<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%= request.getContextPath()%>/ServletEditarPerfil"><%= usuario.getNombre() + " " + usuario.getApellido1()%></a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"  href="<%= request.getContextPath()%>/ServletLogin">Cerrar sesión</a></li>
 				<%
 			}
 		%>

@@ -1,9 +1,11 @@
 
+-Opciones menu Spring
+
 -Estado de los pedidos
 
 -Lo del PDF mas bonito
 
--API para obtener provincias JSON
+
 
 -Filtros¿?
 
