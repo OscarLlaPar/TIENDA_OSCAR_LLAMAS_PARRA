@@ -14,6 +14,8 @@ import curso.java.modelo.DetallePedido;
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
 import curso.java.servicio.ProductoServicio;
+import curso.java.util.LogUtil;
+import curso.java.util.TipoLog;
 
 /**
  * Servlet implementation class ServletInicial
@@ -44,11 +46,13 @@ public class ServletInicial extends HttpServlet {
 			orden=Integer.parseInt((String)request.getAttribute("orden"));
 			request.setAttribute("busqueda",busqueda);
 			request.setAttribute("orden",orden);
+			//LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Buscando productos cuyo nombre contenga '"+busqueda+"' con el orden "+orden);
 		}
 		else {
 			busqueda="";
 			categoria=0;
 			orden=0;
+			//LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Mostrando catálogo sin búsqueda");
 		}
 		
 		catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria,orden);
