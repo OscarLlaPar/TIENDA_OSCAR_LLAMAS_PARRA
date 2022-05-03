@@ -47,7 +47,7 @@
 									}
 									if(p.getEstado().name().equals("E")){
 								%>
-								<td><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletFactura?id=<%= p.getId()%>">Ver factura</a></td>		
+								<td><a class="btn btn-primary" target="__blank" href="<%=request.getContextPath()%>/ServletFactura?id=<%= p.getId()%>">Ver factura</a></td>		
 								<%
 									}
 								%>

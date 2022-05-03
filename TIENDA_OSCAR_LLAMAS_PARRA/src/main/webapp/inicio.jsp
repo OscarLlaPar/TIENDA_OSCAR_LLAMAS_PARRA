@@ -67,7 +67,7 @@
 						<div class="card h-100">
 							<!-- Product image-->
 							<img class="card-img-top"
-								src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+								src="<%=request.getContextPath() + "/" + producto.getValue().getImagen() %>" height="300" alt="..." />
 							<!-- Product details-->
 							<div class="card-body p-4">
 								<div class="text-center">
@@ -77,7 +77,7 @@
 											href="<%=request.getContextPath()%>/ServletProducto?id=<%=producto.getKey()%>"><%=producto.getValue().getNombre()%></a>
 									</h5>
 									<!-- Product price-->
-									<%=producto.getValue().getPrecio()%>
+									<%= String.format("%.2f",producto.getValue().getPrecioConImpuesto())%>
 									&euro;
 									</td>
 								</div>

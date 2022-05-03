@@ -19,6 +19,8 @@
 				<thead>
 					<tr>
 						<th>Producto</th>
+						<th>Precio ud.</th>
+						<th>Impuesto</th>
 						<th>Unidades</th>
 						<th>Total</th>
 					</tr>
@@ -31,6 +33,8 @@
 		            %>
 		            	<tr>
 		            		<td><%= dp.getValue().getProducto().getNombre() %></td>
+		            		<td><%=dp.getValue().getPrecioUnidad() %> &euro;</td>
+		            		<td><%=dp.getValue().getImpuesto() %>%</td>
 		            		<td><%= dp.getValue().getUnidades()%></td>
 		            		<td><%= String.format("%.2f", dp.getValue().getTotal() )%> &euro;</td>
 		            	</tr>

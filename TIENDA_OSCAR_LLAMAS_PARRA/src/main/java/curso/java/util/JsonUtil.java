@@ -13,6 +13,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class JsonUtil {
+	
+	/**
+	 * 
+	 * @param sUrl
+	 * @return
+	 */
+	
 	public static String leerUrl(String sUrl) {
 		String output = "";
 		try {
@@ -45,6 +52,11 @@ public class JsonUtil {
 
 		return output;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	
 	@SuppressWarnings("deprecation")
 	public static ArrayList<String> obtenerProvincias(){

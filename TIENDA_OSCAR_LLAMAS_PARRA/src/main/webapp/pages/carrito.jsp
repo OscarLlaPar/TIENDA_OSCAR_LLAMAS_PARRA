@@ -24,8 +24,10 @@
 						<thead>
 							<tr>
 								<th>Nombre</th>
-								<th>Precio</th>
+								<th>Precio ud.</th>
+								<th>Impuesto</th>
 								<th>Cantidad</th>
+								<th>Precio total</th>
 								<th>Cantidad quitar</th>
 								<th>Acción</th>
 							</tr>
@@ -38,9 +40,11 @@
 							%>
 							<tr>
 								<td><%=dp.getValue().getProducto().getNombre()%></td>
+								<td><%=dp.getValue().getPrecioUnidad() %> &euro;</td>
+								<td><%=dp.getValue().getImpuesto() %>%</td>
+								<td><%=dp.getValue().getUnidades()%></td>
 								<td><%=String.format("%.2f", dp.getValue().getTotal())%>
 									&euro;</td>
-								<td><%=dp.getValue().getUnidades()%></td>
 								<td><input type="number" name="cantidad<%=dp.getKey()%>"
 									value="1" min="1"></td>
 								<td><button class="btn btn-danger" type="submit" name="idEliminar"

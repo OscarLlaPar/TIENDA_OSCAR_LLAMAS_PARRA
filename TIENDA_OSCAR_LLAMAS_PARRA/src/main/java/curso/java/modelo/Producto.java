@@ -150,5 +150,7 @@ public class Producto {
 				+ impuesto + ", imagen=" + imagen + ", audio="+ audio +", proveedor=" + proveedor + "]";
 	}
 	
-	
+	public double getPrecioConImpuesto() {
+		return precio+(precio*impuesto/100);
+	}
 }

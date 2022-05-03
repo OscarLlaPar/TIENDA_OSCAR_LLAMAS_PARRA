@@ -3,6 +3,12 @@ package curso.java.util;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+/**
+ * 
+ * @author Oscar
+ *
+ */
+
 public class LogUtil {
 	private static Logger log = Logger.getLogger(LogUtil.class);
 

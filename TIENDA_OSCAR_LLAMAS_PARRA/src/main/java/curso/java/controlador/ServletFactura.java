@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import curso.java.modelo.Pedido;
+import curso.java.modelo.Usuario;
 import curso.java.servicio.PedidoServicio;
 import curso.java.util.PedidoUtil;
 
@@ -32,8 +33,9 @@ public class ServletFactura extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idPedido=Integer.parseInt(request.getParameter("id"));
 		Pedido p=PedidoServicio.obtenerPedido(idPedido);
+		Usuario u=(Usuario)request.getSession().getAttribute("usuarioTienda");
 		System.out.println(request.getServletContext().getRealPath(""));
-		if(PedidoUtil.generarFactura(p, request.getServletContext().getRealPath(""))) {
+		if(PedidoUtil.generarFactura(p, request.getServletContext().getRealPath(""),u)) {
 			request.setAttribute("mensajeFactura", "Factura creada");
 		}
 		else {

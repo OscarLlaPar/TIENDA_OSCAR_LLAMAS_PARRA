@@ -1,19 +1,15 @@
 
 -Bajas lógicas
 
--Rediseño páginas de gestión
-
 -Mensajes JS.
-
--Imágenes y audios
-
--Lo del PDF mas bonito
-
--Lo de los impuestos
 
 -Adecentar Bootstrap
 
 -Documentación
+
+
+
+
 
 -Estado de los pedidos
 

@@ -8,6 +8,14 @@ import java.util.regex.Pattern;
 import curso.java.servicio.UsuarioServicio;
 
 public class ValidacionFormularios {
+	
+	/**
+	 * 
+	 * @param mail
+	 * @param obligatorio
+	 * @return
+	 */
+	
 	public static String validarEmail(String mail, boolean obligatorio) {
 		String mensajeError="";
 		if(obligatorio) {
@@ -29,6 +37,12 @@ public class ValidacionFormularios {
 		return mensajeError;
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	
 	public static String comprobarEmailExiste(String email) {
 		if(UsuarioServicio.existeEmail(email)) {
 			return "El email introducido ya existe";
@@ -38,6 +52,13 @@ public class ValidacionFormularios {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @param dni
+	 * @param obligatorio
+	 * @return
+	 */
 	
 	public static String validarDni(String dni, boolean obligatorio) {
 		String mensajeError="";
@@ -56,6 +77,13 @@ public class ValidacionFormularios {
 		return mensajeError;
 	}
 	
+	/**
+	 * 
+	 * @param telefono
+	 * @param obligatorio
+	 * @return
+	 */
+	
 	public static String validarTelefono(String telefono, boolean obligatorio) {
 		String mensajeError="";
 		if(obligatorio) {
@@ -72,6 +100,13 @@ public class ValidacionFormularios {
 		
 		return mensajeError;
 	}
+	
+	/**
+	 * 
+	 * @param entrada
+	 * @param obligatorio
+	 * @return
+	 */
 	
 	public static String comprobarAlfabetico(String entrada, boolean obligatorio) {
 		String mensajeError="";
@@ -90,6 +125,12 @@ public class ValidacionFormularios {
 		return mensajeError;
 	}
 	
+	/**
+	 * 
+	 * @param entrada
+	 * @return
+	 */
+	
 	public static String comprobarObligatorio(String entrada) {
 		String mensajeError="";
 		if(entrada.equals("")||entrada==null) {
@@ -97,6 +138,12 @@ public class ValidacionFormularios {
 		}
 		return mensajeError;
 	}
+	
+	/**
+	 * 
+	 * @param errores
+	 * @return
+	 */
 	
 	public static boolean hayErrores(HashMap<String, String> errores) {
 		boolean hayErrores= false;

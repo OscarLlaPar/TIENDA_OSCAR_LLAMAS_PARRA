@@ -5,6 +5,13 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class IdiomaUtil {
+	
+	/**
+	 * 
+	 * @param local
+	 * @return
+	 */
+	
 	public static String[] contenidoIdioma(Locale local) {
 		 
 		
