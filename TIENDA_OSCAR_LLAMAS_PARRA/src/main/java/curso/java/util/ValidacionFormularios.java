@@ -5,11 +5,16 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import curso.java.servicio.UsuarioServicio;
+
 public class ValidacionFormularios {
 	public static String validarEmail(String mail, boolean obligatorio) {
 		String mensajeError="";
 		if(obligatorio) {
 			mensajeError=comprobarObligatorio(mail);
+		}
+		if(mensajeError.equals("")) {
+			mensajeError=comprobarEmailExiste(mail);
 		}
 		if(mensajeError.equals("")) {
 			Pattern pattern = Pattern
@@ -22,6 +27,16 @@ public class ValidacionFormularios {
 		}
 		
 		return mensajeError;
+	}
+	
+	public static String comprobarEmailExiste(String email) {
+		if(UsuarioServicio.existeEmail(email)) {
+			return "El email introducido ya existe";
+		}
+		else {
+			return "";
+		}
+		
 	}
 	
 	public static String validarDni(String dni, boolean obligatorio) {
@@ -87,7 +102,9 @@ public class ValidacionFormularios {
 		boolean hayErrores= false;
 		Iterator<String> it = errores.keySet().iterator();
 		while(it.hasNext() && !hayErrores) {
-			if(!it.next().equals("")) {
+			String clave=it.next();
+			String valor=errores.get(clave);
+			if(!valor.equals("")) {
 				hayErrores=true;
 			}
 		}

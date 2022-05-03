@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>Iniciar sesión - Tienda Óscar Llamas Parra</title>
-<body>
+<body  class="d-flex flex-column min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
 	<main>
 		<div class="bg-dark py-3 text-center text-white">
@@ -17,6 +17,14 @@
 						<div class="card-body">
 							<form action="<%=request.getContextPath()%>/ServletLogin"
 								method="post">
+								<%
+									if(request.getAttribute("errorLogin")!=null){
+										%>
+										<p class="text-danger text-center"><%=request.getAttribute("errorLogin") %> </p>
+										<%
+									}
+								%>
+								
 								<div class="form-floating mb-3">
 									<input class="form-control" id="inputEmail" type="email"
 										name="email" placeholder="name@example.com" /> <label

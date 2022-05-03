@@ -7,9 +7,9 @@
 <meta charset="ISO-8859-1">
 <title>Pedido - Tienda Óscar Llamas Parra</title>
 </head>
-<body>
+<body  class="d-flex flex-column min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
-	<main>
+	
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Detalles del pedido</h2>
 		</div>
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 		</div>
-	</main>
+	
 	<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>

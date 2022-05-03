@@ -7,9 +7,9 @@
 	<meta charset="ISO-8859-1">
 	<title>Confirmar compra - Tienda Óscar Llamas Parra</title>
 </head>
-<body>
+<body  class="min-vh-100 d-flex flex-column justify-content-between">
 	<jsp:include page="../layout/header.jsp" />
-	<main>
+	
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Confirmar compra</h2>
 		</div>
@@ -53,7 +53,7 @@
 				</div>
 			</form>
 		</div>
-	</main>
+	
 	<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>

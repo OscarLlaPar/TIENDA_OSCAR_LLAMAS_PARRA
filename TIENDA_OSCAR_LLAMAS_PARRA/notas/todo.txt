@@ -1,30 +1,26 @@
 
--Opciones menu Spring
+-Bajas lógicas
 
--Estado de los pedidos
+-Rediseño páginas de gestión
+
+-Mensajes JS.
+
+-Imágenes y audios
 
 -Lo del PDF mas bonito
 
+-Lo de los impuestos
 
+-Adecentar Bootstrap
+
+-Documentación
+
+-Estado de los pedidos
 
 -Filtros¿?
 
--Lo de los impuestos
-
--En pantalla estrecha, ver como se puede desplegar el menu (script) (ver documentacion bootstrap)
-
-Búsqueda por el catálogo:
-	-Seguramente modificación del metodo mostrarCatalogo() de ProductoDB.
-	-Cambiar tipo de variable de catalogo a LinkedHashMap para poder ordenar.
-	
 -----POSIBLES PLANTILLAS BOOTSTRAP-----
 
 https://colorlib.com/wp/themes/tyche/
 
 -->  https://startbootstrap.com/template/shop-homepage
-
-
-
-----------------DUDAS---------
-Menú para rol anónimo.
-Cómo crear objetos Pedido y DetallePedido e insertarlos en la base de datos.

@@ -94,6 +94,7 @@ public class ServletRegistro extends HttpServlet {
 			
 			request.setAttribute("errores", errores);
 			request.setAttribute("respuestas", respuestas);
+			request.setAttribute("provincias", JsonUtil.obtenerProvincias());
 			request.getRequestDispatcher("pages/registro.jsp").forward(request, response);
 		}
 		

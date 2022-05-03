@@ -73,7 +73,7 @@ private static Connection conexion=Conexion.getConexion();
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
-				PreparedStatement ps = conexion.prepareStatement("INSERT INTO usuarios VALUES (?,1,?,?,?,?,?,?,?,?,?)");
+				PreparedStatement ps = conexion.prepareStatement("INSERT INTO usuarios (email,id_rol,clave,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni) VALUES (?,1,?,?,?,?,?,?,?,?,?)");
 				
 				ps.setString(1, u.getEmail());
 				ps.setString(2, u.getClave());

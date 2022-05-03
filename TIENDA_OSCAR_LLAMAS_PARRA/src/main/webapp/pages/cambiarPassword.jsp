@@ -5,7 +5,7 @@
 <head>
 <title>Cambiar contraseña - Tienda Óscar Llamas Parra</title>
 </head>
-<body>
+<body  class="min-vh-100 d-flex flex-column justify-content-between">
 	<jsp:include page="../layout/header.jsp" />
 	<main>
 		<div class="bg-dark py-3 text-center text-white">

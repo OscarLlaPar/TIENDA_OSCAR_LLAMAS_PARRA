@@ -11,7 +11,7 @@ public class UsuarioServicio {
 		UsuarioDB modeloUsuario=new UsuarioDB();
 		Usuario u=modeloUsuario.buscarUsuarioPorEmail(email);
 		
-		if (u!=null && u.getClave().equals(UsuarioUtil.obtenerSha2(u.getId()+password))) {
+		if (u!=null && u.getClave().equals(UsuarioUtil.obtenerSha2(password))) {
 			return u;
 		}
 		else {
@@ -40,6 +40,16 @@ public class UsuarioServicio {
 	public static boolean altaUsuario(Usuario u) {
 		UsuarioDB modeloUsuario=new UsuarioDB();
 		return modeloUsuario.altaUsuario(u);
+	}
+	
+	public static boolean existeEmail(String email) {
+		UsuarioDB modeloUsuario=new UsuarioDB();
+		if(modeloUsuario.buscarUsuarioPorEmail(email)!=null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }

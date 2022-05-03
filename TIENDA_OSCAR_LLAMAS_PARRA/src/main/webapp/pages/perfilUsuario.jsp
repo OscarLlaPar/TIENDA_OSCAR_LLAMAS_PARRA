@@ -11,9 +11,9 @@
 <title><%=usuario.getNombre() %> - Tienda Óscar Llamas Parra</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilos.css">
 </head>
-<body>
+<body  class="min-vh-100 d-flex flex-column justify-content-between">
 	<jsp:include page="../layout/header.jsp" />
-	<main>
+	
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Perfil de <%=usuario.getNombre()+" "+usuario.getApellido1()+" "+usuario.getApellido2()%>  </h2>
 		</div>
@@ -89,7 +89,7 @@
 		</div>
 		<div class="h-25 w-100">
 		</div>
-	</main>
+	
 	<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>

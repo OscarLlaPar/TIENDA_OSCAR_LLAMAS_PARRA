@@ -27,8 +27,12 @@ public class ProductoDB {
 			busquedaCategoria=" AND id_categoria="+categoria;
 		}
 		String busquedaOrden;
+		String join="";
 		switch(orden) {
 			case 1: busquedaOrden=" ORDER BY precio";
+				break;
+			case 2: busquedaOrden=" GROUP BY id_producto ORDER BY AVG(valoracion) DESC";
+					join=" INNER JOIN valoraciones ON productos.id=valoraciones.id_producto";
 				break;
 			default: busquedaOrden="";
 				break;
@@ -42,7 +46,7 @@ public class ProductoDB {
 				CategoriaDB modeloCategoria=new CategoriaDB();
 				ProveedorDB modeloProveedor=new ProveedorDB();
 				LinkedHashMap<Integer, Producto> catalogo=new LinkedHashMap<>();
-				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos WHERE fecha_baja IS NULL AND nombre LIKE CONCAT('%',?,'%')"+busquedaCategoria+busquedaOrden);
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos" + join + " WHERE fecha_baja IS NULL AND nombre LIKE CONCAT('%',?,'%')"+busquedaCategoria+busquedaOrden);
 				ps.setString(1,busqueda);;
 				
 				ResultSet rs=ps.executeQuery();
@@ -58,7 +62,7 @@ public class ProductoDB {
 			return null;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
-			LogUtil.registrarInfo(ProductoDB.class, TipoLog.ERROR, e.getMessage());
+			//LogUtil.registrarInfo(ProductoDB.class, TipoLog.ERROR, e.getMessage());
 			return null;
 		}
 	}

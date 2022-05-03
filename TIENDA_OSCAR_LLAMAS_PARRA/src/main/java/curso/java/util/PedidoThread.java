@@ -24,6 +24,7 @@ public class PedidoThread extends Thread {
 		if(p.getEstado()!=EstadoPedido.PC) {
 			System.out.println("Accion!");
 			PedidoServicio.actualizarEstado(idPedido, EstadoPedido.E);
+			PedidoServicio.asignarNumFactura(idPedido);
 		}
 		
 	}

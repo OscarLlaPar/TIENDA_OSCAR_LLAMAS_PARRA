@@ -7,9 +7,9 @@
 <title>Inicio - Tienda Óscar Llamas Parra</title>
 
 </head>
-<body>
+<body  class="min-vh-100 d-flex flex-column justify-content-between">
 	<jsp:include page="layout/header.jsp" />
-	<main>
+	
 		<div class="bg-dark py-3 text-center text-white">
 			<%
 			String[] contenido=(String[]) request.getAttribute("contenido");
@@ -34,6 +34,7 @@
 							<select name="orden">
 								<option value="0"><%= contenido[2] %></option>
 								<option value="1">Más baratos</option>
+								<option value="2">Mejor valorados</option>
 							</select>
 							<select name="categoria">
 								<option value="0"><%= contenido[3] %></option>
@@ -72,7 +73,7 @@
 								<div class="text-center">
 									<!-- Product name-->
 									<h5 class="fw-bolder">
-										<a
+										<a class="nav-link text-dark"
 											href="<%=request.getContextPath()%>/ServletProducto?id=<%=producto.getKey()%>"><%=producto.getValue().getNombre()%></a>
 									</h5>
 									<!-- Product price-->
@@ -99,7 +100,8 @@
 				</div>
 			</form>
 		</div>
-	</main>
+	
 	<jsp:include page="layout/footer.jsp" />
+	
 </body>
 </html>

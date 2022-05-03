@@ -13,17 +13,26 @@
 </head>
 <body>
 	<jsp:include page="../layout/header.jsp" />
-	<main>
+	
 		<div class="bg-dark py-3 text-center text-white">
-			<h2><%= productoEnCurso.getNombre() %></h2>
+			<h2>Detalles del producto</h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-		<a href="<%= request.getContextPath() %>">Volver</a>
-		<p><%= productoEnCurso.getDescripcion() %></p>
-		<p><strong>Precio: </strong><%= productoEnCurso.getPrecio() %> &euro;</p>
+			<div class="card">
+				<div class="card-body">
+		<p class="h2"><%= productoEnCurso.getNombre() %></p>
+		<p class="text-muted"><em>Categoría: <%= productoEnCurso.getCategoria().getNombre() %></em> </p>
+		<div class="card">
+			<div class="card-header">Descripción</div>
+			<div class="card-body">
+				<p><%= productoEnCurso.getDescripcion() %></p>
+			</div>
+		</div>
+		<p class="h2"><strong>Precio: </strong><%= productoEnCurso.getPrecio() %> &euro;</p>
+		<p class="text-muted"><small>Impuestos del <%= productoEnCurso.getImpuesto() %>% incluidos. </small></p>
+		<p><strong>Proveedor: </strong><%= productoEnCurso.getProveedor().getNombre() %> </p>
 		<p><strong>Cantidad en stock: </strong><%= productoEnCurso.getStock() %></p>
 		<p><strong>Disponible desde: </strong><%= productoEnCurso.getFechaAlta() %></p>
-		<p><strong>Impuesto: </strong><%= productoEnCurso.getImpuesto() %></p>
 		<%
 		Usuario usuario=(Usuario)request.getSession().getAttribute("usuarioTienda");
 		if(usuario==null || usuario.getRol().getId()==1){
@@ -34,7 +43,10 @@
 				<input type="number" name="cantidad<%= productoEnCurso.getId()%>" value="1" min="1">
 				<button class="btn btn-primary" type="submit" name="id" value="<%= productoEnCurso.getId()%>">Añadir al carrito</button>
 			</form>
+				</div>
+			</div>
 			<div class="list-group">
+				<p class="h3">Valoraciones</p>
 		<%
 		}
 		HashSet<Valoracion> valoraciones = (HashSet) request.getAttribute("valoraciones");
@@ -55,7 +67,7 @@
 	</div>		
 	<div class="h-25 w-100">
 	</div>		
-	</main>
+	
 	<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>

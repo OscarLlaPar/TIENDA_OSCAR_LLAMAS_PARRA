@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<footer class="py-3 bg-dark fixed-bottom mt-auto">
+	<footer class="py-3 bg-dark justify-self-end mt-auto">
             <div class="container"><p class="m-0 text-center text-white">Óscar Llamas Parra</p></div>
         </footer>
-        <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
