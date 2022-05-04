@@ -14,7 +14,7 @@
 			<h2>Detalles del pedido</h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-		<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>/ServletPedido">Volver a mis pedidos</a>
+		<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>/ServletPedido"><i class="bi bi-arrow-left"></i> Volver a mis pedidos</a>
 		
 		
 		
@@ -25,7 +25,7 @@
 				<p><strong>Núm de factura:</strong> <%= p.getNumFactura()!=null?p.getNumFactura():"-" %> </p>
 				<p><strong>Fecha:</strong>  <%= p.getFecha() %> </p>
 				<p><strong>Método de pago:</strong>  <%= p.getMetodoPago().getMetodoPago() %></p>
-				<p><strong>Estado:</strong> <%= p.getEstado().name() %></p>
+				<p><strong>Estado:</strong> <%= p.getEstado().getEstado() %></p>
 				<p class="h4">Total: <%= String.format("%.2f", p.getTotal()) %> &euro; </p>
 			</div>
 			<p class="h3 my-3">Productos</p>
@@ -45,7 +45,7 @@
 						</div>
 						<% if(p.getEstado().name().equals("E")){
 							%>
-							<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletValorar?id=<%=dp.getValue().getProducto().getId() %>">Valorar producto</a>
+							<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletValorar?id=<%=dp.getValue().getProducto().getId() %>"><i class="bi bi-sticky"></i> Valorar producto</a>
 							<%
 						}
 						%>

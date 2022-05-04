@@ -26,6 +26,13 @@ public class ServletCambiarPassword extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
+    public void init(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -40,17 +47,24 @@ public class ServletCambiarPassword extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Usuario usuarioActual=(Usuario) request.getSession().getAttribute("usuarioTienda");
+		String mensajePassword="";
 		String passwordActual=UsuarioUtil.obtenerSha2(request.getParameter("passwordActual"));
 		String passwordNueva=request.getParameter("passwordNueva");
 		String confirmarPassword=request.getParameter("confirmarPassword");
-		if(passwordActual.equals(usuarioActual.getClave()) && passwordNueva.equals(confirmarPassword)) {
+		if(!passwordActual.equals(usuarioActual.getClave())) {
+			mensajePassword="Contraseña incorrecta.";
+		}
+		if(!passwordNueva.equals(confirmarPassword)) {
+			mensajePassword="Las contraseñas no coinciden.";
+		}
+		if(mensajePassword.equals("")) {
 			String passwordValida=UsuarioUtil.obtenerSha2(passwordNueva);
 			UsuarioServicio.cambiarPassword(usuarioActual.getEmail(), passwordValida);
-			request.setAttribute("mensajePassword", "Contraseña cambiada");
+			mensajePassword="Contraseña cambiada.";
 		}
-		else {
-			request.setAttribute("mensajePassword", "Contraseña incorrecta");
-		}
+		
+			request.setAttribute("mensajePassword", mensajePassword);
+		
 		request.getRequestDispatcher("pages/cambiarPassword.jsp").forward(request, response);
 	}
 

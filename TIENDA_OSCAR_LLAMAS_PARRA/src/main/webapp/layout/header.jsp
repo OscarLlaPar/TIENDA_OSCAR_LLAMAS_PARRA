@@ -39,7 +39,7 @@
 					%>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
-						href="<%=request.getContextPath()%>/pages/carrito.jsp">Ver
+						href="<%=request.getContextPath()%>/pages/carrito.jsp"><i class="bi bi-cart4"></i> Ver
 							carrito</a></li>
 					<%
 					}
@@ -47,7 +47,7 @@
 					%>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
-						href="<%=request.getContextPath()%>/pages/login.jsp">Iniciar
+						href="<%=request.getContextPath()%>/pages/login.jsp"><i class="bi bi-person"></i> Iniciar
 							sesión</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
@@ -57,7 +57,7 @@
 					%>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
-						href="<%=request.getContextPath()%>/ServletEditarPerfil"><%=usuario.getNombre() + " " + usuario.getApellido1()%></a></li>
+						href="<%=request.getContextPath()%>/ServletEditarPerfil"><i class="bi bi-person"></i> <%=usuario.getNombre() + " " + usuario.getApellido1()%></a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
 						href="<%=request.getContextPath()%>/ServletLogin">Cerrar

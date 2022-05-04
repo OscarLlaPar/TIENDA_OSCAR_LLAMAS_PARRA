@@ -49,7 +49,7 @@ public class ServletEditarPerfil extends HttpServlet {
 		String telefono=request.getParameter("telefono");
 		String dni=request.getParameter("dni");
 		Usuario usuarioActual=(Usuario) request.getSession().getAttribute("usuarioTienda");
-		Usuario usuarioNuevo=new Usuario(id, email, usuarioActual.getRol(), usuarioActual.getClave(), nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni);
+		Usuario usuarioNuevo=new Usuario(id, email, usuarioActual.getRol(), usuarioActual.getClave(), nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni, null);
 		
 		if (UsuarioServicio.editarUsuario(usuarioActual, usuarioNuevo)) {
 			request.getSession().setAttribute("usuarioTienda", usuarioNuevo);

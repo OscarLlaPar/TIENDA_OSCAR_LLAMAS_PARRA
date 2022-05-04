@@ -75,7 +75,7 @@ public class ServletRegistro extends HttpServlet {
 		
 		
 		if(!ValidacionFormularios.hayErrores(errores)) {
-			Usuario usuarioValido= new Usuario(0, email, UsuarioServicio.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni);
+			Usuario usuarioValido= new Usuario(0, email, UsuarioServicio.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni,null);
 			UsuarioServicio.altaUsuario(usuarioValido);
 			request.getSession().setAttribute("usuarioTienda",usuarioValido);
 			request.getRequestDispatcher("").forward(request, response);

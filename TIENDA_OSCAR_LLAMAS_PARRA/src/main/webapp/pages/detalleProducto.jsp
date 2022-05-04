@@ -39,7 +39,7 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 							<strong>Precio: </strong><%=String.format("%.2f", productoEnCurso.getPrecioConImpuesto())%>
 							&euro;
 						</p>
-						<p class="text-muted">
+						<p class="text-warning">
 							<small>Impuesto del <%=productoEnCurso.getImpuesto()%>%
 								incluido.
 							</small>
@@ -64,17 +64,31 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 							<label for="cantidad<%=productoEnCurso.getId()%>">Cantidad
 								para comprar:</label> <br> <input type="number"
 								name="cantidad<%=productoEnCurso.getId()%>" value="1" min="1">
-							<button class="btn btn-primary" type="submit" name="id"
-								value="<%=productoEnCurso.getId()%>">Añadir al carrito</button>
+							<button class="btn btn-primary my-2" type="submit" name="id"
+								value="<%=productoEnCurso.getId()%>"><i class="bi bi-cart4"></i>  Añadir al carrito</button>
 						</form>
 					</div>
 					<div class="col-sm-4">
-						<img class="border border-danger"
+						<div class="card">
+						<div class="card-body">
+						<img class="border border-dark"
 								src="<%=request.getContextPath() + "/" + productoEnCurso.getImagen() %>" height="400" width="350" alt="..." />
-								<p>Audio de ejemplo:</p>
+								<%
+									if(productoEnCurso.getAudio()!=null && !productoEnCurso.getAudio().equals("")){
+										%>
+										
+											
+											<p class="my-2"><i class="bi bi-music-note-beamed"></i> Audio de ejemplo:</p>
 								<audio controls>
 									<source src="<%=request.getContextPath() + "/" + productoEnCurso.getAudio() %>">
 								</audio>
+								
+								
+										<%
+									}
+								%>
+								</div>
+								</div>
 					</div>
 				</div>
 			</div>

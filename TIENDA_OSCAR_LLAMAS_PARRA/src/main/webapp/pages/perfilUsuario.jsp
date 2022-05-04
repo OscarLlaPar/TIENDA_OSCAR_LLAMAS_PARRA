@@ -18,7 +18,7 @@
 			<h2>Perfil de <%=usuario.getNombre()+" "+usuario.getApellido1()+" "+usuario.getApellido2()%>  </h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-		<a class="btn btn-secondary my-3" href="<%= request.getContextPath() %>">Volver al inicio</a>
+		<a class="btn btn-secondary my-3" href="<%= request.getContextPath() %>"><i class="bi bi-arrow-left"></i>Volver al inicio</a>
 		<div class=" card container p-3">
 			<form action="<%= request.getContextPath() %>/ServletEditarPerfil" method="post">
 			<div class="row py-2">
@@ -81,7 +81,7 @@
 			<div class="form-group py-3">
 				<input type="hidden" name="id" value="<%= usuario.getId() %>">
 				<input class="btn btn-primary" type="submit" name="editar" value="Editar perfil">
-				<a class="btn btn-secondary" href="<%= request.getContextPath()%>/pages/cambiarPassword.jsp">Cambiar contraseña</a>
+				<a class="btn btn-secondary" href="<%= request.getContextPath()%>/pages/cambiarPassword.jsp"><i class="bi bi-key"></i> Cambiar contraseña</a>
 			</div>
 			
 			</form>

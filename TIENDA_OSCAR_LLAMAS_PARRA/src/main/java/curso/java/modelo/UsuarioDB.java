@@ -28,7 +28,7 @@ private static Connection conexion=Conexion.getConexion();
 				ResultSet rs=ps.executeQuery();
 				
 				if(rs.next()) {
-					u=new Usuario(rs.getInt(1), rs.getString(2),modeloRol.obtenerRol(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+					u=new Usuario(rs.getInt(1), rs.getString(2),modeloRol.obtenerRol(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12), rs.getTimestamp(13));
 				}
 				
 				return u;
@@ -54,7 +54,7 @@ private static Connection conexion=Conexion.getConexion();
 				ResultSet rs=ps.executeQuery();
 				
 				if(rs.next()) {
-					u=new Usuario(rs.getInt(1), rs.getString(2),modeloRol.obtenerRol(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+					u=new Usuario(rs.getInt(1), rs.getString(2),modeloRol.obtenerRol(rs.getInt(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getTimestamp(13));
 				}
 				
 				return u;

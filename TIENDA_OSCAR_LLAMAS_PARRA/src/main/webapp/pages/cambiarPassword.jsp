@@ -23,7 +23,7 @@
 								<%
 								if (request.getAttribute("mensajePassword") != null) {
 								%>
-								<p><%=request.getAttribute("mensajePassword")%></p>
+								<p class="m-2 text-secondary"><%=request.getAttribute("mensajePassword")%></p>
 								<%
 								}
 								%>
@@ -34,12 +34,12 @@
 								</div>
 								<div class="form-floating mb-3">
 									<input class="form-control"
-										type="password" name="passwordNueva">
+										type="password" name="passwordNueva" required>
 									<label for="nombre">Contraseña nueva</label> 
 								</div>
 								<div class="form-floating mb-3">
 									<input class="form-control"
-										type="password" name="confirmarPassword">
+										type="password" name="confirmarPassword" required>
 									<label for="nombre">Confirmar contraseña</label> 
 								</div>
 								<div class="d-flex align-items-center justify-content-between mt-4 mb-0">

@@ -1,5 +1,7 @@
 package curso.java.modelo;
 
+import java.sql.Timestamp;
+
 public class Usuario {
 	private int id;
 	private String email;
@@ -13,9 +15,10 @@ public class Usuario {
 	private String localidad;
 	private String telefono;
 	private String dni;
+	private Timestamp fechaBaja;
 	
 	public Usuario(int id, String email, Rol rol, String clave, String nombre, String apellido1, String apellido2,
-			String direccion, String provincia, String localidad, String telefono, String dni) {
+			String direccion, String provincia, String localidad, String telefono, String dni, Timestamp fechaBaja) {
 		super();
 		this.id=id;
 		this.email = email;
@@ -29,6 +32,7 @@ public class Usuario {
 		this.localidad = localidad;
 		this.telefono = telefono;
 		this.dni = dni;
+		this.fechaBaja = fechaBaja;
 	}
 	
 	public int getId() {
@@ -131,11 +135,19 @@ public class Usuario {
 		this.dni = dni;
 	}
 
+	public Timestamp getFechaBaja() {
+		return fechaBaja;
+	}
+
+	public void setFechaBaja(Timestamp fechaBaja) {
+		this.fechaBaja = fechaBaja;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id="+ id +", email=" + email + ", rol=" + rol + ", clave=" + clave + ", nombre=" + nombre + ", apellido1="
 				+ apellido1 + ", apellido2=" + apellido2 + ", direccion=" + direccion + ", provincia=" + provincia
-				+ ", localidad=" + localidad + ", telefono=" + telefono + ", dni=" + dni + "]";
+				+ ", localidad=" + localidad + ", telefono=" + telefono + ", dni=" + dni + ", fechaBaja=" + fechaBaja + "]";
 	}
 	
 	

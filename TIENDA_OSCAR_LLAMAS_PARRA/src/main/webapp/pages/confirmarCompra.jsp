@@ -14,7 +14,7 @@
 			<h2>Confirmar compra</h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-			<a class="btn btn-secondary" href="<%=request.getContextPath()%>/pages/carrito.jsp">Volver</a>
+			<a class="btn btn-secondary" href="<%=request.getContextPath()%>/pages/carrito.jsp"><i class="bi bi-arrow-left"></i> Volver</a>
 			<table class="table">
 				<thead>
 					<tr>

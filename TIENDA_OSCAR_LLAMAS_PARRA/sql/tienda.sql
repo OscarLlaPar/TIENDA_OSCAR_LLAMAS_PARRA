@@ -41,7 +41,7 @@ CREATE TABLE `usuarios` (
   `localidad` varchar(255),
   `telefono` varchar(255),
   `dni` varchar(255),
-  `fecha_baja` timestamp
+  `fecha_baja` timestamp null
 );
 
 CREATE TABLE `pedidos` (
@@ -95,7 +95,7 @@ CREATE TABLE `proveedores` (
   `telefono` varchar(255),
   `cif` varchar(255),
   `email` varchar(255),
-  `fecha_baja` timestamp
+  `fecha_baja` timestamp null
 );
 
 CREATE TABLE `descuentos` (

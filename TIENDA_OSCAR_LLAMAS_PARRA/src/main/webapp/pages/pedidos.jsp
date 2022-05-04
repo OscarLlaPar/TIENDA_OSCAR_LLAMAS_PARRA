@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Mis pedidos - Tienda Óscar Llamas Parra</title>
 </head>
 <body class="min-vh-100 d-flex flex-column justify-content-between"> 
@@ -14,7 +13,7 @@
 			<h2>Mis pedidos</h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-		<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>">Volver al catálogo</a>
+		<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>"><i class="bi bi-arrow-left"></i> Volver al catálogo</a>
 		<div class="card p-5">
 			<table class="table">
 				<thead>
@@ -42,12 +41,12 @@
 								<% 
 									if(p.getEstado().name().equals("PE")){
 								%>
-								<td><a class="btn btn-danger" href="<%=request.getContextPath()%>/ServletCancelarPedido?id=<%= p.getId()%>">Cancelar pedido</a></td>
+								<td><a class="btn btn-danger" href="<%=request.getContextPath()%>/ServletCancelarPedido?id=<%= p.getId()%>" onclick="return confirm('¿Estás seguro de que deseas cancelar el pedido?')">Cancelar pedido</a></td>
 								<% 
 									}
 									if(p.getEstado().name().equals("E")){
 								%>
-								<td><a class="btn btn-primary" target="__blank" href="<%=request.getContextPath()%>/ServletFactura?id=<%= p.getId()%>">Ver factura</a></td>		
+								<td><a class="btn btn-primary" target="__blank" href="<%=request.getContextPath()%>/ServletFactura?id=<%= p.getId()%>"><i class="bi bi-receipt"></i> Ver factura</a></td>		
 								<%
 									}
 								%>

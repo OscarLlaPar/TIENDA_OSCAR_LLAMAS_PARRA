@@ -48,7 +48,7 @@ public class ServletLogin extends HttpServlet {
 		String emailUsuario =request.getParameter("email");
 		String password=request.getParameter("password");
 		Usuario usuario=UsuarioServicio.verificarUsuario(emailUsuario, password);
-		if(usuario!=null && usuario.getRol().getRol().equals("Cliente")) {
+		if(usuario!=null && usuario.getRol().getRol().equals("Cliente") && usuario.getFechaBaja()==null) {
 			
 			HashSet<OpcionMenu> menu=OpcionMenuServicio.mostrarOpciones(usuario.getRol());
 			request.getSession().setAttribute("usuarioTienda", usuario);

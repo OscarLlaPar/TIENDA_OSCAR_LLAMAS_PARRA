@@ -14,13 +14,13 @@
 			<%
 			String[] contenido=(String[]) request.getAttribute("contenido");
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioTienda");
-			if (usuario != null) {
-			%>
-			<h4>
-				¡Bienvenido
-				<%=usuario.getNombre()%>!
-			</h4>
-			<%
+			int orden=0;
+			int bCategoria=0;
+			if(request.getAttribute("orden")!=null){
+				orden=(Integer) request.getAttribute("orden");
+			}
+			if(request.getAttribute("categoria")!=null){
+				bCategoria=(Integer)request.getAttribute("categoria");
 			}
 			%>
 			<h2><%= contenido[0] %></h2>
@@ -30,11 +30,13 @@
 				<div class="card-body">
 					<form action="<%= request.getContextPath() %>/ServletBusqueda" method="post">
 						<div class="input-group">
+							<a class="btn" href="<%= request.getContextPath() %>?idioma=es"><img src="<%= request.getContextPath()+ "/img/es.png"  %>" height="30"></a>
+							<a class="btn" href="<%= request.getContextPath() %>?idioma=en"><img src="<%= request.getContextPath()+ "/img/en.png"  %>" height="30"></a>
 								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="<%= contenido[1] %>" value="<%= request.getAttribute("busqueda")!=null?request.getAttribute("busqueda"):"" %>"/>
 							<select name="orden">
 								<option value="0"><%= contenido[2] %></option>
-								<option value="1">Más baratos</option>
-								<option value="2">Mejor valorados</option>
+								<option value="1" <%= orden==1?"selected":"" %>>Más baratos</option>
+								<option value="2" <%= orden==2?"selected":"" %>>Mejor valorados</option>
 							</select>
 							<select name="categoria">
 								<option value="0"><%= contenido[3] %></option>
@@ -42,18 +44,17 @@
 									HashSet<Categoria> categorias=(HashSet) request.getAttribute("categorias");
 									for (Categoria categoria: categorias){
 										%>
-										<option value="<%= categoria.getId() %>"><%= categoria.getNombre() %> </option>
+										<option value="<%= categoria.getId() %>" <%=bCategoria==categoria.getId()?"selected":"" %>><%= categoria.getNombre() %> </option>
 										<%
 									}
 								%>
 							</select>
-							<button type="submit" class="btn btn-primary">
+							<button type="submit" class="btn btn-primary"> <i class="bi bi-search"></i> 
 								<%= contenido[4] %>
 							</button>
 						</div>
 					</form>
-					<a href="<%= request.getContextPath() %>?idioma=es">Español</a>
-					<a href="<%= request.getContextPath() %>?idioma=en">English</a>
+					
 				</div>
 			</div>
 			<form action="ServletAnadir" method="post">
@@ -89,7 +90,7 @@
 									<input class="w-25 m-2" type="number"
 										name="cantidad<%=producto.getKey()%>" value="1" min="1">
 									<button class="btn btn-outline-dark mt-auto" type="submit"
-										name="id" value="<%=producto.getKey()%>"><%= contenido[5] %></button>
+										name="id" value="<%=producto.getKey()%>"><i class="bi bi-cart4"></i> <%= contenido[5] %></button>
 								</div>
 							</div>
 						</div>

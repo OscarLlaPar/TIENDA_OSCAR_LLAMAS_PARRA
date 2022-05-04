@@ -1,5 +1,7 @@
 package curso.java.modelo;
 
+import java.sql.Timestamp;
+
 public class Proveedor {
 	private int id;
 	private String nombre;
@@ -9,9 +11,10 @@ public class Proveedor {
 	private String telefono;
 	private String cif;
 	private String email;
+	private Timestamp fechaBaja;
 	
 	public Proveedor(int id, String nombre, String direccion, String localidad, String provincia, String telefono,
-			String cif, String email) {
+			String cif, String email, Timestamp fechaBaja) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -21,6 +24,7 @@ public class Proveedor {
 		this.telefono = telefono;
 		this.cif = cif;
 		this.email = email;
+		this.fechaBaja = fechaBaja;
 	}
 
 	public int getId() {
@@ -86,11 +90,19 @@ public class Proveedor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public Timestamp getFechaBaja() {
+		return fechaBaja;
+	}
+
+	public void setFechaBaja(Timestamp fechaBaja) {
+		this.fechaBaja = fechaBaja;
+	}
 
 	@Override
 	public String toString() {
 		return "Proveedor [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", localidad=" + localidad
-				+ ", provincia=" + provincia + ", telefono=" + telefono + ", cif=" + cif + ", email=" + email + "]";
+				+ ", provincia=" + provincia + ", telefono=" + telefono + ", cif=" + cif + ", email=" + email + ", fechaBaja=" + fechaBaja + "]";
 	}
 	
 	

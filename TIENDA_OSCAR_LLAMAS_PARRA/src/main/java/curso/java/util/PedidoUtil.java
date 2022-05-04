@@ -48,7 +48,7 @@ public class PedidoUtil {
 		        catPart.add(new Paragraph(" "));
 		        
 		        catPart.add(new Paragraph("Nombre del cliente: "+u.getNombre()+" "+u.getApellido1()+" "+u.getApellido2()));
-		        catPart.add(new Paragraph("Direcci�n del cliente: "+u.getLocalidad()+ " ("+u.getProvincia()+"), "+ u.getDireccion()));
+		        catPart.add(new Paragraph("Dirección del cliente: "+u.getLocalidad()+ " ("+u.getProvincia()+"), "+ u.getDireccion()));
 		        
 
 		   
@@ -66,13 +66,13 @@ public class PedidoUtil {
 			
 			tablaPedido.addCell(cabecera);
 			
-			tablaPedido.addCell("N�m. Factura");
+			tablaPedido.addCell("Núm. Factura");
 			tablaPedido.addCell("Fecha");
 			tablaPedido.addCell("Total");
 			
 			tablaPedido.addCell(p.getNumFactura());
 			tablaPedido.addCell(p.getFecha().toString());
-			tablaPedido.addCell(String.valueOf(p.getTotal()));
+			tablaPedido.addCell(String.format("%.2f",p.getTotal())+" €");
 			
 			document.add(tablaPedido);
 			
@@ -94,10 +94,10 @@ public class PedidoUtil {
 			
 			for(Map.Entry<Integer,DetallePedido> detalle : detalles.entrySet()) {
 				tablaDetalles.addCell(detalle.getValue().getProducto().getNombre());
-				tablaDetalles.addCell(String.valueOf(detalle.getValue().getPrecioUnidad()));
+				tablaDetalles.addCell(String.valueOf(detalle.getValue().getPrecioUnidad())+" €");
 				tablaDetalles.addCell(String.valueOf(detalle.getValue().getUnidades()));
-				tablaDetalles.addCell(String.valueOf(detalle.getValue().getImpuesto()));
-				tablaDetalles.addCell(String.valueOf(detalle.getValue().getTotal()));
+				tablaDetalles.addCell(String.valueOf(detalle.getValue().getImpuesto())+"%");
+				tablaDetalles.addCell(String.format("%.2f" ,detalle.getValue().getTotal())+" €");
 			}
 			
 			document.add(tablaDetalles);

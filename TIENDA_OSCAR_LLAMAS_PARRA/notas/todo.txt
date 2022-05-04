@@ -1,19 +1,15 @@
 
--Bajas lógicas
+-Algo de validación en Spring Boot
 
 -Mensajes JS.
 
 -Adecentar Bootstrap
-
--Documentación
 
 
 
 
 
 -Estado de los pedidos
-
--Filtros¿?
 
 -----POSIBLES PLANTILLAS BOOTSTRAP-----
 

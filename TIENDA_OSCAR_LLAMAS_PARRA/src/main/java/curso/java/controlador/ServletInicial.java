@@ -49,13 +49,14 @@ public class ServletInicial extends HttpServlet {
 			orden=Integer.parseInt((String)request.getAttribute("orden"));
 			request.setAttribute("busqueda",busqueda);
 			request.setAttribute("orden",orden);
+			request.setAttribute("categoria",categoria);
 			LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Buscando productos cuyo nombre contenga '"+busqueda+"' con el orden "+orden);
 		}
 		else {
 			busqueda="";
 			categoria=0;
 			orden=0;
-			LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Mostrando catálogo sin búsqueda");
+			LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Mostrando catï¿½logo sin bï¿½squeda");
 		}
 		
 		catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria,orden);
