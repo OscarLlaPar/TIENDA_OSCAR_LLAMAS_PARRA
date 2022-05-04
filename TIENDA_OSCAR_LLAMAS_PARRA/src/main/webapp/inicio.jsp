@@ -33,12 +33,12 @@
 							<a class="btn" href="<%= request.getContextPath() %>?idioma=es"><img src="<%= request.getContextPath()+ "/img/es.png"  %>" height="30"></a>
 							<a class="btn" href="<%= request.getContextPath() %>?idioma=en"><img src="<%= request.getContextPath()+ "/img/en.png"  %>" height="30"></a>
 								<input type="search" id="form1" class="form-control" name="busqueda" placeholder="<%= contenido[1] %>" value="<%= request.getAttribute("busqueda")!=null?request.getAttribute("busqueda"):"" %>"/>
-							<select name="orden">
+							<select name="orden" class="px-2">
 								<option value="0"><%= contenido[2] %></option>
 								<option value="1" <%= orden==1?"selected":"" %>>Más baratos</option>
 								<option value="2" <%= orden==2?"selected":"" %>>Mejor valorados</option>
 							</select>
-							<select name="categoria">
+							<select name="categoria" class="px-2">
 								<option value="0"><%= contenido[3] %></option>
 								<%
 									HashSet<Categoria> categorias=(HashSet) request.getAttribute("categorias");
@@ -74,7 +74,7 @@
 								<div class="text-center">
 									<!-- Product name-->
 									<h5 class="fw-bolder">
-										<a class="nav-link text-dark"
+										<a class="link-primary text-decoration-none"
 											href="<%=request.getContextPath()%>/ServletProducto?id=<%=producto.getKey()%>"><%=producto.getValue().getNombre()%></a>
 									</h5>
 									<!-- Product price-->

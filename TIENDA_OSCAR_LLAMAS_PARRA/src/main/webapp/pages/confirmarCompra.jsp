@@ -7,13 +7,13 @@
 	<meta charset="ISO-8859-1">
 	<title>Confirmar compra - Tienda Óscar Llamas Parra</title>
 </head>
-<body  class="min-vh-100 d-flex flex-column justify-content-between">
+<body  class="min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
 	
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Confirmar compra</h2>
 		</div>
-		<div class="container px-4 px-lg-5 mt-5">
+		<div class="container px-4 px-lg-5 mt-5 py-5">
 			<a class="btn btn-secondary" href="<%=request.getContextPath()%>/pages/carrito.jsp"><i class="bi bi-arrow-left"></i> Volver</a>
 			<table class="table">
 				<thead>

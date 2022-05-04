@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<footer class="py-3 bg-dark justify-self-end mt-auto">
+	<footer class="py-3 bg-dark navbar fixed-bottom justify-self-end mt-auto">
             <div class="container"><p class="m-0 text-center text-white">Óscar Llamas Parra</p></div>
         </footer>
 

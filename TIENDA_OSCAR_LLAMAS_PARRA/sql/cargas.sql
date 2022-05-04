@@ -25,8 +25,8 @@ VALUES ("Guitarras Paco","C/ Musica nº2","Zamora","Zamora","966666666","Q054174
 ("Estudios Futura", "C/ Travesia nº1", "Madrid", "Madrid", "965969696", "S4348156C", "estudio@futura.com",null);
 
 INSERT INTO productos (id_categoria,nombre,descripcion,precio,stock,fecha_baja,impuesto,imagen,audio,id_proveedor)
-VALUES (1, "Guitarra", "Guitarra española.",71.90, 31, null, 12, "img/guitarra.jpg","audio/guitarra.wav",1),
-(2, "Trompeta", "Trompeta normal.",287.83, 13, null, 12, "img/trompeta.jpg","audio/trompeta.mp3",2),
+VALUES (1, "Guitarra", "Guitarra española tradicional. Con funda, pua y cuerdas incluidas.",71.90, 31, null, 12, "img/guitarra.jpg","audio/guitarra.wav",1),
+(2, "Trompeta", "Trompeta normal. Para orquestas y bandas.",287.83, 13, null, 12, "img/trompeta.jpg","audio/trompeta.mp3",2),
 (1, "Arpa", "Arpa grande profesional.", 982.36, 22, null, 12, "img/arpa.jpg",null,3),
 (3, "Clarinete", "Clarinete profesional de orquesta.", 2543.12, 12, null, 12, "img/clarinete.jpg", null, 4),
 (3, "Flauta dulce de madera", "Flauta dulce de madera para uso casual.", 7.9, 34, null, 12, "img/flautamadera.jpg", null, 4),
@@ -58,7 +58,8 @@ VALUES (1,"Mis pedidos","ServletPedido"),
 (3,"Configurar aplicacion","/config");
 
 INSERT INTO configuracion (clave,valor,tipo)
-VALUES ("nombreTienda","","Texto"),
+VALUES ("nombreTienda","Tienda Orfeon","Texto"),
 ("direccionTienda", "C/Cosas nº 5", "Texto"),
 ("cifTienda", "D04272357", "Texto"),
-("numFacturas","1","Numero")
+("numFacturas","1","Numero"),
+("adminLogado", "0", "Numero");

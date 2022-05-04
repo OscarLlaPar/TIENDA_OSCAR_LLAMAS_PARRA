@@ -20,7 +20,7 @@
 	HashMap<String, String> errores = (HashMap) request.getAttribute("errores");
 	HashMap<String, String> respuestas = (HashMap) request.getAttribute("respuestas");
 	%>
-	<div class="container px-4 px-lg-5 mt-5">
+	<div class="container px-4 px-lg-5 mt-5 pb-5">
 		<form action="<%=request.getContextPath()%>/ServletRegistro"
 			method="post">
 			<div class="container">
@@ -127,7 +127,7 @@
 
 		</form>
 	</div>
-	<div class="h-25 w-100">
+	<div class="h-50 w-100 pb-5 ">
 	</div>
 	<jsp:include page="../layout/footer.jsp" />
 	<script src="<%=request.getContextPath()%>/js/registro.js"></script>

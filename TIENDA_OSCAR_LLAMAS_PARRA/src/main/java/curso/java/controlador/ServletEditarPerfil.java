@@ -54,7 +54,7 @@ public class ServletEditarPerfil extends HttpServlet {
 		if (UsuarioServicio.editarUsuario(usuarioActual, usuarioNuevo)) {
 			request.getSession().setAttribute("usuarioTienda", usuarioNuevo);
 		}
-		
+		request.setAttribute("provincias", JsonUtil.obtenerProvincias());
 		request.getRequestDispatcher("pages/perfilUsuario.jsp").forward(request, response);
 	}
 

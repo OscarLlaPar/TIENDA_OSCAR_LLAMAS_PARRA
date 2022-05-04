@@ -37,7 +37,7 @@
 			for (Map.Entry<Integer, DetallePedido> dp : detalles.entrySet()){
 		%>
 					<div class="list-group-item">
-						<p class="h4"> <%= dp.getValue().getProducto().getNombre() %> </p>
+						<a class="h4 link-primary text-decoration-none" href="<%=request.getContextPath()%>/ServletProducto?id=<%=dp.getValue().getProducto().getId() %>"> <%= dp.getValue().getProducto().getNombre() %> </a>
 						<div class="d-flex justify-content-between">
 							<p class="h6"><%= dp.getValue().getUnidades() %> unidad(es)</p>
 							<p class="h6"><%= dp.getValue().getPrecioUnidad() %> &euro;/ud. </p>

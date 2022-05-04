@@ -14,10 +14,10 @@
 <body  class="min-vh-100 d-flex flex-column justify-content-between">
 	<jsp:include page="../layout/header.jsp" />
 	
-		<div class="bg-dark py-3 text-center text-white">
+		<div class="bg-dark py-3 text-center text-white ">
 			<h2>Perfil de <%=usuario.getNombre()+" "+usuario.getApellido1()+" "+usuario.getApellido2()%>  </h2>
 		</div>
-		<div class="container px-4 px-lg-5 mt-5">
+		<div class="container px-4 px-lg-5 mt-5  pb-5">
 		<a class="btn btn-secondary my-3" href="<%= request.getContextPath() %>"><i class="bi bi-arrow-left"></i>Volver al inicio</a>
 		<div class=" card container p-3">
 			<form action="<%= request.getContextPath() %>/ServletEditarPerfil" method="post">
@@ -87,7 +87,7 @@
 			</form>
 			</div>
 		</div>
-		<div class="h-25 w-100">
+		<div class="h-25 w-100  pb-5">
 		</div>
 	
 	<jsp:include page="../layout/footer.jsp" />

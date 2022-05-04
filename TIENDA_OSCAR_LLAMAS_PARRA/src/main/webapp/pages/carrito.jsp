@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Carrito - Tienda Óscar Llamas Parra</title>
 </head>
-<body  class="min-vh-100 d-flex flex-column justify-content-between">
+<body  class="min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
 	
 		<div class="bg-dark py-3 text-center text-white">
