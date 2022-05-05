@@ -1,20 +1,23 @@
 package curso.java.servicio;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import curso.java.modelo.DetallePedido;
+import curso.java.modelo.DetallePedidoDB;
+import curso.java.modelo.EstadoPedido;
 import curso.java.modelo.Producto;
 
 public class DetallePedidoServicio {
 	/**
-	 * Añade un número de unidades de un determinado producto al carrito
-	 * especificado. El carrito es una colección de objetos DetallePedido.
+	 * Aï¿½ade un nï¿½mero de unidades de un determinado producto al carrito
+	 * especificado. El carrito es una colecciï¿½n de objetos DetallePedido.
 	 * Si el producto ya existe en el carrito, suma su cantidad y actualiza su precio total.
 	 * 
-	 * @param carrito	El carrito que contiene los productos que ha añadido o puede añadir el usuario.
-	 * @param p			El producto que se desea añadir al carrito.
-	 * @param cantidad	Cuántos productos se desean añadir al carrito.
+	 * @param carrito	El carrito que contiene los productos que ha aï¿½adido o puede aï¿½adir el usuario.
+	 * @param p			El producto que se desea aï¿½adir al carrito.
+	 * @param cantidad	Cuï¿½ntos productos se desean aï¿½adir al carrito.
 	 */
 	
 	public static void anadirAlCarrito(HashMap<Integer,DetallePedido> carrito, Producto p, int cantidad) {
@@ -26,17 +29,17 @@ public class DetallePedidoServicio {
 			carrito.replace(p.getId(), dp);
 		}
 		else {
-			dp=new DetallePedido(p, (float)p.getPrecio(),cantidad,p.getImpuesto(),p.getPrecioConImpuesto()*cantidad);
+			dp=new DetallePedido(0, p, (float)p.getPrecio(),cantidad,p.getImpuesto(),p.getPrecioConImpuesto()*cantidad, EstadoPedido.PE);
 			carrito.put(p.getId(), dp);
 		}
 	}
 	
 	/**
-	 * Resta del carrito el número de unidades pasado por parámetro del producto
+	 * Resta del carrito el nï¿½mero de unidades pasado por parï¿½metro del producto
 	 * especificado y actualiza su precio total.
-	 * Si el número e unidades llega a 0, se elimina del carrito.
+	 * Si el nï¿½mero e unidades llega a 0, se elimina del carrito.
 	 * 
-	 * @param carrito		El carrito que contiene los productos que ha añadido el usuario
+	 * @param carrito		El carrito que contiene los productos que ha aï¿½adido el usuario
 	 * @param idProducto	El id del producto que se desea eliminar del carrito	
 	 * @param cantidad		La cantidad de productos que se desean eliminar del carrito
 	 */
@@ -67,4 +70,21 @@ public class DetallePedidoServicio {
 		}
 		return total;
 	}
+	
+	public static DetallePedido obtenerDetalle(int idDetalle) {
+		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+		return modeloDetalle.obtenerDetalle(idDetalle);
+	}
+	
+	public static boolean actualizarEstado(DetallePedido dp, EstadoPedido estado) {
+		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+		return modeloDetalle.actualizarEstado(dp, estado);
+	}
+	
+	public static ArrayList<DetallePedido> buscarDetallesPorEstado(int idPedido, EstadoPedido estado){
+		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+		return modeloDetalle.buscarDetallesPorEstado(idPedido, estado);
+	}
+	
+	
 }

@@ -15,7 +15,7 @@ public class PedidoThread extends Thread {
 		System.out.println(idPedido);
 		
 		try {
-			sleep(10000);
+			sleep(40000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

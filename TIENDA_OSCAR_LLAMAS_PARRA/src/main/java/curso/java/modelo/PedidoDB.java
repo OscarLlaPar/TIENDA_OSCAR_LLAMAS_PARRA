@@ -46,6 +46,7 @@ public class PedidoDB {
 				}
 				
 				PedidoThread.lanzarPedidoThread(idPedido);
+				
 				return true;
 				
 			}
@@ -55,7 +56,7 @@ public class PedidoDB {
 			System.out.println(e.getMessage());
 			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
 			return false;
-		}
+		} 
 	}
 	
 	public int contarPedidos() {
@@ -91,6 +92,19 @@ public class PedidoDB {
 				ps.setInt(2, id);
 				
 				ps.execute();
+				
+				
+				Pedido pedido=obtenerPedido(id);
+				DetallePedidoDB modeloDP=new DetallePedidoDB();
+				HashMap<Integer,DetallePedido> detallesPedido=pedido.getDetallesPedido();
+				for (Map.Entry<Integer, DetallePedido> detalle : detallesPedido.entrySet()) {
+					System.out.println(detalle.getValue().toString());
+					if(estado.equals(EstadoPedido.E) && detalle.getValue().getEstado().equals(EstadoPedido.PE)){
+						modeloDP.actualizarEstado(detalle.getValue(), estado);
+					}
+					
+				}
+				
 				
 				return true;
 			}
@@ -211,6 +225,36 @@ public class PedidoDB {
 				PreparedStatement ps = conexion.prepareStatement("UPDATE pedidos SET num_factura=? WHERE id=?");
 				
 				ps.setString(1, anyoActual+conf.getValor());
+				ps.setInt(2, id);
+				
+				ps.execute();
+				
+				modeloConf.actualizarNumFacturas();
+				
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(PedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean actualizarTotal(int id, double total) {
+		try {
+			Statement statement=conexion.createStatement();
+			
+			
+			if(conexion!=null) {
+				ConfiguracionDB modeloConf=new ConfiguracionDB();
+				Configuracion conf=modeloConf.obtenerConfiguracion("numFacturas");
+				String anyoActual=String.valueOf(LocalDate.now().getYear());
+				
+				PreparedStatement ps = conexion.prepareStatement("UPDATE pedidos SET total=? WHERE id=?");
+				
+				ps.setDouble(1, total);
 				ps.setInt(2, id);
 				
 				ps.execute();

@@ -12,6 +12,7 @@ VALUES ("Cliente"),("Empleado"),("Administrador");
 
 INSERT INTO usuarios (email, id_rol, clave, nombre, apellido1, apellido2, direccion, provincia, localidad, telefono, dni, fecha_baja)
 VALUES ("admin@admin.com", 3, SHA2('admin',256), "Admin", "istra","dor", "C/ Administrador nº 1", "Zamora", "Zamora", "666666666", "12345678Z", null ),
+("oscarllp1998@gmail.com", 3, SHA2('paso',256), "Óscar", "Llamas", "Parra", "C/ El Gran Puente nº 12", "Zamora", "Benavente", "656565656", "02659176P", null),
 ("empleado1@tienda.com", 2, SHA2('paso',256), "Manuel", "Perez","Perez", "C/ Tienda nº 1", "Zamora", "Zamora", "677777777", "96930871Q", null ),
 ("cliente1@mail.com", 1, SHA2('paso',256), "Pedro", "Fernandez","Fernandez", "C/ Ejemplo nº 1", "Zamora", "Zamora", "688888888", "17982331B",null );
 

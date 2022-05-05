@@ -1,9 +1,6 @@
 package curso.java.controlador;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +14,16 @@ import curso.java.servicio.DetallePedidoServicio;
 import curso.java.servicio.PedidoServicio;
 
 /**
- * Servlet implementation class ServletCancelarPedido
+ * Servlet implementation class ServletCancelarDetalle
  */
-@WebServlet("/ServletCancelarPedido")
-public class ServletCancelarPedido extends HttpServlet {
+@WebServlet("/ServletCancelarDetalle")
+public class ServletCancelarDetalle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletCancelarPedido() {
+    public ServletCancelarDetalle() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,23 +32,22 @@ public class ServletCancelarPedido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("id")!=null) {
-			int idPedido=Integer.parseInt(request.getParameter("id"));
-			Pedido p=PedidoServicio.obtenerPedido(idPedido);
-			PedidoServicio.actualizarEstado(idPedido, EstadoPedido.PC);
-			HashMap<Integer,DetallePedido> detalles=p.getDetallesPedido();
-			for (Map.Entry<Integer, DetallePedido> dp : detalles.entrySet()) {
-				DetallePedidoServicio.actualizarEstado(dp.getValue(), EstadoPedido.PC);
-			}
-
-			request.getRequestDispatcher("ServletPedido").forward(request, response);
+		// TODO Auto-generated method stub
+		int idDetalle=Integer.parseInt(request.getParameter("id"));
+		DetallePedido dp=DetallePedidoServicio.obtenerDetalle(idDetalle);
+		DetallePedidoServicio.actualizarEstado(dp, EstadoPedido.PC);
+		Pedido p=dp.getPedido();
+		
+		if(DetallePedidoServicio.buscarDetallesPorEstado(p.getId(), EstadoPedido.PE).size()==0) {
+			PedidoServicio.actualizarEstado(p.getId(), EstadoPedido.PC);
 		}
-		if(request.getParameter("idAdmin")!=null) {
-			int idPedido=Integer.parseInt(request.getParameter("idAdmin"));
-			PedidoServicio.actualizarEstado(idPedido, EstadoPedido.C);
-
-			request.getRequestDispatcher("ServletPedidoAdmin").forward(request, response);
+		else {
+			PedidoServicio.actualizarEstado(p.getId(), EstadoPedido.PCD);
 		}
+		
+		
+		request.getRequestDispatcher("ServletDetallePedido?id="+dp.getPedido().getId()).forward(request, response);
+		
 	}
 
 	/**

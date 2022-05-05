@@ -41,11 +41,17 @@
 						<div class="d-flex justify-content-between">
 							<p class="h6"><%= dp.getValue().getUnidades() %> unidad(es)</p>
 							<p class="h6"><%= dp.getValue().getPrecioUnidad() %> &euro;/ud. </p>
+							<p class="h6"><%= dp.getValue().getEstado().getEstado() %></p>
 							<p class="h5">Total: <%=String.format("%.2f", dp.getValue().getTotal())  %> &euro; </p>
 						</div>
-						<% if(p.getEstado().name().equals("E")){
+						<% if(dp.getValue().getEstado().name().equals("E")){
 							%>
 							<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletValorar?id=<%=dp.getValue().getProducto().getId() %>"><i class="bi bi-sticky"></i> Valorar producto</a>
+							<%
+						}
+						if(dp.getValue().getEstado().name().equals("PE")){
+							%>
+							<a class="btn btn-danger" href="<%=request.getContextPath()%>/ServletCancelarDetalle?id=<%=dp.getValue().getId() %>">Cancelar detalle</a>
 							<%
 						}
 						%>

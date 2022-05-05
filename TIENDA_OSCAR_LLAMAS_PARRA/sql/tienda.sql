@@ -61,7 +61,8 @@ CREATE TABLE `detalles_pedido` (
   `precio_unidad` float,
   `unidades` int,
   `impuesto` float,
-  `total` double
+  `total` double,
+  `estado` varchar(255)
 );
 
 CREATE TABLE `opciones_menu` (

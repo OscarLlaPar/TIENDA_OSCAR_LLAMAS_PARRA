@@ -1,4 +1,6 @@
 
+-Que no haya password en campo hidden. Recibir el usuario sin password y ponersela despues en el controlador recuperandola de la base de datos.
+
 -Algo de validación en Spring Boot
 
 -Mensajes JS.

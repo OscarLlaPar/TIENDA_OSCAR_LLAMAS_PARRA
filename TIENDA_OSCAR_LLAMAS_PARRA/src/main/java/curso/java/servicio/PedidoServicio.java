@@ -88,4 +88,9 @@ public class PedidoServicio {
 		modeloPedido.insertarPedido(pedido);
 	}
 	
+	public static boolean actualizarTotal(int id, double total) {
+		PedidoDB modeloPedido=new PedidoDB();
+		return modeloPedido.actualizarTotal(id, total);
+	}
+	
 }
