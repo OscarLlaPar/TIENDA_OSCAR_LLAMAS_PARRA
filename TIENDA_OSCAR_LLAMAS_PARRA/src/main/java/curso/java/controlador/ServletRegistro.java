@@ -14,6 +14,7 @@ import curso.java.modelo.Usuario;
 import curso.java.modelo.UsuarioDB;
 import curso.java.servicio.UsuarioServicio;
 import curso.java.util.JsonUtil;
+import curso.java.util.UsuarioUtil;
 import curso.java.util.ValidacionFormularios;
 
 /**
@@ -68,14 +69,14 @@ public class ServletRegistro extends HttpServlet {
 		errores.put("telefono", ValidacionFormularios.validarTelefono(telefono, true));
 		errores.put("dni", ValidacionFormularios.validarDni(dni, true));
 		errores.put("password",ValidacionFormularios.comprobarObligatorio(password));
-		errores.put("confirmarPassword", confirmarPassword.equals(password)?"":"Las contraseÃ±as no coinciden");
+		errores.put("confirmarPassword", confirmarPassword.equals(password)?"":"Las contraseñas no coinciden");
 		
 		
 		
 		
 		
 		if(!ValidacionFormularios.hayErrores(errores)) {
-			Usuario usuarioValido= new Usuario(0, email, UsuarioServicio.obtenerRol(1),password,nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni,null);
+			Usuario usuarioValido= new Usuario(0, email, UsuarioServicio.obtenerRol(1),UsuarioUtil.obtenerSha2(password),nombre,apellido1,apellido2,direccion,provincia,localidad,telefono,dni,null);
 			UsuarioServicio.altaUsuario(usuarioValido);
 			request.getSession().setAttribute("usuarioTienda",usuarioValido);
 			request.getRequestDispatcher("").forward(request, response);

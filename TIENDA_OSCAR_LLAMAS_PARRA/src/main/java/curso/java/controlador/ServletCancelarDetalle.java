@@ -32,6 +32,10 @@ public class ServletCancelarDetalle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
+		
 		// TODO Auto-generated method stub
 		int idDetalle=Integer.parseInt(request.getParameter("id"));
 		DetallePedido dp=DetallePedidoServicio.obtenerDetalle(idDetalle);

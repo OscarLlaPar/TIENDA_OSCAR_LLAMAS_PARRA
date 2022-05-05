@@ -72,7 +72,7 @@
 						ArrayList<String> provincias =(ArrayList) request.getAttribute("provincias");
 						for(String provincia: provincias){
 							%>
-							<option value="<%= provincia %>"><%= provincia %></option>
+							<option value="<%= provincia %>" <% if (respuestas!=null && respuestas.get("provincia").equals(provincia)) out.println("selected"); %> ><%= provincia %></option>
 							<%
 						}
 								%>

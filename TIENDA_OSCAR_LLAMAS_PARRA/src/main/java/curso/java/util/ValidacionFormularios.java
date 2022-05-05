@@ -30,7 +30,7 @@ public class ValidacionFormularios {
 	                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 			Matcher matcher=pattern.matcher(mail);
 			if(!matcher.find()) {
-				mensajeError="El email introducido no es v√°lido";
+				mensajeError="El email introducido no es v·lido";
 			}
 		}
 		
@@ -70,7 +70,7 @@ public class ValidacionFormularios {
 	                .compile("[0-9]{7,8}[A-Za-z]");
 			Matcher matcher=pattern.matcher(dni);
 			if(!matcher.find()) {
-				mensajeError="El DNI introducido no es v√°lido";
+				mensajeError="El DNI introducido no es v·lido";
 			}
 		}
 		
@@ -94,7 +94,7 @@ public class ValidacionFormularios {
 	                .compile("^[6789][0-9]{8}$");
 			Matcher matcher=pattern.matcher(telefono);
 			if(!matcher.find()) {
-				mensajeError="El tel√©fono introducido no es v√°lido";
+				mensajeError="El telÈfono introducido no es v·lido";
 			}
 		}
 		
@@ -118,7 +118,7 @@ public class ValidacionFormularios {
 	                .compile(".*\\d.*");
 			Matcher matcher=pattern.matcher(entrada);
 			if(matcher.find()) {
-				mensajeError="S√≥lo se admiten caracteres alfab√©ticos";
+				mensajeError="Solo se admiten caracteres alfabÈticos";
 			}
 		}
 		
@@ -134,7 +134,7 @@ public class ValidacionFormularios {
 	public static String comprobarObligatorio(String entrada) {
 		String mensajeError="";
 		if(entrada.equals("")||entrada==null) {
-			mensajeError="Campo vac√≠o";
+			mensajeError="Campo vacÌo";
 		}
 		return mensajeError;
 	}

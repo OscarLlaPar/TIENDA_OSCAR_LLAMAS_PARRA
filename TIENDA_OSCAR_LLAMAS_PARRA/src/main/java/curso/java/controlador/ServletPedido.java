@@ -49,7 +49,9 @@ public class ServletPedido extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
 		/*LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);*/
 		

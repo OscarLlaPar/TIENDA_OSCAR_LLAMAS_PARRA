@@ -30,6 +30,9 @@ public class ServletEditarPerfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
 		request.setAttribute("provincias", JsonUtil.obtenerProvincias());
 		request.getRequestDispatcher("pages/perfilUsuario.jsp").forward(request, response);
 	}
@@ -38,6 +41,9 @@ public class ServletEditarPerfil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
 		int id=Integer.parseInt(request.getParameter("id"));
 		String nombre=request.getParameter("nombre");
 		String apellido1=request.getParameter("apellido1");

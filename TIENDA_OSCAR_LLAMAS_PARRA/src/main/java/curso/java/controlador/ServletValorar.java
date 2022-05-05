@@ -32,6 +32,10 @@ public class ServletValorar extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
+		
 		System.out.println("Valorar");
 		request.setAttribute("idProducto", request.getParameter("id"));
 		request.getRequestDispatcher("pages/valorarProducto.jsp").forward(request, response);
@@ -41,6 +45,10 @@ public class ServletValorar extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
+		
 		int idProducto=Integer.parseInt(request.getParameter("id"));
 		int valoracion=Integer.parseInt(request.getParameter("valoracion"));
 		String comentario=request.getParameter("comentario");

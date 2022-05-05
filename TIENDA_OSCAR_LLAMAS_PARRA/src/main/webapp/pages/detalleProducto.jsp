@@ -72,7 +72,7 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 						<div class="card">
 						<div class="card-body">
 						<img class="border border-dark"
-								src="<%=request.getContextPath() + "/" + productoEnCurso.getImagen() %>" height="400" width="350" alt="..." />
+								src="<%=productoEnCurso.getImagen()!=null && !productoEnCurso.getImagen().equals("") ? request.getContextPath() + "/" + productoEnCurso.getImagen() : request.getContextPath() + "/img/nodisponible.jpg" %>" height="400" width="350" alt="..." />
 								<%
 									if(productoEnCurso.getAudio()!=null && !productoEnCurso.getAudio().equals("")){
 										%>

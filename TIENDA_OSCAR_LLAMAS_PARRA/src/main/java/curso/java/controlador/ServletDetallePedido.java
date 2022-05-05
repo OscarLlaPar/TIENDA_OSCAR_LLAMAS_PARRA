@@ -29,6 +29,10 @@ public class ServletDetallePedido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
+		
 		// TODO Auto-generated method stub
 		int idPedido=Integer.parseInt(request.getParameter("id"));
 		Pedido pedidoEnCurso=PedidoServicio.obtenerPedido(idPedido);

@@ -35,6 +35,10 @@ public class ServletCancelarPedido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("usuarioTienda")==null) {
+    		request.getRequestDispatcher("").forward(request,response);
+    	}
+		
 		if(request.getParameter("id")!=null) {
 			int idPedido=Integer.parseInt(request.getParameter("id"));
 			Pedido p=PedidoServicio.obtenerPedido(idPedido);

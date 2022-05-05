@@ -68,7 +68,7 @@
 						<div class="card h-100">
 							<!-- Product image-->
 							<img class="card-img-top"
-								src="<%=request.getContextPath() + "/" + producto.getValue().getImagen() %>" height="300" alt="..." />
+								src="<%=producto.getValue().getImagen()!=null && !producto.getValue().getImagen().equals("") ? request.getContextPath() + "/" + producto.getValue().getImagen():request.getContextPath() +"/img/nodisponible.jpg" %>" height="300" alt="..." />
 							<!-- Product details-->
 							<div class="card-body p-4">
 								<div class="text-center">

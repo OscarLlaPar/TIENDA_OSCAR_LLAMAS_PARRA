@@ -56,7 +56,7 @@ public class ServletInicial extends HttpServlet {
 			busqueda="";
 			categoria=0;
 			orden=0;
-			LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Mostrando catï¿½logo sin bï¿½squeda");
+			LogUtil.registrarInfo(getClass(), TipoLog.INFO, "Mostrando catálogo sin búsqueda");
 		}
 		
 		catalogo=ProductoServicio.mostrarCatalogo(busqueda, categoria,orden);
