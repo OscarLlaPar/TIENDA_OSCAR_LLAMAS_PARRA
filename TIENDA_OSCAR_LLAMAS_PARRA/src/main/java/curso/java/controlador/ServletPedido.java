@@ -64,7 +64,12 @@ public class ServletPedido extends HttpServlet {
 			Pedido pedido=new Pedido(usuarioActual, PedidoServicio.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,null,totalCarrito);
 			HashMap<Integer, DetallePedido> carrito=(HashMap) request.getSession().getAttribute("carrito");
 			pedido.setDetallesPedido(carrito);
-			
+			for (Map.Entry<Integer, DetallePedido> dp : carrito.entrySet()) {
+				dp.getValue().getProducto().setStock(dp.getValue().getProducto().getStock()-dp.getValue().getUnidades());
+				int idProducto=dp.getValue().getProducto().getId();
+				int stockProducto=dp.getValue().getProducto().getStock();
+				ProductoServicio.actualizarStock(idProducto,stockProducto);
+			}
 			PedidoServicio.insertarPedido(pedido);
 			carrito.clear();
 			request.getSession().setAttribute("totalCarrito", 0.0);

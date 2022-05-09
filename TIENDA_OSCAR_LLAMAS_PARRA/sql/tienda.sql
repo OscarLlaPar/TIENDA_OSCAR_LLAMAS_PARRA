@@ -103,8 +103,8 @@ CREATE TABLE `descuentos` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `codigo` varchar(255),
   `descuento` float,
-  `fecha_inicio` timestamp,
-  `fecha_fin` timestamp
+  `fecha_inicio` date,
+  `fecha_fin` date
 );
 
 CREATE TABLE `impuestos` (

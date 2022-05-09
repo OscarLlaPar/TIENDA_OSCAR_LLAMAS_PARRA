@@ -56,7 +56,8 @@ VALUES (1,"Mis pedidos","ServletPedido"),
 (3,"Gestionar pedidos","/pedidos"),
 (3,"Gestionar proveedores","/proveedores"),
 (3,"Gestionar empleados","/login/empleados"),
-(3,"Configurar aplicacion","/config");
+(3,"Configurar aplicacion","/config"),
+(3,"Gestionar descuentos","/descuentos");
 
 INSERT INTO configuracion (clave,valor,tipo)
 VALUES ("nombreTienda","Tienda Orfeon","Texto"),

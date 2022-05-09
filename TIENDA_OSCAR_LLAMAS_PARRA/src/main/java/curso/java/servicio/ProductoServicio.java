@@ -14,13 +14,13 @@ public class ProductoServicio {
 	
 	/**
 	 * 	Utiliza la clase ProductoDB para consultar los productos buscados en la base de datos
-	 * y mostrarlos en el catálogo. La consulta contiene una búsqueda por nombre, un filtro por categoría
-	 * y una ordenación
+	 * y mostrarlos en el catï¿½logo. La consulta contiene una bï¿½squeda por nombre, un filtro por categorï¿½a
+	 * y una ordenaciï¿½n
 	 * 
 	 * @param busqueda	Cadena que se busca en el nombre de los productos de la base de datos. Si es "" muestra todos.
-	 * @param categoria	ID de la categoría de los productos que se desea mostrar en el catálogo. Si es 0 muestra todas las categorías.
-	 * @param orden		0 para el orden por defecto, 1 para ordenarlos por más baratos, 2 para ordenaros por mejor valoración.
-	 * @return			LinkedHashMap que contiene los objetos Producto que se mostrarán en el catálogo.
+	 * @param categoria	ID de la categorï¿½a de los productos que se desea mostrar en el catï¿½logo. Si es 0 muestra todas las categorï¿½as.
+	 * @param orden		0 para el orden por defecto, 1 para ordenarlos por mï¿½s baratos, 2 para ordenaros por mejor valoraciï¿½n.
+	 * @return			LinkedHashMap que contiene los objetos Producto que se mostrarï¿½n en el catï¿½logo.
 	 */
 	
 	public static LinkedHashMap<Integer, Producto> mostrarCatalogo(String busqueda, int categoria, int orden){
@@ -45,7 +45,7 @@ public class ProductoServicio {
 	 * Devuelve todos los productos existentes en la base dedatos
 	 * mediante la clase ProductoDB.
 	 * 
-	 * @return	Una colección LinkedHashMap con los objetos Producto resultantes.
+	 * @return	Una colecciï¿½n LinkedHashMap con los objetos Producto resultantes.
 	 */
 	
 	public static LinkedHashMap<Integer, Producto> mostrarTodosLosProductos(){
@@ -56,15 +56,22 @@ public class ProductoServicio {
 	
 	
 	/**
-	 * Devuelve todas las categorías de producto existentes en la tabla "categorias"
+	 * Devuelve todas las categorï¿½as de producto existentes en la tabla "categorias"
 	 * de la base de datos.
 	 * Utiliza la clase CategoriaDB para realizar la consulta.
 	 * 
-	 * @return	Un HashSet de objetos Categoria con las categorías de producto de la base de datos.
+	 * @return	Un HashSet de objetos Categoria con las categorï¿½as de producto de la base de datos.
 	 */
 	
 	public static HashSet<Categoria> mostrarTodasLasCategorias(){
 		CategoriaDB modeloCategoria=new CategoriaDB();
 		return modeloCategoria.mostrarTodasLasCategorias();
 	}
+	
+	public static boolean actualizarStock(int idProducto, int stock) {
+		ProductoDB modeloProducto=new ProductoDB();
+		return modeloProducto.actualizarStock(idProducto, stock);
+	}
+	
+	
 }

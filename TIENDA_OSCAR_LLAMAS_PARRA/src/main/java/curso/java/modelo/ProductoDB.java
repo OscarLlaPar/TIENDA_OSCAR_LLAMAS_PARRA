@@ -144,20 +144,16 @@ public class ProductoDB {
 		}
 	}
 	
-	public boolean editarProducto(int id, String nombre, String descripcion, int stock, double precio, float impuesto) {
+	public boolean actualizarStock(int idProducto, int stock) {
 		try {
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
 				CategoriaDB modeloCategoria=new CategoriaDB();
 				Producto p=null;
-				PreparedStatement ps = conexion.prepareStatement("UPDATE productos SET nombre=?, descripcion=?, stock=?, precio=?, impuesto=? WHERE id=?");
-				ps.setString(1, nombre);
-				ps.setString(2, descripcion);
-				ps.setInt(3, stock);
-				ps.setDouble(4, precio);
-				ps.setFloat(5, impuesto);
-				ps.setInt(6, id);
+				PreparedStatement ps = conexion.prepareStatement("UPDATE productos SET stock=? WHERE id=?");
+				ps.setInt(1, stock);
+				ps.setInt(2, idProducto);
 				
 				ps.execute();
 				

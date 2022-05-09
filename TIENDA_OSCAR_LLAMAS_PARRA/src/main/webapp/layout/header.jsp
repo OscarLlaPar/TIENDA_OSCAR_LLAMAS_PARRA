@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ page
 	import="java.util.HashSet, curso.java.modelo.OpcionMenu, java.util.Iterator, curso.java.modelo.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.css">
 <link
@@ -48,7 +48,7 @@
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
 						href="<%=request.getContextPath()%>/pages/login.jsp"><i class="bi bi-person"></i> Iniciar
-							sesión</a></li>
+							sesiÃ³n</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
 						href="<%=request.getContextPath()%>/ServletRegistro">Registrarse</a></li>
@@ -61,7 +61,7 @@
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded"
 						href="<%=request.getContextPath()%>/ServletLogin">Cerrar
-							sesión</a></li>
+							sesiÃ³n</a></li>
 					<%
 					}
 					%>
