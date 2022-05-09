@@ -26,7 +26,8 @@ public class DescuentoDB {
 				
 				ResultSet rs=ps.executeQuery();
 				if(rs.next()) {
-					descuento=new Descuento(rs.getInt(1),rs.getString(2),rs.getFloat(3),rs.getTimestamp(4),rs.getTimestamp(5));
+					descuento=new Descuento(rs.getInt(1),rs.getString(2),rs.getFloat(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate()
+							);
 				}
 				return descuento;
 				

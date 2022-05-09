@@ -1,15 +1,16 @@
 package curso.java.modelo;
 
-import java.sql.Timestamp;
+
+import java.time.LocalDate;
 
 public class Descuento {
 	private int id;
 	private String codigo;
 	private float descuento;
-	private Timestamp fechaInicio;
-	private Timestamp fechaFin;
+	private LocalDate fechaInicio;
+	private LocalDate fechaFin;
 	
-	public Descuento(int id, String codigo, float descuento, Timestamp fechaInicio, Timestamp fechaFin) {
+	public Descuento(int id, String codigo, float descuento, LocalDate fechaInicio, LocalDate fechaFin) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -42,19 +43,19 @@ public class Descuento {
 		this.descuento = descuento;
 	}
 
-	public Timestamp getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Timestamp fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Timestamp getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(Timestamp fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 
