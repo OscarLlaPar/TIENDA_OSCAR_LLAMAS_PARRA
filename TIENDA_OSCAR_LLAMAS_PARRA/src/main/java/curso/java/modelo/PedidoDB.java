@@ -19,22 +19,33 @@ import curso.java.util.TipoLog;
 public class PedidoDB {
 	private static Connection conexion=Conexion.getConexion();
 	
+	
+	
 	public PedidoDB() {
 		Conexion.conectar();
 	}
 	
 	public boolean insertarPedido(Pedido pedido) {
+		String[] queryDescuento={"",""};
+		if(pedido.getDescuento()!=null) {
+			queryDescuento[0]=",id_descuento";
+			queryDescuento[1]=",?";
+		}
 		try {
 			Statement statement=conexion.createStatement();
 			
 			if(conexion!=null) {
-				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,id_usuario,metodo_pago,estado,total) VALUES (?,?,?,?,?)");
+				PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (id,id_usuario,metodo_pago,estado,total"+queryDescuento[0]+") VALUES (?,?,?,?,?"+queryDescuento[1]+")");
 				int idPedido=contarPedidos()+1;
 				ps.setInt(1, idPedido);
 				ps.setInt(2, pedido.getUsuario().getId());
 				ps.setString(3, pedido.getMetodoPago().getMetodoPago());
 				ps.setString(4, pedido.getEstado().toString());
 				ps.setDouble(5, pedido.getTotal());
+				if(pedido.getDescuento()!=null) {
+					ps.setInt(6, pedido.getDescuento().getId());
+				}
+				
 				
 				ps.execute();
 				
@@ -125,6 +136,7 @@ public class PedidoDB {
 				UsuarioDB modeloUsuario=new UsuarioDB();
 				MetodoPagoDB modeloMP=new MetodoPagoDB();
 				DetallePedidoDB modeloDP=new DetallePedidoDB();
+				DescuentoDB modeloDescuento=new DescuentoDB();
 				LinkedHashSet<Pedido> pedidos=new LinkedHashSet<>();
 				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE id_usuario = ? ORDER BY fecha DESC");
 				ps.setInt(1, idUsuario);
@@ -132,7 +144,7 @@ public class PedidoDB {
 				ResultSet rs=ps.executeQuery();
 				
 				while(rs.next()) {
-					Pedido p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7));
+					Pedido p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7),modeloDescuento.obtenerPorId(rs.getInt(8)));
 					p.setDetallesPedido(modeloDP.obtenerDetallesPedido(rs.getInt(1)));
 					pedidos.add(p);
 				}
@@ -157,6 +169,7 @@ public class PedidoDB {
 				UsuarioDB modeloUsuario=new UsuarioDB();
 				MetodoPagoDB modeloMP=new MetodoPagoDB();
 				DetallePedidoDB modeloDP=new DetallePedidoDB();
+				DescuentoDB modeloDescuento=new DescuentoDB();
 				LinkedHashSet<Pedido> pedidos=new LinkedHashSet<>();
 				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE estado = ?");
 				ps.setString(1, estado.name());
@@ -164,7 +177,7 @@ public class PedidoDB {
 				ResultSet rs=ps.executeQuery();
 				
 				while(rs.next()) {
-					Pedido p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7));
+					Pedido p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7), modeloDescuento.obtenerPorId(rs.getInt(8)));
 					p.setDetallesPedido(modeloDP.obtenerDetallesPedido(rs.getInt(1)));
 					pedidos.add(p);
 				}
@@ -189,6 +202,7 @@ public class PedidoDB {
 				UsuarioDB modeloUsuario=new UsuarioDB();
 				MetodoPagoDB modeloMP=new MetodoPagoDB();
 				DetallePedidoDB modeloDP=new DetallePedidoDB();
+				DescuentoDB modeloDescuento=new DescuentoDB();
 				Pedido p=null;
 				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM pedidos WHERE id = ?");
 				ps.setInt(1, id);
@@ -196,7 +210,7 @@ public class PedidoDB {
 				ResultSet rs=ps.executeQuery();
 				
 				while(rs.next()) {
-					p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7));
+					p=new Pedido(rs.getInt(1),modeloUsuario.buscarUsuarioPorEmail(rs.getString(2)),rs.getTimestamp(3),modeloMP.obtenerMetodoPago(rs.getString(4)),EstadoPedido.valueOf(rs.getString(5)),rs.getString(6),rs.getDouble(7), modeloDescuento.obtenerPorId(rs.getInt(8)));
 					p.setDetallesPedido(modeloDP.obtenerDetallesPedido(rs.getInt(1)));
 				}
 				

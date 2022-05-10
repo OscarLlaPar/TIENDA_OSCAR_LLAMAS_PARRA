@@ -23,6 +23,7 @@
 						<th>Método de pago</th>
 						<th>Estado</th>
 						<th>Núm. de factura</th>
+						<th>Descuento</th>
 						<th>Total</th>
 					</tr>
 				</thead>
@@ -36,6 +37,7 @@
 								<td><%= p.getMetodoPago().getMetodoPago() %></td>
 								<td><%= p.getEstado().getEstado() %></td>
 								<td><%= p.getNumFactura()!=null?p.getNumFactura():"-" %> </td>
+								<td><%= p.getDescuento()!=null?p.getDescuento().getCodigo()+" - "+p.getDescuento().getDescuento()+"%" :"-" %></td>
 								<td><%= String.format("%.2f", p.getTotal()) %> &euro;</td>
 								<td><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletDetallePedido?id=<%= p.getId()%>">Ver detalle</a></td>
 								<% 

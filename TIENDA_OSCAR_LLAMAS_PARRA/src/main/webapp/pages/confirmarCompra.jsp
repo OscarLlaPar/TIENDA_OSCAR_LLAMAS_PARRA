@@ -30,6 +30,8 @@
 			</thead>
 			<tbody>
 				<%
+				Descuento d=(Descuento) request.getAttribute("descuento");
+				
 				HashMap<Integer, DetallePedido> carrito = (HashMap) request.getSession().getAttribute("carrito");
 
 				for (Map.Entry<Integer, DetallePedido> dp : carrito.entrySet()) {
@@ -56,7 +58,7 @@
 			<div class="card">
 				<div class="card-body container">
 				<% if(request.getAttribute("mensajeDescuento")!=null && !request.getAttribute("mensajeDescuento").equals("")){ %>
-				<div class="alert alert-<%= request.getAttribute("descuento")!=null?"success":"danger" %> alert-dismissible fade show" role="alert">	
+				<div class="alert alert-<%= d!=null?"success":"danger" %> alert-dismissible fade show" role="alert">	
 						 	<span><%= request.getAttribute("mensajeDescuento") %></span>
 						 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>
@@ -71,13 +73,14 @@
 									checked> <label for="mTarjeta">Tarjeta</label> <input
 									id="mPaypal" type="radio" name="metodoPago" value="2">
 								<label for="mPaypal">Paypal</label>
+								<input type="hidden" name="idDescuento" value="<%= d!=null?d.getId():"" %>">
 							</div>
 							<input class="btn btn-primary" type="submit" name="comprar"
 								value="Confirmar pedido">
 						</form>
 						</div>
 						<div class="col-sm">
-							<% if(request.getAttribute("descuento")==null){ %>
+							<% if(d==null){ %>
 							<a id="mostrarDescuento" class="link-primary" href="#">Tengo un código de descuento</a>
 							<form id="formDescuento" class="d-none" action="<%= request.getContextPath() %>/ServletPedido" method="get">
 								<input class="form-control w-50" type="text" name="codigo" placeholder="Código de descuento...">
@@ -85,7 +88,7 @@
 							</form>
 							<% }
 								else{
-								Descuento d=(Descuento) request.getAttribute("descuento");
+								
 								%>
 								<p class="text-success"> Descuento del <%= d.getDescuento() %>%</p>
 								<%} %>

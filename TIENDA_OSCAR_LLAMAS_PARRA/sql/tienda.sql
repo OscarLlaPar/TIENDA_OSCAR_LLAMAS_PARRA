@@ -51,7 +51,8 @@ CREATE TABLE `pedidos` (
   `metodo_pago` varchar(255),
   `estado` varchar(255),
   `num_factura` varchar(255),
-  `total` double
+  `total` double,
+  `id_descuento` int
 );
 
 CREATE TABLE `detalles_pedido` (
@@ -126,6 +127,8 @@ ALTER TABLE `usuarios` ADD FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
 ALTER TABLE `opciones_menu` ADD FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
 
 ALTER TABLE `pedidos` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+
+ALTER TABLE `pedidos` ADD FOREIGN KEY (`id_descuento`) REFERENCES `descuentos` (`id`);
 
 ALTER TABLE `detalles_pedido` ADD FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`);
 

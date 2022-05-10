@@ -57,9 +57,12 @@ public class ServletPedido extends HttpServlet {
 			else {
 				request.setAttribute("mensajeDescuento", "Descuento no válido");
 			}
+			request.getRequestDispatcher("pages/confirmarCompra.jsp").forward(request, response);
+		}
+		else {
+			doPost(request,response);
 		}
 		
-		request.getRequestDispatcher("pages/confirmarCompra.jsp").forward(request, response);
 		
 	}
 
@@ -79,7 +82,14 @@ public class ServletPedido extends HttpServlet {
 			
 			int idMetodoPago=Integer.parseInt(request.getParameter("metodoPago"));
 			double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
-			Pedido pedido=new Pedido(usuarioActual, PedidoServicio.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,null,totalCarrito);
+			Descuento descuento=null;
+			if(!request.getParameter("idDescuento").equals("")) {
+				int idDescuento=Integer.parseInt(request.getParameter("idDescuento"));
+				descuento= DescuentoServicio.obtenerPorId(idDescuento);
+			}
+			
+			
+			Pedido pedido=new Pedido(usuarioActual, PedidoServicio.obtenerMetodoPago(idMetodoPago),EstadoPedido.PE,null,totalCarrito, descuento);
 			HashMap<Integer, DetallePedido> carrito=(HashMap) request.getSession().getAttribute("carrito");
 			pedido.setDetallesPedido(carrito);
 			for (Map.Entry<Integer, DetallePedido> dp : carrito.entrySet()) {

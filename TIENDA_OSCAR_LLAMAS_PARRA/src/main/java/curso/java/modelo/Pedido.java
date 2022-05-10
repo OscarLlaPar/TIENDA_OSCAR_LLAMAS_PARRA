@@ -11,10 +11,11 @@ public class Pedido {
 	private EstadoPedido estado;
 	private String numFactura;
 	private double total;
+	private Descuento descuento;
 	private HashMap<Integer,DetallePedido> detallesPedido;
 	
 	public Pedido(int id, Usuario usuario, Timestamp fecha, MetodoPago metodoPago, EstadoPedido estado,
-			String numFactura, double total) {
+			String numFactura, double total, Descuento descuento) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -23,17 +24,19 @@ public class Pedido {
 		this.estado = estado;
 		this.numFactura = numFactura;
 		this.total = total;
+		this.descuento = descuento;
 		this.detallesPedido = new HashMap <>();
 	}
 
 	public Pedido(Usuario usuario, MetodoPago metodoPago, EstadoPedido estado,
-			String numFactura, double total) {
+			String numFactura, double total, Descuento descuento) {
 		super();
 		this.usuario = usuario;
 		this.metodoPago = metodoPago;
 		this.estado = estado;
 		this.numFactura = numFactura;
 		this.total = total;
+		this.descuento = descuento;
 		this.detallesPedido = new HashMap <>();
 	}
 	
@@ -92,6 +95,16 @@ public class Pedido {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+	
+	
+
+	public Descuento getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(Descuento descuento) {
+		this.descuento = descuento;
+	}
 
 	public HashMap<Integer, DetallePedido> getDetallesPedido() {
 		return detallesPedido;
@@ -104,7 +117,7 @@ public class Pedido {
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", usuario=" + usuario + ", fecha=" + fecha + ", metodoPago=" + metodoPago
-				+ ", estado=" + estado + ", numFactura=" + numFactura + ", total=" + total + ", detallesPedido="
+				+ ", estado=" + estado + ", numFactura=" + numFactura + ", total=" + total + ", descuento=" + descuento + ", detallesPedido="
 				+ detallesPedido + "]";
 	}
 	

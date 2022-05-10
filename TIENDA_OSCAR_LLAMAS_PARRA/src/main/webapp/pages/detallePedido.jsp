@@ -26,6 +26,7 @@
 				<p><strong>Fecha:</strong>  <%= p.getFecha() %> </p>
 				<p><strong>Método de pago:</strong>  <%= p.getMetodoPago().getMetodoPago() %></p>
 				<p><strong>Estado:</strong> <%= p.getEstado().getEstado() %></p>
+				<p><strong>Descuento: </strong> <%= p.getDescuento()!=null?p.getDescuento().getCodigo()+" - "+p.getDescuento().getDescuento()+"%":"-" %> </p>
 				<p class="h4">Total: <%= String.format("%.2f", p.getTotal()) %> &euro; </p>
 			</div>
 			<p class="h3 my-3">Productos</p>

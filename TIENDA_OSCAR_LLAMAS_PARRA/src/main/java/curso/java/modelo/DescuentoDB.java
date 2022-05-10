@@ -40,4 +40,29 @@ public class DescuentoDB {
 		}
 	}
 	
+	public Descuento obtenerPorId(int id) {
+		try {
+			Statement statement=conexion.createStatement();
+			Descuento descuento=null;
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM descuentos WHERE id =?");
+				ps.setInt(1, id);
+				
+				ResultSet rs=ps.executeQuery();
+				if(rs.next()) {
+					descuento=new Descuento(rs.getInt(1),rs.getString(2),rs.getFloat(3),rs.getDate(4).toLocalDate(),rs.getDate(5).toLocalDate()
+							);
+				}
+				return descuento;
+				
+			}
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(CategoriaDB.class, TipoLog.ERROR, e.getMessage());
+			return null;
+		}
+	}
+	
+	
 }

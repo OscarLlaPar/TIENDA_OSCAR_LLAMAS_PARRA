@@ -10,4 +10,9 @@ public class DescuentoServicio {
 		return modeloDescuento.obtenerPorCodigo(codigo);
 	}
 	
+	public static Descuento obtenerPorId(int id) {
+		DescuentoDB modeloDescuento = new DescuentoDB();
+		return modeloDescuento.obtenerPorId(id);
+	}
+	
 }
