@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.modelo.Descuento;
 import curso.java.modelo.DetallePedido;
 import curso.java.modelo.EstadoPedido;
 import curso.java.modelo.MetodoPagoDB;
@@ -19,6 +20,8 @@ import curso.java.modelo.Pedido;
 import curso.java.modelo.PedidoDB;
 import curso.java.modelo.Producto;
 import curso.java.modelo.Usuario;
+import curso.java.servicio.DescuentoServicio;
+import curso.java.servicio.DetallePedidoServicio;
 import curso.java.servicio.PedidoServicio;
 import curso.java.servicio.ProductoServicio;
 
@@ -42,7 +45,22 @@ public class ServletPedido extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request,response);
+		if(request.getParameter("codigo")!=null) {
+			String codigo=(String) request.getParameter("codigo");
+			Descuento d = DescuentoServicio.obtenerPorCodigo(codigo);
+			if(d!=null) {
+				request.setAttribute("descuento", d);
+				request.setAttribute("mensajeDescuento", "Descuento válido");
+				double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
+				request.getSession().setAttribute("totalCarrito", totalCarrito - totalCarrito*(d.getDescuento()/100) );
+			}
+			else {
+				request.setAttribute("mensajeDescuento", "Descuento no válido");
+			}
+		}
+		
+		request.getRequestDispatcher("pages/confirmarCompra.jsp").forward(request, response);
+		
 	}
 
 	/**

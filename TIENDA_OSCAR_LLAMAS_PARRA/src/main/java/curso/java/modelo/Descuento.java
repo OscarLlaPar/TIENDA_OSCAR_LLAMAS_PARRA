@@ -6,11 +6,11 @@ import java.time.LocalDate;
 public class Descuento {
 	private int id;
 	private String codigo;
-	private float descuento;
+	private double descuento;
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	
-	public Descuento(int id, String codigo, float descuento, LocalDate fechaInicio, LocalDate fechaFin) {
+	public Descuento(int id, String codigo, double descuento, LocalDate fechaInicio, LocalDate fechaFin) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -35,11 +35,11 @@ public class Descuento {
 		this.codigo = codigo;
 	}
 
-	public float getDescuento() {
+	public double getDescuento() {
 		return descuento;
 	}
 
-	public void setDescuento(float descuento) {
+	public void setDescuento(double descuento) {
 		this.descuento = descuento;
 	}
 

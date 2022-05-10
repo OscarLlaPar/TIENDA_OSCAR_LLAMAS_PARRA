@@ -102,7 +102,7 @@ CREATE TABLE `proveedores` (
 CREATE TABLE `descuentos` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `codigo` varchar(255),
-  `descuento` float,
+  `descuento` double,
   `fecha_inicio` date,
   `fecha_fin` date
 );
