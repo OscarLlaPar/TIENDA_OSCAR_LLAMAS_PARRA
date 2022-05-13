@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+
 <title>Confirmar compra - Tienda Óscar Llamas Parra</title>
 </head>
 <body class="min-vh-100">

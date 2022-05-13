@@ -1,12 +1,11 @@
 <%@ page
 	import="java.util.HashMap, java.util.Map, curso.java.modelo.DetallePedido, curso.java.modelo.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Carrito - Tienda Óscar Llamas Parra</title>
+<title>Carrito - Tienda Ã“scar Llamas Parra</title>
 </head>
 <body  class="min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
@@ -14,8 +13,12 @@
 		<div class="bg-dark py-3 text-center text-white">
 			<h2>Carrito</h2>
 		</div>
-
+		
 		<div class="container px-4 px-lg-5 mt-5">
+			<div id="contenedorMensaje">
+		
+			</div>
+			
 			<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>"> <i class="bi bi-arrow-left"></i>Seguir comprando</a>
 			<form action="<%=request.getContextPath()%>/ServletCarrito"
 				method="post">
@@ -29,7 +32,7 @@
 								<th>Cantidad</th>
 								<th>Precio total</th>
 								<th>Cantidad quitar</th>
-								<th>Acción</th>
+								<th>AcciÃ³n</th>
 							</tr>
 						</thead>
 						<tbody id="contenidoCarrito">
@@ -78,15 +81,16 @@
 				<%
 				} else if (usuario == null) {
 				%>
-				<p>Regístrate o inicia sesión para poder efectuar la compra.</p>
+				<p>RegÃ­strate o inicia sesiÃ³n para poder efectuar la compra.</p>
 				<%
 				}
 				%>
+				<input type="hidden" id="idUsuario" name="idUsuario" value="<%= usuario!=null?usuario.getId():0 %>">
 			</form>
 
 		</div>
 
-	
+	<script src="<%=request.getContextPath()%>/js/comprobacionCarrito.js"></script>
 	<jsp:include page="../layout/footer.jsp" />
 </body>
 </html>

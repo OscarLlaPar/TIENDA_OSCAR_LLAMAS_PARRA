@@ -1,6 +1,7 @@
 package curso.java.controlador;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import javax.servlet.ServletException;
@@ -9,9 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import curso.java.modelo.DetallePedido;
 import curso.java.modelo.OpcionMenu;
 import curso.java.modelo.OpcionMenuDB;
 import curso.java.modelo.Usuario;
+import curso.java.servicio.DetallePedidoServicio;
 import curso.java.servicio.OpcionMenuServicio;
 import curso.java.servicio.UsuarioServicio;
 
@@ -49,7 +52,11 @@ public class ServletLogin extends HttpServlet {
 		String password=request.getParameter("password");
 		Usuario usuario=UsuarioServicio.verificarUsuario(emailUsuario, password);
 		if(usuario!=null && usuario.getRol().getRol().equals("Cliente") && usuario.getFechaBaja()==null) {
-			
+			HashMap<Integer,DetallePedido> carritoUsuario=DetallePedidoServicio.obtenerCarritoUsuario(usuario.getId());
+			if(carritoUsuario.size()>0) {
+				request.getSession().setAttribute("carrito", carritoUsuario);
+				request.getSession().setAttribute("totalCarrito", DetallePedidoServicio.totalCarrito(carritoUsuario));
+			}
 			HashSet<OpcionMenu> menu=OpcionMenuServicio.mostrarOpciones(usuario.getRol());
 			request.getSession().setAttribute("usuarioTienda", usuario);
 			request.getSession().setAttribute("menuUsuario", menu);

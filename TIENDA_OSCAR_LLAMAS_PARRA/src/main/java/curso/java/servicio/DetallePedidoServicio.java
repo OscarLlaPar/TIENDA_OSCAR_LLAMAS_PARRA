@@ -8,6 +8,7 @@ import curso.java.modelo.DetallePedido;
 import curso.java.modelo.DetallePedidoDB;
 import curso.java.modelo.EstadoPedido;
 import curso.java.modelo.Producto;
+import curso.java.modelo.Usuario;
 
 public class DetallePedidoServicio {
 	/**
@@ -20,17 +21,28 @@ public class DetallePedidoServicio {
 	 * @param cantidad	Cu�ntos productos se desean a�adir al carrito.
 	 */
 	
-	public static void anadirAlCarrito(HashMap<Integer,DetallePedido> carrito, Producto p, int cantidad) {
+	public static void anadirAlCarrito(HashMap<Integer,DetallePedido> carrito, Producto p, int cantidad, Usuario u) {
 		DetallePedido dp;
+		
 		if(carrito.get(p.getId())!=null) {
 			dp=carrito.get(p.getId());
 			dp.setUnidades(dp.getUnidades() + cantidad);
 			dp.setTotal(p.getPrecioConImpuesto()*dp.getUnidades());
 			carrito.replace(p.getId(), dp);
+			if(u!=null) {
+				DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+				modeloDetalle.actualizarCantidadCarrito(p.getId(), u.getId(), cantidad);
+				
+			}
+			
 		}
 		else {
 			dp=new DetallePedido(0, p, (float)p.getPrecio(),cantidad,p.getImpuesto(),p.getPrecioConImpuesto()*cantidad, EstadoPedido.PE);
 			carrito.put(p.getId(), dp);
+			if(u!=null) {
+				DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+				modeloDetalle.anadirAlCarrito(p.getId(), u.getId(), cantidad);
+			}
 		}
 	}
 	
@@ -44,14 +56,22 @@ public class DetallePedidoServicio {
 	 * @param cantidad		La cantidad de productos que se desean eliminar del carrito
 	 */
 	
-	public static void eliminarDelCarrito(HashMap<Integer, DetallePedido> carrito, int idProducto, int cantidad) {
+	public static void eliminarDelCarrito(HashMap<Integer, DetallePedido> carrito, int idProducto, int cantidad, Usuario u) {
 		DetallePedido dp=carrito.get(idProducto);
 		Producto p = ProductoServicio.obtenerProducto(idProducto);
 		dp.setUnidades(dp.getUnidades() - cantidad);
 		dp.setTotal(p.getPrecioConImpuesto()*dp.getUnidades());
 		carrito.replace(idProducto, dp);
+		if(u!=null) {
+			DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+			modeloDetalle.actualizarCantidadCarrito(p.getId(), u.getId(), -cantidad);
+		}
 		if(dp.getUnidades()<=0) {
 			carrito.remove(idProducto);
+			if(u!=null) {
+				DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+				modeloDetalle.eliminarDelCarrito(p.getId(), u.getId());
+			}
 		}
 	}
 	
@@ -84,6 +104,21 @@ public class DetallePedidoServicio {
 	public static ArrayList<DetallePedido> buscarDetallesPorEstado(int idPedido, EstadoPedido estado){
 		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
 		return modeloDetalle.buscarDetallesPorEstado(idPedido, estado);
+	}
+	
+	public static boolean comprobarCarrito(int idProducto) {
+		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+		return modeloDetalle.comprobarCarrito(idProducto);
+	}
+	
+	public static ArrayList<Integer> obtenerProductosCarritoPorUsuario(int idUsuario){
+		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+		return modeloDetalle.obtenerProductosCarritoPorUsuario(idUsuario);
+	}
+	
+	public static HashMap<Integer,DetallePedido> obtenerCarritoUsuario(int idUsuario){
+		DetallePedidoDB modeloDetalle=new DetallePedidoDB();
+		return modeloDetalle.obtenerCarritoUsuario(idUsuario);
 	}
 	
 	

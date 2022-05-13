@@ -118,6 +118,13 @@ CREATE TABLE `metodos_pago` (
   `metodo_pago` varchar(255)
 );
 
+CREATE TABLE `productos_carritos` (
+	`id_producto` int,
+	`id_usuario` int,
+	`cantidad` int
+);
+
+
 ALTER TABLE `productos` ADD FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
 
 ALTER TABLE `productos` ADD FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id`);
@@ -137,3 +144,7 @@ ALTER TABLE `detalles_pedido` ADD FOREIGN KEY (`id_producto`) REFERENCES `produc
 ALTER TABLE `valoraciones` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
 
 ALTER TABLE `valoraciones` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
+
+ALTER TABLE `productos_carritos` ADD FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`);
+
+ALTER TABLE `productos_carritos` ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);

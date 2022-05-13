@@ -80,15 +80,15 @@
 									<!-- Product price-->
 									<%= String.format("%.2f",producto.getValue().getPrecioConImpuesto())%>
 									&euro;
-									</td>
+									<p class="text-danger"><%= producto.getValue().getStock()<5?"Sólo "+producto.getValue().getStock()+" en stock":"" %></p>
 								</div>
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-
-								<div class="text-center">
+								
+								<div class="text-center ">
 									<input class="w-25 m-2" type="number"
-										name="cantidad<%=producto.getKey()%>" value="1" min="1">
+										name="cantidad<%=producto.getKey()%>" value="1" min="1" max="<%= producto.getValue().getStock() %>">
 									<button class="btn btn-outline-dark mt-auto" type="submit"
 										name="id" value="<%=producto.getKey()%>"><i class="bi bi-cart4"></i> <%= contenido[5] %></button>
 								</div>

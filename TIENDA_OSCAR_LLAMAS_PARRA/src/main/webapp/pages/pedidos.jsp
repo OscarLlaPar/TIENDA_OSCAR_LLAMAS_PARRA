@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.LinkedHashSet, curso.java.modelo.Pedido, curso.java.modelo.DetallePedido" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mis pedidos - Tienda Óscar Llamas Parra</title>
+<title>Mis pedidos - Tienda Ã“scar Llamas Parra</title>
 </head>
 <body class="min-vh-100"> 
 	<jsp:include page="../layout/header.jsp" />
@@ -13,16 +13,25 @@
 			<h2>Mis pedidos</h2>
 		</div>
 		<div class="container px-4 px-lg-5 mt-5">
-		<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>"><i class="bi bi-arrow-left"></i> Volver al catálogo</a>
+		<% 
+			String mensajeCompra=(String) request.getAttribute("mensajeCompra");
+			if(mensajeCompra!=null){
+		%>
+		<div  class="alert alert-success alert-dismissible fade show" role="alert">	
+						 	<span><%= mensajeCompra %></span>
+						 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+		<% } %>
+		<a class="btn btn-secondary my-2" href="<%=request.getContextPath()%>"><i class="bi bi-arrow-left"></i> Volver al catÃ¡logo</a>
 		<div class="card p-5">
 			<table class="table">
 				<thead>
 					<tr>
 						
 						<th>Fecha</th>
-						<th>Método de pago</th>
+						<th>MÃ©todo de pago</th>
 						<th>Estado</th>
-						<th>Núm. de factura</th>
+						<th>NÃºm. de factura</th>
 						<th>Descuento</th>
 						<th>Total</th>
 					</tr>
@@ -43,7 +52,7 @@
 								<% 
 									if(p.getEstado().name().equals("PE")){
 								%>
-								<td><a class="btn btn-danger" href="<%=request.getContextPath()%>/ServletCancelarPedido?id=<%= p.getId()%>" onclick="return confirm('¿Estás seguro de que deseas cancelar el pedido?')">Cancelar pedido</a></td>
+								<td><a class="btn btn-danger" href="<%=request.getContextPath()%>/ServletCancelarPedido?id=<%= p.getId()%>" onclick="return confirm('Â¿EstÃ¡s seguro de que deseas cancelar el pedido?')">Cancelar pedido</a></td>
 								<% 
 									}
 									if(p.getEstado().name().equals("E")){

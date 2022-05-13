@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Iniciar sesión - Tienda Óscar Llamas Parra</title>
+<title>Iniciar sesiÃ³n - Tienda Ã“scar Llamas Parra</title>
 <body  class="d-flex flex-column min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
 	<main>
 		<div class="bg-dark py-3 text-center text-white">
-			<h2>Iniciar sesión</h2>
+			<h2>Iniciar sesiÃ³n</h2>
 		</div>
 		<div class="container px-4 px-lg-5">
 			<div class="row justify-content-center">
@@ -33,13 +33,13 @@
 								<div class="form-floating mb-3">
 									<input class="form-control" id="inputPassword" type="password"
 										name="password" placeholder="Password" /> <label
-										for="inputPassword">Contraseña</label>
+										for="inputPassword">ContraseÃ±a</label>
 								</div>
 								<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
 									<a href="<%=request.getContextPath()%>"
 										class="btn btn-secondary">Volver</a>
 									<button type="submit" class="btn btn-primary">Iniciar
-										sesión</button>
+										sesiÃ³n</button>
 								</div>
 							</form>
 						</div>

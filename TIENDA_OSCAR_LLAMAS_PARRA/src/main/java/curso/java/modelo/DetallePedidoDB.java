@@ -145,4 +145,158 @@ public class DetallePedidoDB {
 		}
 	}
 	
+	public boolean anadirAlCarrito(int idProducto, int idUsuario, int cantidad) {
+		try {
+			Statement statement=conexion.createStatement();
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("INSERT INTO productos_carritos VALUES (?,?,?)");
+					
+				ps.setInt(1, idProducto);
+				ps.setInt(2, idUsuario);
+				ps.setInt(3, cantidad);
+				
+				ps.execute();
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean actualizarCantidadCarrito(int idProducto, int idUsuario, int cantidad) {
+		try {
+			Statement statement=conexion.createStatement();
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("UPDATE productos_carritos SET cantidad=cantidad+? WHERE id_producto=? AND id_usuario=?");
+				
+				ps.setInt(1, cantidad);
+				ps.setInt(2, idProducto);
+				ps.setInt(3, idUsuario);
+				
+				
+				ps.execute();
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean eliminarDelCarrito(int idProducto, int idUsuario) {
+		try {
+			Statement statement=conexion.createStatement();
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("DELETE FROM productos_carritos WHERE id_producto=? AND id_usuario=?");
+					
+				ps.setInt(1, idProducto);
+				ps.setInt(2, idUsuario);
+				
+				ps.execute();
+				return true;
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean comprobarCarrito(int idProducto) {
+		try {
+			Statement statement=conexion.createStatement();
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("SELECT id_producto FROM productos_carritos WHERE id_producto=? AND (SELECT SUM(cantidad) FROM productos_carritos WHERE id_producto=?) > (SELECT stock FROM productos WHERE id=?) ");
+					
+				ps.setInt(1, idProducto);
+				ps.setInt(2, idProducto);
+				ps.setInt(3, idProducto);
+				
+				ResultSet rs=ps.executeQuery();
+				
+				System.out.println("Operacion hecha");
+				
+				if(rs.next()) {
+					System.out.println("Hay next");
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+			
+			return false;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return false;
+		}
+	}
+	
+	public ArrayList<Integer> obtenerProductosCarritoPorUsuario(int idUsuario){
+		try {
+			Statement statement=conexion.createStatement();
+			if(conexion!=null) {
+				PreparedStatement ps = conexion.prepareStatement("SELECT id_producto FROM productos_carritos WHERE id_usuario=?");
+				ArrayList<Integer> productos=new ArrayList<>();	
+				
+				ps.setInt(1, idUsuario);
+				
+				
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					productos.add(rs.getInt(1));
+					
+				}
+				
+				return productos;
+			}
+			
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return null;
+		}
+	}
+	
+	public HashMap<Integer,DetallePedido> obtenerCarritoUsuario(int idUsuario){
+		try {
+			Statement statement=conexion.createStatement();
+			if(conexion!=null) {
+				ProductoDB modeloProducto=new ProductoDB();
+				PreparedStatement ps = conexion.prepareStatement("SELECT * FROM productos_carritos WHERE id_usuario=?");
+				HashMap<Integer,DetallePedido> carrito=new HashMap<Integer,DetallePedido>();	
+				
+				ps.setInt(1, idUsuario);
+				
+				
+				ResultSet rs=ps.executeQuery();
+				while(rs.next()) {
+					Producto p=modeloProducto.buscarProductoPorId(rs.getInt(1));
+					DetallePedido dp=new DetallePedido(0, p, (float) p.getPrecio(), rs.getInt(3),p.getImpuesto(),p.getPrecioConImpuesto()*rs.getInt(3),EstadoPedido.PE);
+					carrito.put(rs.getInt(1), dp);
+					
+				}
+				
+				return carrito;
+			}
+			
+			return null;
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+			LogUtil.registrarInfo(DetallePedidoDB.class, TipoLog.ERROR, e.getMessage());
+			return null;
+		}
+	}
+	
 }

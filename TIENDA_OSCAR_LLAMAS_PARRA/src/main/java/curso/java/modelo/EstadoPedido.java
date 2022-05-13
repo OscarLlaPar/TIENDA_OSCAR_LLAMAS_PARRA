@@ -1,9 +1,9 @@
 package curso.java.modelo;
 
 public enum EstadoPedido {
-	PE("Pendiente de envÃ­o"),
-	PC("Pendiente de cancelaciÃ³n"),
-	PCD("Pendiente de cancelaciÃ³n de detalle"),
+	PE("Pendiente de envío"),
+	PC("Pendiente de cancelación"),
+	PCD("Pendiente de cancelación de detalle"),
 	E("Enviado"),
 	C("Cancelado");
 	

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import curso.java.modelo.DetallePedido;
 import curso.java.modelo.Producto;
 import curso.java.modelo.ProductoDB;
+import curso.java.modelo.Usuario;
 import curso.java.servicio.DetallePedidoServicio;
 import curso.java.servicio.ProductoServicio;
 
@@ -39,7 +40,8 @@ public class ServletAnadir extends HttpServlet {
 			int idProducto=Integer.parseInt(request.getParameter("id"));
 			Producto p=ProductoServicio.obtenerProducto(idProducto);
 			int cantidadIntroducida=Integer.parseInt(request.getParameter("cantidad"+idProducto));
-            DetallePedidoServicio.anadirAlCarrito(carrito, p, cantidadIntroducida);
+			Usuario u=(Usuario) request.getSession().getAttribute("usuarioTienda");
+            DetallePedidoServicio.anadirAlCarrito(carrito, p, cantidadIntroducida, u);
             request.getSession().setAttribute("totalCarrito", DetallePedidoServicio.totalCarrito(carrito));
 		}
 		

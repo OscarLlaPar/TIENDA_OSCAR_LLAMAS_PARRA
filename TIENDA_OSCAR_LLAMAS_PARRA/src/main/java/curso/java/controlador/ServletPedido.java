@@ -2,6 +2,7 @@ package curso.java.controlador;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,15 +48,18 @@ public class ServletPedido extends HttpServlet {
 		// TODO Auto-generated method stub
 		if(request.getParameter("codigo")!=null) {
 			String codigo=(String) request.getParameter("codigo");
+			
+			LocalDate fechaActual = LocalDate.now();
+			
 			Descuento d = DescuentoServicio.obtenerPorCodigo(codigo);
-			if(d!=null) {
+			if(d!=null && fechaActual.compareTo(d.getFechaInicio())>=0 && fechaActual.compareTo(d.getFechaFin())<=0) {
 				request.setAttribute("descuento", d);
-				request.setAttribute("mensajeDescuento", "Descuento vÃ¡lido");
+				request.setAttribute("mensajeDescuento", "Descuento válido");
 				double totalCarrito=(double)request.getSession().getAttribute("totalCarrito");
 				request.getSession().setAttribute("totalCarrito", totalCarrito - totalCarrito*(d.getDescuento()/100) );
 			}
 			else {
-				request.setAttribute("mensajeDescuento", "Descuento no vÃ¡lido");
+				request.setAttribute("mensajeDescuento", "Descuento no válido");
 			}
 			request.getRequestDispatcher("pages/confirmarCompra.jsp").forward(request, response);
 		}
@@ -101,6 +105,7 @@ public class ServletPedido extends HttpServlet {
 			PedidoServicio.insertarPedido(pedido);
 			carrito.clear();
 			request.getSession().setAttribute("totalCarrito", 0.0);
+			request.setAttribute("mensajeCompra", "¡Muchas gracias por su compra! El pedido está en marcha.");
 		}
 		request.setAttribute("pedidos", PedidoServicio.obtenerPedidos(usuarioActual.getId()));
 		

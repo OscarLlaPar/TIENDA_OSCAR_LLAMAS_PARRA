@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import curso.java.modelo.DetallePedido;
 import curso.java.modelo.Producto;
+import curso.java.modelo.Usuario;
 import curso.java.servicio.DetallePedidoServicio;
 import curso.java.servicio.ProductoServicio;
 
@@ -42,9 +43,9 @@ public class ServletCarrito extends HttpServlet {
 			int cantidadEliminar=Integer.parseInt(request.getParameter("cantidad"+idProducto));
             
 			double totalCarrito=(double) request.getSession().getAttribute("totalCarrito");
+			Usuario u=(Usuario) request.getSession().getAttribute("usuarioTienda");
 			
-			
-			DetallePedidoServicio.eliminarDelCarrito(carrito, idProducto, cantidadEliminar);
+			DetallePedidoServicio.eliminarDelCarrito(carrito, idProducto, cantidadEliminar, u);
 			
 		}
 		request.getSession().setAttribute("totalCarrito", DetallePedidoServicio.totalCarrito(carrito));

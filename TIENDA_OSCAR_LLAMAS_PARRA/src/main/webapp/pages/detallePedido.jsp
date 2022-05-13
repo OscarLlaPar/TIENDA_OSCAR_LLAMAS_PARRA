@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page import="java.util.HashMap, java.util.Map, curso.java.modelo.Pedido, curso.java.modelo.DetallePedido" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Pedido - Tienda Óscar Llamas Parra</title>
+<title>Pedido - Tienda Ã“scar Llamas Parra</title>
 </head>
 <body  class="d-flex flex-column min-vh-100">
 	<jsp:include page="../layout/header.jsp" />
@@ -22,9 +21,9 @@
 			Pedido p=(Pedido)request.getAttribute("pedidoEnCurso");
 		%>
 			<div class=" card p-3 d-flex flex-row justify-content-between">
-				<p><strong>Núm de factura:</strong> <%= p.getNumFactura()!=null?p.getNumFactura():"-" %> </p>
+				<p><strong>NÃºm de factura:</strong> <%= p.getNumFactura()!=null?p.getNumFactura():"-" %> </p>
 				<p><strong>Fecha:</strong>  <%= p.getFecha() %> </p>
-				<p><strong>Método de pago:</strong>  <%= p.getMetodoPago().getMetodoPago() %></p>
+				<p><strong>MÃ©todo de pago:</strong>  <%= p.getMetodoPago().getMetodoPago() %></p>
 				<p><strong>Estado:</strong> <%= p.getEstado().getEstado() %></p>
 				<p><strong>Descuento: </strong> <%= p.getDescuento()!=null?p.getDescuento().getCodigo()+" - "+p.getDescuento().getDescuento()+"%":"-" %> </p>
 				<p class="h4">Total: <%= String.format("%.2f", p.getTotal()) %> &euro; </p>

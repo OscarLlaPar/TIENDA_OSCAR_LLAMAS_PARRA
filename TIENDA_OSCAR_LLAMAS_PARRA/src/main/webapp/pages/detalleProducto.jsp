@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page
 	import="java.util.HashSet, curso.java.modelo.Producto, curso.java.modelo.Usuario, curso.java.modelo.Valoracion"%>
 <%
@@ -8,8 +8,7 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title><%=productoEnCurso.getNombre()%> - Tienda Óscar Llamas
+<title><%=productoEnCurso.getNombre()%> - Tienda Ã“scar Llamas
 	Parra</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/estilos.css">
@@ -27,10 +26,10 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 					<div class="col-sm-8">
 						<p class="h2"><%=productoEnCurso.getNombre()%></p>
 						<p class="text-muted">
-							<em>Categoría: <%=productoEnCurso.getCategoria().getNombre()%></em>
+							<em>CategorÃ­a: <%=productoEnCurso.getCategoria().getNombre()%></em>
 						</p>
 						<div class="card">
-							<div class="card-header">Descripción</div>
+							<div class="card-header">DescripciÃ³n</div>
 							<div class="card-body">
 								<p><%=productoEnCurso.getDescripcion()%></p>
 							</div>
@@ -51,7 +50,7 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 						<p>
 							<strong>Proveedor: </strong><%=productoEnCurso.getProveedor().getNombre()%>
 						</p>
-						<p>
+						<p class="<%= productoEnCurso.getStock()<=5?"text-danger":"" %>">
 							<strong>Cantidad en stock: </strong><%=productoEnCurso.getStock()%></p>
 						<p>
 							<strong>Disponible desde: </strong><%=productoEnCurso.getFechaAlta()%></p>
@@ -63,9 +62,9 @@ Producto productoEnCurso = (Producto) request.getAttribute("productoEnCurso");
 							method="post">
 							<label for="cantidad<%=productoEnCurso.getId()%>">Cantidad
 								para comprar:</label> <br> <input type="number"
-								name="cantidad<%=productoEnCurso.getId()%>" value="1" min="1">
+								name="cantidad<%=productoEnCurso.getId()%>" value="1" min="1" max="<%= productoEnCurso.getStock() %>">
 							<button class="btn btn-primary my-2" type="submit" name="id"
-								value="<%=productoEnCurso.getId()%>"><i class="bi bi-cart4"></i>  Añadir al carrito</button>
+								value="<%=productoEnCurso.getId()%>" <%= productoEnCurso.getStock()==0?"disabled":"" %>><i class="bi bi-cart4"></i>  AÃ±adir al carrito</button>
 						</form>
 					</div>
 					<div class="col-sm-4">
